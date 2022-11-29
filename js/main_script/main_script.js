@@ -275,6 +275,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 5157:
+/***/ (function() {
+
+document.addEventListener('DOMContentLoaded', function () {
+  window.map = {
+    list: document.querySelectorAll('.jsMap')
+  }; // console.log(window.map);
+
+  var _loop = function _loop(index) {
+    var item = window.map.list[index];
+    var coordinates = JSON.parse(item.getAttribute('data-map-coordinates')); // const id = item.getAttribute('id')
+    // console.log(coordinates);
+
+    function init() {
+      var thisMap = new ymaps.Map(item, {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: coordinates[0],
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 7
+      });
+    }
+
+    ymaps.ready(init); // thisMap;
+    // window.modal[id] = itemModal;
+  };
+
+  for (var index = 0; index < window.map.list.length; index++) {
+    _loop(index);
+  } // window.map.list.forEach(function(e) {
+  // });
+  // console.log(window.map);
+  // window.map.callback.show()
+  // window.map.chanels.show()
+  // window.map.success.show()
+  // window.map.id.hide()
+
+});
+
+/***/ }),
+
 /***/ 5358:
 /***/ (function() {
 
@@ -741,7 +785,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loop: false,
         slidesPerView: 1,
         spaceBetween: 16,
-        speed: 750,
+        speed: 500,
         navigation: {
           nextEl: item.querySelector('.swiper-button-next'),
           prevEl: item.querySelector('.swiper-button-prev')
@@ -759,7 +803,7 @@ document.addEventListener('DOMContentLoaded', function () {
       loop: false,
       slidesPerView: 1,
       spaceBetween: 16,
-      speed: 750,
+      speed: 500,
       navigation: {
         nextEl: '.jsSliderArticle .swiper-button-next',
         prevEl: '.jsSliderArticle .swiper-button-prev'
@@ -815,6 +859,8 @@ fancybox_esm/* Fancybox.bind */.KR.bind('[data-fancybox]', {
 });
 // EXTERNAL MODULE: ./src/components/more/scripts.js
 var more_scripts = __webpack_require__(5358);
+// EXTERNAL MODULE: ./src/components/map/scripts.js
+var map_scripts = __webpack_require__(5157);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(4942);
 // EXTERNAL MODULE: ./node_modules/gator/gator.js
@@ -1008,6 +1054,7 @@ var registerFormValidator = function registerFormValidator() {
 
 /* harmony default export */ var formValidator_init = (registerFormValidator);
 ;// CONCATENATED MODULE: ./src/init.js
+
 
 
 

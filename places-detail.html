@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
       type="text/javascript"></script>
-    <title>Новости раздел</title>
+    <title>Новости детальная</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
@@ -82,122 +82,301 @@
       <div class="breadcrumbs">
         <div class="container">
           <div class="breadcrumbs__list"> <a class="text-md breadcrumbs__link" href="#">Главная</a><a
-              class="text-md breadcrumbs__link" href="#">Все события</a><a class="text-md breadcrumbs__link"
-              href="#">Фестивали</a></div>
+              class="text-md breadcrumbs__link" href="#">Площадки</a><a class="text-md breadcrumbs__link" href="#">Центр
+              водных видов спорта “Невская волна”</a></div>
         </div>
       </div>
-      <section class="section">
+      <article class="section article">
         <div class="container">
-          <div class="section__header">
-            <h1 class="h2 section__title">Фестивали</h1>
-            <div class="filter section__filter">
-              <form action="#">
-                <div class="input input--md filter__calendar"><svg class="icon input__icon">
-                    <use xlink:href="#calendar"></use>
-                  </svg><input class="input__field jsInput jsInputDate" type="text" name="input" readonly
-                    autocomplete="off" placeholder="Выбрать дату"></div>
-              </form>
-            </div>
-          </div>
-          <div class="section__inner">
-            <div class="events">
-              <div class="map events__map">
-                <div class="map__content jsMap" data-map-coordinates="[[55.781357,37.604259],[55.7814,37.6043]]"></div>
+          <div class="article__inner">
+            <div class="article-intro article--places sarticle__intro">
+              <div class="article-intro__main">
+                <h1 class="h2 article-intro__title">Центр водных видов спорта “Невская волна”</h1>
+                <p class="h4 article-intro__subtitile">Спортивная школа</p>
               </div>
-              <div class="card-event card-event--lg"><a class="card-event__img-wrapper" href="events-detail.html">
-                  <picture class="card-event__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
-                </a>
-                <div class="card-event__inner"> <a class="card-event__header" href="events-detail.html">
-                    <h4 class="card-event__title">Центр водных видов спорта “Невская волна”</h4>
-                    <h5 class="card-event__subtitle">Спортивная школа</h5>
-                  </a>
-                  <div class="card-event__content">
-                    <div class="card-event__list">
-                      <div class="card-event__row"> <a class="card-event__item"
-                          href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
-                            <use xlink:href="#geo"></use>
-                          </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
-                            193318</span></a></div>
-                      <div class="card-event__row"> <a class="card-event__item" href="tel:8 (812) 665-21-42"> <svg
-                            class="icon">
-                            <use xlink:href="#phone"></use>
-                          </svg><span>8 (812) 665-21-42</span></a><a class="card-event__item"
-                          href="mailto:NevskayaVolna@gmail.com"> <span>NevskayaVolna@gmail.com</span></a><a
-                          class="card-event__item" href="www.Nevksaya.ru" target="_blank">
-                          <span>www.Nevksaya.ru</span></a></div>
-                      <div class="card-event__row">
-                        <div class="card-event__item"><svg class="icon">
-                            <use xlink:href="#clock"></use>
-                          </svg><button class="button button--md button--light" type="button"><span
-                              class="button__text">Открыто до 23</span><svg class="icon button__icon">
-                              <use xlink:href="#arrow--down"></use>
-                            </svg></button></div>
+              <div class="article-intro__info article__info jsMore">
+                <div class="article-info__inner jsMoreBody">
+                  <div class="article-info__content jsMoreContent">
+                    <h2 class="h4 article-info__title">Информация</h2>
+                    <div class="article-info__block">
+                      <div class="article-info__block-title">Адрес</div>
+                      <div class="article-info__item">Улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А,
+                        Санкт-Петербург, </div>
+                      <div class="map article-info__map">
+                        <div class="map__content jsMap" data-map-coordinates="[[55.781357,37.604259]]"></div>
+                      </div><a class="button button--light article-info__button"
+                        href="https://yandex.ru/maps/?rtext=~59.920587,30.453391" target="_blank"><svg
+                          class="icon button__icon">
+                          <use xlink:href="#geo"></use>
+                        </svg><span class="button__text">Построить маршрут</span></a>
+                    </div>
+                    <div class="article-info__block">
+                      <div class="article-info__block-title">Контакты</div><a class="link link-white article-info__item"
+                        href="mailto: Swim@gmail.com"> <svg class="icon">
+                          <use xlink:href="#mail"></use>
+                        </svg><span>Swim@gmail.com</span></a><a class="link link-white article-info__item"
+                        href="www.swim.ru" target="_blank"> <svg class="icon">
+                          <use xlink:href="#pc"></use>
+                        </svg><span>www.swim.ru</span></a><a class="link link-white article-info__item"
+                        href="tel:+7 (931) 332 56 78"> <svg class="icon">
+                          <use xlink:href="#phone"></use>
+                        </svg><span>+7 (931) 332 56 78</span></a>
+                    </div>
+                    <div class="article-info__block">
+                      <div class="article-info__block-title">Расписание</div>
+                      <div class="article-info__schedule"><span>Понедельник</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Вторник</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Среда</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Четверг</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Пятница</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Суббота</span><span>09:00 - 18:00</span></div>
+                      <div class="article-info__schedule"><span>Воскресенье</span><span>09:00 - 18:00</span></div>
+                    </div>
+                  </div>
+                </div><button class="button button--sm article-info__more jsMoreTrigger" type="button"><span
+                    class="button__text">Подробнее</span></button>
+              </div>
+            </div>
+            <div class="article__actions"> <button class="button button--light article__action" type="button"><svg
+                  class="icon button__icon">
+                  <use xlink:href="#like"></use>
+                </svg><span class="button__text">В избранное</span></button><button
+                class="button button--light article__action" type="button"><svg class="icon button__icon">
+                  <use xlink:href="#repost"></use>
+                </svg><span class="button__text">Поделиться</span></button></div>
+            <div class="article__body">
+              <div class="article__content">
+                <div class="slider article__slider jsSliderArticle">
+                  <div class="swiper slider__inner">
+                    <div class="swiper-wrapper slider__wrapper">
+                      <div class="swiper-slide slider__slide">
+                        <div class="article__img"> <img src="assets\media\article\detail-1.jpg" alt=""
+                            data-fancybox="article"></div>
+                      </div>
+                      <div class="swiper-slide slider__slide">
+                        <div class="article__img"> <img src="assets\media\article\detail-2.jpg" alt=""
+                            data-fancybox="article"></div>
                       </div>
                     </div>
-                    <p class="card-event__text">Санкт-Петербургское государственное бюджетное учреждение спортивная
-                      школа олимпийского резерва по водным видам спорта «Невская волна».</p>
+                    <div class="slider__navigation">
+                      <div class="swiper-button-prev slider__button slider__button--prev"><svg
+                          class="icon slider__button-icon">
+                          <use xlink:href="#arrow--left"></use>
+                        </svg></div>
+                      <div class="swiper-button-next slider__button slider__button--next"><svg
+                          class="icon slider__button-icon">
+                          <use xlink:href="#arrow--right"></use>
+                        </svg></div>
+                    </div>
+                  </div>
+                  <div class="swiper-pagination slider__pagination"></div>
+                </div>
+                <h2>Давайте не будем укрепляться в мысли, что герцог графства коронован</h2>
+                <p>Для современного <a href="#" target="_blank"></a> мира сложившаяся структура организации предполагает
+                  независимые способы реализации новых предложений! Однозначно, реплицированные с зарубежных источников,
+                  современные исследования подвергнуты целой серии независимых исследований. Предварительные выводы
+                  неутешительны: повышение уровня гражданского сознания не даёт нам иного выбора, кроме определения
+                  экономической целесообразности принимаемых решений. Прежде всего, постоянное
+                  информационно-пропагандистское обеспечение нашей деятельности обеспечивает актуальность инновационных
+                  методов управления процессами. Картельные сговоры не допускают ситуации, при которой элементы
+                  политического процесса, инициированные исключительно синтетически, превращены в посмешище, хотя само
+                  их существование приносит несомненную пользу обществу!</p>
+              </div>
+              <div class="article__cards">
+                <h2 class="h4 article__cards-title">Похожие площадки</h2><a class="card card--line"
+                  href="news-detail.html">
+                  <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                  <div class="card__inner">
+                    <div class="card__labels">
+                      <div class="card__label"><span>Событие</span></div>
+                      <div class="card__label"><span>Фестиваль</span></div>
+                      <div class="card__date">27 Октярбря</div>
+                    </div>
+                    <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                    <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                      однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                      приоретизации разума над эмоциями.</p>
+                  </div>
+                </a><a class="card card--line" href="news-detail.html">
+                  <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                  <div class="card__inner">
+                    <div class="card__labels">
+                      <div class="card__label"><span>Событие</span></div>
+                      <div class="card__label"><span>Фестиваль</span></div>
+                      <div class="card__date">27 Октярбря</div>
+                    </div>
+                    <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                    <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                      однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                      приоретизации разума над эмоциями.</p>
+                  </div>
+                </a><a class="card card--line" href="news-detail.html">
+                  <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                  <div class="card__inner">
+                    <div class="card__labels">
+                      <div class="card__label"><span>Событие</span></div>
+                      <div class="card__label"><span>Фестиваль</span></div>
+                      <div class="card__date">27 Октярбря</div>
+                    </div>
+                    <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                    <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                      однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                      приоретизации разума над эмоциями.</p>
+                  </div>
+                </a><button class="button button--light button--md article__cards-button" type="button"><span
+                    class="button__text">Показать ещё</span><svg class="icon button__icon">
+                    <use xlink:href="#arrow--down"></use>
+                  </svg></button>
+              </div>
+              <div class="article__cards">
+                <h2 class="h4 article__cards-title">Похожие площадки</h2>
+                <div class="card-event card-event--sm"><a class="card-event__img-wrapper" href="events-detail.html">
+                    <picture class="card-event__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                  </a>
+                  <div class="card-event__inner"> <a class="card-event__header" href="events-detail.html">
+                      <h4 class="card-event__title">Центр водных видов спорта “Невская волна”</h4>
+                      <h5 class="card-event__subtitle">Спортивная школа</h5>
+                    </a>
+                    <div class="card-event__content">
+                      <div class="card-event__list">
+                        <div class="card-event__row"> <a class="card-event__item"
+                            href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
+                              <use xlink:href="#geo"></use>
+                            </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
+                              193318</span></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-event card-event--sm"><a class="card-event__img-wrapper" href="events-detail.html">
+                    <picture class="card-event__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                  </a>
+                  <div class="card-event__inner"> <a class="card-event__header" href="events-detail.html">
+                      <h4 class="card-event__title">Центр водных видов спорта “Невская волна”</h4>
+                      <h5 class="card-event__subtitle">Спортивная школа</h5>
+                    </a>
+                    <div class="card-event__content">
+                      <div class="card-event__list">
+                        <div class="card-event__row"> <a class="card-event__item"
+                            href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
+                              <use xlink:href="#geo"></use>
+                            </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
+                              193318</span></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-event card-event--sm"><a class="card-event__img-wrapper" href="events-detail.html">
+                    <picture class="card-event__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                  </a>
+                  <div class="card-event__inner"> <a class="card-event__header" href="events-detail.html">
+                      <h4 class="card-event__title">Центр водных видов спорта “Невская волна”</h4>
+                      <h5 class="card-event__subtitle">Спортивная школа</h5>
+                    </a>
+                    <div class="card-event__content">
+                      <div class="card-event__list">
+                        <div class="card-event__row"> <a class="card-event__item"
+                            href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
+                              <use xlink:href="#geo"></use>
+                            </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
+                              193318</span></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div><button class="button button--light button--md article__cards-button" type="button"><span
+                    class="button__text">Показать ещё</span><svg class="icon button__icon">
+                    <use xlink:href="#arrow--down"></use>
+                  </svg></button>
+              </div>
+              <div class="comments article__comments">
+                <h3 class="h4 comments__title">Комментарии <span>3</span></h3>
+                <div class="comments__body">
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Анастасия
+                          Иванова</span>
+                      </div>
+                      <p class="text comment__date">12.01.19, 17:39</p>
+                    </div>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость команды
+                            профессионалов играет определяющее значение для анализа существующих паттернов поведения.
+                            Есть над чем задуматься: многие известные личности указаны как претенденты на роль ключевых
+                            факторов!</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
+                    </div>
+                  </div>
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Валерий
+                          Альбертович</span>
+                      </div>
+                      <p class="text comment__date">11.01.19, 12:22</p>
+                    </div>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость команды
+                            профессионалов играет определяющее значение для анализа существующих паттернов поведения.
+                            Есть над чем задуматься: многие известные личности указаны как претенденты на роль ключевых
+                            факторов! Господа, начало повседневной работы по формированию позиции требует определения и
+                            уточнения укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость
+                            команды профессионалов играет определяющее значение для анализа существующих паттернов
+                            поведения. Есть над чем задуматься: многие известные личности указаны как претенденты на
+                            роль ключевых факторов!</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
+                    </div>
+                  </div>
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Анастасия
+                          Иванова</span>
+                      </div>
+                      <p class="text comment__date">12.01.19, 17:39</p>
+                    </div>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей.</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="comments__footer">
+                  <h4 class="h5 comments__footer-title">Ваш комментарий</h4>
+                  <div class="comments__form">
+                    <div class="comments__author">
+                      <div class="comments__author-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                      <span>Анастасия Иванова</span>
+                    </div>
+                    <form action="#">
+                      <div class="input input--textarea"><textarea class="input__field jsInput" maxlength="600"
+                          name="comment" placeholder="Введите комментарий"></textarea>
+                        <div class="input__error">Обязательно для заполнения</div>
+                      </div><button class="button button--md" type="button"><span
+                          class="button__text">Опубликовать</span></button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="grid"><a class="card card--lg" href="events-detail.html">
-                <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                <div class="card__inner">
-                  <div class="card__labels">
-                    <div class="card__label"><span>Новость</span></div>
-                    <div class="card__label"><span>Анонсы</span></div>
-                    <div class="card__date">27 Октярбря</div>
-                  </div>
-                  <h4 class="card__title">На заводе “Москвич” стартовало производство автомобилей</h4>
-                  <div class="card__labels card__labels--gray">
-                    <div class="card__label"><span>0+</span></div>
-                    <div class="card__label"><span>2 часа</span></div>
-                    <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                  </div>
-                  <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
-                    однозначно определяет каждого участника как способного принимать собственные решения касаемо
-                    приоретизации разума над эмоциями.</p>
-                </div>
-              </a><a class="card card--lg" href="events-detail.html">
-                <picture class="card__img"><img src="assets\media\article\2.jpg" alt="" /></picture>
-                <div class="card__inner">
-                  <div class="card__labels">
-                    <div class="card__label"><span>Новость</span></div>
-                    <div class="card__label"><span>Анонсы</span></div>
-                    <div class="card__date">27 Октярбря</div>
-                  </div>
-                  <h4 class="card__title">На заводе “Москвич” стартовало производство автомобилей</h4>
-                  <div class="card__labels card__labels--gray">
-                    <div class="card__label"><span>0+</span></div>
-                    <div class="card__label"><span>2 часа</span></div>
-                    <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                  </div>
-                  <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
-                    однозначно определяет каждого участника как способного принимать собственные решения касаемо
-                    приоретизации разума над эмоциями.</p>
-                </div>
-              </a><a class="card card--lg" href="events-detail.html">
-                <picture class="card__img"><img src="assets\media\article\3.jpg" alt="" /></picture>
-                <div class="card__inner">
-                  <div class="card__labels">
-                    <div class="card__label"><span>Новость</span></div>
-                    <div class="card__label"><span>Анонсы</span></div>
-                    <div class="card__date">27 Октярбря</div>
-                  </div>
-                  <h4 class="card__title">На заводе “Москвич” стартовало производство автомобилей</h4>
-                  <div class="card__labels card__labels--gray">
-                    <div class="card__label"><span>0+</span></div>
-                    <div class="card__label"><span>2 часа</span></div>
-                    <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                  </div>
-                  <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
-                    однозначно определяет каждого участника как способного принимать собственные решения касаемо
-                    приоретизации разума над эмоциями.</p>
-                </div>
-              </a></div>
           </div>
         </div>
-      </section>
+      </article>
     </main>
     <footer class="footer">
       <div class="container footer__container">
