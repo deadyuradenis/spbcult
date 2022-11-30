@@ -275,46 +275,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 6424:
+/***/ (function() {
+
+var likes = document.querySelectorAll('.like');
+
+var _loop = function _loop(index) {
+  var element = likes[index];
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    element.classList.toggle('is-active');
+  });
+};
+
+for (var index = 0; index < likes.length; index++) {
+  _loop(index);
+}
+
+/***/ }),
+
 /***/ 5157:
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.map = {
+  window.maps = {
     list: document.querySelectorAll('.jsMap')
-  }; // console.log(window.map);
-
-  var _loop = function _loop(index) {
-    var item = window.map.list[index];
-    var coordinates = JSON.parse(item.getAttribute('data-map-coordinates')); // const id = item.getAttribute('id')
-    // console.log(coordinates);
-
-    function init() {
-      var thisMap = new ymaps.Map(item, {
-        // Координаты центра карты.
-        // Порядок по умолчанию: «широта, долгота».
-        // Чтобы не определять координаты центра карты вручную,
-        // воспользуйтесь инструментом Определение координат.
-        center: coordinates[0],
-        // Уровень масштабирования. Допустимые значения:
-        // от 0 (весь мир) до 19.
-        zoom: 7
-      });
-    }
-
-    ymaps.ready(init); // thisMap;
-    // window.modal[id] = itemModal;
   };
 
-  for (var index = 0; index < window.map.list.length; index++) {
-    _loop(index);
-  } // window.map.list.forEach(function(e) {
-  // });
-  // console.log(window.map);
-  // window.map.callback.show()
-  // window.map.chanels.show()
-  // window.map.success.show()
-  // window.map.id.hide()
+  var _loop = function _loop(index) {
+    var item = window.maps.list[index];
+    var coord = item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : [[59.938955, 30.315644]];
+    var zoom = item.getAttribute('data-map-zoom') ? item.getAttribute('data-map-zoom') : 16;
 
+    function init() {
+      window.maps['item_' + index] = {
+        element: item,
+        zoom: zoom,
+        coordinates: item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : '',
+        map: new ymaps.Map(item, {
+          controls: [],
+          center: coord[0],
+          zoom: zoom
+        }),
+        initDots: function initDots() {
+          if (this.coordinates != '') {
+            for (var dotIndex = 0; dotIndex < this.coordinates.length; dotIndex++) {
+              var thisDot = this.coordinates[dotIndex];
+              this.addMark(thisDot);
+            }
+          }
+        },
+        addMark: function addMark(cors) {
+          placemark = new ymaps.Placemark(cors, {}, {
+            iconLayout: 'default#image',
+            iconImageHref: 'assets/media/geo-dot.svg',
+            iconImageSize: [32, 32],
+            iconImageOffset: [-16, -16]
+          }), this.map.geoObjects.add(placemark);
+          this.centeredMap();
+        },
+        centeredMap: function centeredMap() {
+          this.map.setBounds(this.map.geoObjects.getBounds(), {
+            checkZoomRange: true,
+            zoomMargin: 40
+          });
+        }
+      };
+      window.maps['item_' + index].initDots();
+    }
+
+    ymaps.ready(init);
+  };
+
+  for (var index = 0; index < window.maps.list.length; index++) {
+    _loop(index);
+  }
 });
 
 /***/ }),
@@ -861,6 +896,8 @@ fancybox_esm/* Fancybox.bind */.KR.bind('[data-fancybox]', {
 var more_scripts = __webpack_require__(5358);
 // EXTERNAL MODULE: ./src/components/map/scripts.js
 var map_scripts = __webpack_require__(5157);
+// EXTERNAL MODULE: ./src/components/like/scripts.js
+var like_scripts = __webpack_require__(6424);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(4942);
 // EXTERNAL MODULE: ./node_modules/gator/gator.js
@@ -1054,6 +1091,7 @@ var registerFormValidator = function registerFormValidator() {
 
 /* harmony default export */ var formValidator_init = (registerFormValidator);
 ;// CONCATENATED MODULE: ./src/init.js
+
 
 
 
