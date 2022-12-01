@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 5682:
+/***/ 7048:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -578,43 +578,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // EXTERNAL MODULE: ./node_modules/imask/esm/index.js + 21 modules
 var esm = __webpack_require__(2647);
-// EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
-var daterangepicker = __webpack_require__(932);
 ;// CONCATENATED MODULE: ./src/components/input/scripts.js
 
-
-
-var datepickers = jquery_default()('.jsInputDate');
-datepickers.each(function () {
-  jquery_default()(this).daterangepicker({
-    locale: {
-      format: "DD/MM/YYYY",
-      separator: " - ",
-      applyLabel: "Применить",
-      cancelLabel: "Отмена",
-      fromLabel: "От",
-      toLabel: "До",
-      customRangeLabel: "Custom",
-      weekLabel: "W",
-      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      firstDay: 1
-    },
-    autoUpdateInput: false,
-    linkedCalendars: false,
-    buttonClasses: "button button--sm",
-    applyButtonClasses: "",
-    cancelClass: "button--light",
-    drops: "auto",
-    opens: "center"
-  });
-  jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-  });
-  jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val('');
-  });
-});
 var regexpPhone = new RegExp('(7|8)\\s[\(][0-9]{3}[\)]\\s[0-9]{3}[\-][0-9]{2}[\-][0-9]{2}');
 var regexpMail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 var phoneElement = document.querySelectorAll('.jsPhoneMask');
@@ -756,6 +721,74 @@ window.runMask = function () {
     }
   }
 }; // window.runMask() перезвапуск маски
+// EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
+var daterangepicker = __webpack_require__(932);
+;// CONCATENATED MODULE: ./src/components/datepicker/scripts.js
+
+
+var datepickers = jquery_default()('.jsInputDate');
+datepickers.each(function () {
+  jquery_default()(this).daterangepicker({
+    locale: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Применить",
+      cancelLabel: "Отмена",
+      fromLabel: "От",
+      toLabel: "До",
+      customRangeLabel: "Custom",
+      weekLabel: "W",
+      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      firstDay: 1
+    },
+    autoUpdateInput: false,
+    linkedCalendars: false,
+    buttonClasses: "button button--sm",
+    applyButtonClasses: "",
+    cancelClass: "button--light",
+    drops: "auto",
+    opens: "center"
+  });
+  jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
+    jquery_default()(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+  });
+  jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
+    jquery_default()(this).val('');
+  });
+});
+var datepickersSingle = jquery_default()('.jsInputDateSingle');
+datepickersSingle.each(function () {
+  jquery_default()(this).daterangepicker({
+    locale: {
+      format: "DD/MM/YYYY",
+      separator: " - ",
+      applyLabel: "Применить",
+      cancelLabel: "Отмена",
+      fromLabel: "От",
+      toLabel: "До",
+      customRangeLabel: "Custom",
+      weekLabel: "W",
+      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      firstDay: 1
+    },
+    "singleDatePicker": true,
+    autoUpdateInput: false,
+    linkedCalendars: false,
+    buttonClasses: "button button--sm",
+    applyButtonClasses: "",
+    cancelClass: "button--light",
+    drops: "auto",
+    opens: "center"
+  });
+  jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
+    jquery_default()(this).val(picker.startDate.format('DD/MM/YYYY'));
+  });
+  jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
+    jquery_default()(this).val('');
+  });
+});
 // EXTERNAL MODULE: ./node_modules/sumoselect/jquery.sumoselect.js
 var jquery_sumoselect = __webpack_require__(4102);
 ;// CONCATENATED MODULE: ./src/components/select/scripts.js
@@ -1091,6 +1124,7 @@ var registerFormValidator = function registerFormValidator() {
 
 /* harmony default export */ var formValidator_init = (registerFormValidator);
 ;// CONCATENATED MODULE: ./src/init.js
+
 
 
 
@@ -1611,7 +1645,7 @@ webpackContext.id = 6700;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(5682); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(7048); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
