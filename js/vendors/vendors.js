@@ -55463,12 +55463,14 @@ function classesToSelector(classes) {
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   "pt": function() { return /* reexport */ Autoplay; },
+  "Rv": function() { return /* reexport */ freeMode; },
+  "Gk": function() { return /* reexport */ Mousewheel; },
   "W_": function() { return /* reexport */ Navigation; },
   "tl": function() { return /* reexport */ Pagination; },
   "ZP": function() { return /* reexport */ core; }
 });
 
-// UNUSED EXPORTS: A11y, Controller, EffectCards, EffectCoverflow, EffectCreative, EffectCube, EffectFade, EffectFlip, FreeMode, Grid, HashNavigation, History, Keyboard, Lazy, Manipulation, Mousewheel, Parallax, Scrollbar, Swiper, Thumbs, Virtual, Zoom
+// UNUSED EXPORTS: A11y, Controller, EffectCards, EffectCoverflow, EffectCreative, EffectCube, EffectFade, EffectFlip, Grid, HashNavigation, History, Keyboard, Lazy, Manipulation, Parallax, Scrollbar, Swiper, Thumbs, Virtual, Zoom
 
 ;// CONCATENATED MODULE: ./node_modules/ssr-window/ssr-window.esm.js
 /**
@@ -57177,7 +57179,7 @@ function utils_nextTick(callback, delay) {
   return setTimeout(callback, delay);
 }
 
-function utils_now() {
+function now() {
   return Date.now();
 }
 
@@ -59462,7 +59464,7 @@ function onTouchStart(event) {
   });
   touches.startX = startX;
   touches.startY = startY;
-  data.touchStartTime = utils_now();
+  data.touchStartTime = now();
   swiper.allowClick = true;
   swiper.updateSize();
   swiper.swipeDirection = undefined;
@@ -59545,7 +59547,7 @@ function onTouchMove(event) {
         currentX: pageX,
         currentY: pageY
       });
-      data.touchStartTime = utils_now();
+      data.touchStartTime = now();
     }
 
     return;
@@ -59758,7 +59760,7 @@ function onTouchEnd(event) {
   } // Time diff
 
 
-  const touchEndTime = utils_now();
+  const touchEndTime = now();
   const timeDiff = touchEndTime - data.touchStartTime; // Tap, doubleTap, Click
 
   if (swiper.allowClick) {
@@ -59771,7 +59773,7 @@ function onTouchEnd(event) {
     }
   }
 
-  data.lastClickTime = utils_now();
+  data.lastClickTime = now();
   utils_nextTick(() => {
     if (!swiper.destroyed) swiper.allowClick = true;
   });
@@ -60736,7 +60738,7 @@ class Swiper {
         // Form elements to match
         focusableElements: swiper.params.focusableElements,
         // Last click time
-        lastClickTime: utils_now(),
+        lastClickTime: now(),
         clickTimeout: undefined,
         // Velocities
         velocities: [],
@@ -61656,7 +61658,7 @@ function Mousewheel(_ref) {
     on,
     emit
   } = _ref;
-  const window = getWindow();
+  const window = ssr_window_esm_getWindow();
   extendParams({
     mousewheel: {
       enabled: false,
@@ -61843,7 +61845,7 @@ function Mousewheel(_ref) {
     let target = swiper.$el;
 
     if (swiper.params.mousewheel.eventsTarget !== 'container') {
-      target = $(swiper.params.mousewheel.eventsTarget);
+      target = dom(swiper.params.mousewheel.eventsTarget);
     }
 
     if (!swiper.mouseEntered && !target[0].contains(e.target) && !params.releaseOnEdges) return true;
@@ -61982,7 +61984,7 @@ function Mousewheel(_ref) {
             const snapToThreshold = delta > 0 ? 0.8 : 0.2;
             lastEventBeforeSnap = newEvent;
             recentWheelEvents.splice(0);
-            timeout = nextTick(() => {
+            timeout = utils_nextTick(() => {
               swiper.slideToClosest(swiper.params.speed, true, undefined, snapToThreshold);
             }, 0); // no delay; move on next tick
           }
@@ -61991,7 +61993,7 @@ function Mousewheel(_ref) {
             // if we get here, then we haven't detected the end of a momentum scroll, so
             // we'll consider a scroll "complete" when there haven't been any wheel events
             // for 500ms.
-            timeout = nextTick(() => {
+            timeout = utils_nextTick(() => {
               const snapToThreshold = 0.5;
               lastEventBeforeSnap = newEvent;
               recentWheelEvents.splice(0);
@@ -62017,7 +62019,7 @@ function Mousewheel(_ref) {
     let target = swiper.$el;
 
     if (swiper.params.mousewheel.eventsTarget !== 'container') {
-      target = $(swiper.params.mousewheel.eventsTarget);
+      target = dom(swiper.params.mousewheel.eventsTarget);
     }
 
     target[method]('mouseenter', handleMouseEnter);
