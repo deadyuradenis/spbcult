@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
       type="text/javascript"></script>
-    <title>Личный кабинет. Редактирование</title>
+    <title>Поиск. Ничего не найдено</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
@@ -335,128 +335,161 @@
       </div>
     </header>
     <main class="main">
-      <section class="section account">
+      <div class="breadcrumbs">
         <div class="container">
+          <div class="breadcrumbs__list"> <a class="text-md breadcrumbs__link" href="#">Главная</a><a
+              class="text-md breadcrumbs__link" href="#">Поиск</a></div>
+        </div>
+      </div>
+      <section class="section section--aside">
+        <div class="container">
+          <div class="section__header">
+            <h1 class="h2 section__title">Поиск по порталу</h1>
+          </div>
+          <div class="filter section__filter">
+            <form action="#">
+              <div class="filter__search">
+                <div class="input"><svg class="icon input__icon">
+                    <use xlink:href="#search"></use>
+                  </svg><input class="input__field jsInput" type="text" name="input" placeholder="Поиск"></div><button
+                  class="button" type="submit"><span class="button__text">Найти</span></button>
+              </div>
+              <div class="input input--md filter__calendar"><svg class="icon input__icon">
+                  <use xlink:href="#calendar"></use>
+                </svg><input class="input__field jsInput jsInputDate" type="text" name="input" readonly
+                  autocomplete="off" placeholder="Выбрать дату"></div>
+              <div class="badges">
+                <div class="badges__list"><label class="badge"><input class="badge__input" type="checkbox"
+                      name="badges-1" value="badge-0" checked="checked" />
+                    <div class="badge__wrapper"> <span>Все</span></div>
+                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badges-1"
+                      value="badge-1" />
+                    <div class="badge__wrapper"> <span>Новости кульуры</span></div>
+                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badges-1"
+                      value="badge-2" />
+                    <div class="badge__wrapper"> <span>Памятные даты и события</span></div>
+                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badges-1"
+                      value="badge-3" />
+                    <div class="badge__wrapper"> <span>Анонсы</span></div>
+                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badges-1"
+                      value="badge-4" />
+                    <div class="badge__wrapper"> <span>Для СМИ</span></div>
+                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badges-1"
+                      value="badge-5" />
+                    <div class="badge__wrapper"> <span>Пост релизы</span></div>
+                  </label><a class="badge" href="#">
+                    <div class="badge__wrapper"> <svg class="icon">
+                        <use xlink:href="#close"></use>
+                      </svg><span>Сбросить</span></div>
+                  </a></div>
+              </div>
+            </form>
+          </div>
           <div class="section__inner">
-            <div class="account-edit account__edit">
-              <form action="#">
-                <div class="account-edit__header">
-                  <h1 class="h2 account-edit__title">Настройки</h1>
-                  <div class="account__actions"> <a class="button button--light account__action"
-                      href="account-edit.html"><span class="button__text">Отменить</span></a><button
-                      class="button account__action" type="submit"><span class="button__text">Сохранить</span></button>
-                  </div>
-                </div>
-                <div class="account-edit__content">
-                  <h2 class="h4 account__title">Ваши данные</h2>
-                  <div class="account-edit__form">
-                    <div class="account-edit__aside"> <label class="account-edit__input-img"><input type="file"
-                          name="file" accept=".jpg, .svg, .jpeg, .png, .webp">
-                        <picture class="account-edit__img"><img src="assets\media\profile.jpg" alt=""></picture><svg
-                          class="icon">
-                          <use xlink:href="#camera"></use>
-                        </svg>
-                      </label><button class="button button--light account-edit__input-button" type="button"
-                        data-bs-toggle="modal" data-bs-target="#resetPasswrod"><span class="button__text">Изменить
-                          пароль</span></button></div>
-                    <div class="account-edit__inputs">
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваше имя</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Владимир" placeholder="Ваше имя">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваша фамилия</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Путин" placeholder="Ваша фамилия">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Номер телефона</div>
-                        <div class="input input--md"><input class="input__field jsInput jsPhoneMask" type="text"
-                            name="input" value="" placeholder="Ваш номер телефона">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваш email</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#confirm"></use>
-                          </svg><input class="input__field jsInput" type="text" name="input" value="info@gmail.com"
-                            placeholder="Ваш email">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Дата рождения</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input" readonly
-                            autocomplete="off" placeholder="Ваша дата рождения">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+            <div class="section__body">
+              <div class="section__result-nav">
+                <div class="section__result-nav-list"> <a class="section__result-link jsResultLink is-active"
+                    href="#">Все <span>0</span></a><a class="section__result-link jsResultLink" href="#">Новсоти
+                    культуры <span>0</span></a><a class="section__result-link jsResultLink" href="#">Памятные даты и
+                    события <span>0</span></a></div>
+              </div>
+              <div class="section__result-nothing"> <img src="assets\media\nothing.svg" alt="">
+                <h2 class="h3">Ничего не найдено</h2>
+                <p class="text">Попробуйте изменить запрос</p>
+              </div>
             </div>
-            <div class="account__roles">
-              <h2 class="h4 account__title">Ваши роли</h2>
-              <div class="badges account-favorite__badges">
-                <div class="badges__list"> <label class="badge"><input class="badge__input" type="checkbox"
-                      name="badge-1" value="badge" checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Активист</span>
+            <div class="section__aside">
+              <div class="section__aside-inner">
+                <h2 class="h5 article__aside-title">Рекомендации</h2>
+                <div class="section__aside-list"> <a class="card card--sm" href="news-detail.html"><button
+                      class="like jsLike" type="button"><svg class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Новость</span></div>
+                          <div class="card__label"><span>Новости культуры</span></div>
+                        </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Рождество в Аннекирхе</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/zoo.svg); -webkit-mask-image: url(../../assets/media/icons/zoo.svg);">
-                      </div><span>Зоозащитник</span>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Новость</span></div>
+                          <div class="card__label"><span>Новости культуры</span></div>
+                        </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Рождество в Аннекирхе</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/car.svg); -webkit-mask-image: url(../../assets/media/icons/car.svg);">
-                      </div><span>Автомобилист</span>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Новость</span></div>
+                          <div class="card__label"><span>Новости культуры</span></div>
+                        </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Рождество в Аннекирхе</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Молодец</span>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Новость</span></div>
+                          <div class="card__label"><span>Новости культуры</span></div>
+                        </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Рождество в Аннекирхе</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Политик</span>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Новость</span></div>
+                          <div class="card__label"><span>Новости культуры</span></div>
+                        </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Рождество в Аннекирхе</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Лидер</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Борец</span>
-                    </div>
-                  </label></div>
+                  </a></div><a class="button button--light section__aside-button" href="#"><span
+                    class="button__text">Смотреть все</span><svg class="icon button__icon">
+                    <use xlink:href="#arrow--right"></use>
+                  </svg></a>
               </div>
             </div>
           </div>

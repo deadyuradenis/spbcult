@@ -720,6 +720,32 @@ window.runMask = function () {
     }
   }
 }; // window.runMask() перезвапуск маски
+
+
+var jsInputSwap = document.querySelectorAll('.jsInputSwap');
+
+var _loop2 = function _loop2(_index) {
+  var item = jsInputSwap[_index];
+  var parent = item.closest('.input');
+  var input = parent.querySelector('input');
+
+  function toggleType() {
+    if (input.getAttribute('type') == 'password') {
+      input.setAttribute('type', 'text');
+    } else if (input.getAttribute('type') == 'text') {
+      input.setAttribute('type', 'password');
+    }
+  }
+
+  item.addEventListener('click', function (e) {
+    item.classList.toggle('is-active');
+    toggleType();
+  });
+};
+
+for (var _index = 0; _index < jsInputSwap.length; _index++) {
+  _loop2(_index);
+}
 // EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
 var daterangepicker = __webpack_require__(932);
 ;// CONCATENATED MODULE: ./src/components/datepicker/scripts.js
@@ -1146,8 +1172,10 @@ var registerFormValidator = function registerFormValidator() {
 
 
 
+
 var init = function init() {
   __webpack_require__.g.spiks = {};
+  __webpack_require__.g.spiks.validator = services;
   new scripts();
   formValidator_init();
   __webpack_require__.g.$ = (jquery_default());

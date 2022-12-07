@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
       type="text/javascript"></script>
-    <title>Личный кабинет. Редактирование</title>
+    <title>Восстановление пароля</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
@@ -14,513 +14,55 @@
     <link href="css/main_style/main_style.css" rel="stylesheet">
   </head>
   <body class="body">
-    <header class="header jsHeader">
-      <div class="header__main">
-        <div class="container header__container">
-          <div class="header__inner" data-move-container="main">
-            <div class="header__nav header__nav--second jsNav jsMove" data-move-desktop="main"
-              data-move-mobile="content">
-              <nav class="nav"><a class="nav__item" href="#"> <span>Спектакли</span></a><a class="nav__item" href="#">
-                  <span>Выставки</span></a><a class="nav__item" href="#"> <span>Детям</span></a><a class="nav__item"
-                  href="#"> <span>Обучение</span></a><a class="nav__item" href="#"> <span>Кинопоказы</span></a><a
-                  class="nav__item" href="#"> <span>Концерты</span></a><a class="nav__item" href="#">
-                  <span>Фестивали</span></a><a class="nav__item" href="#"> <span>Отдых</span></a><a class="nav__item"
-                  href="#"> <span>Спектакли</span></a><a class="nav__item" href="#"> <span>Выставки</span></a><a
-                  class="nav__item" href="#"> <span>Детям</span></a><a class="nav__item" href="#">
-                  <span>Обучение</span></a><a class="nav__item" href="#"> <span>Кинопоказы</span></a><a
-                  class="nav__item" href="#"> <span>Концерты</span></a><a class="nav__item" href="#">
-                  <span>Фестивали</span></a><a class="nav__item" href="#"> <span>Экскурсии</span></a><a
-                  class="nav__item" href="#"> <span>Отдых</span></a><button
-                  class="nav__trigger nav__item--trigger jsNavTrigger"><span>Ещё</span><svg class="icon">
-                    <use xlink:href="#menu"></use>
-                  </svg><svg class="icon">
-                    <use xlink:href="#close"></use>
-                  </svg></button></nav>
-              <div class="nav__dropdown jsNavDropdown">
-                <div class="nav__dropdown-inner"></div>
-              </div>
-            </div><a class="header__profile" href="registration-authorization.html">
-              <div class="header__profile-img"> <img src="assets\media\profile.jpg" alt="" /></div>
-              <span>Джамхатруил</span>
-            </a>
-            <div class="header__burger jsBurgerTrigger"> <span> </span></div><a class="header__blind jsMove" href="#"
-              data-move-desktop="main" data-move-mobile="content"><svg class="icon">
-                <use xlink:href="#blind"></use>
-              </svg><span>Версия для слабовидящих</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="header__content">
-        <div class="container header__container">
-          <div class="header__inner" data-move-container="content"><a class="header__logo jsMove" href="index.html"
-              data-move-desktop="content" data-move-mobile="main"><img src="assets\media\logo\logo.svg" alt="" /></a>
-            <div class="search header__search">
-              <form action="#"> <input class="search__field jsInput jsInputSearch" id="search__field" type="text"
-                  autocomplete="off" placeholder="Поиск по порталу" name="search" /><button class="search__button"
-                  type="submit"><svg class="icon search__icon">
-                    <use xlink:href="#search"> </use>
-                  </svg></button></form>
-              <div class="search-dropdown search__dropdown jsSearchDropdown title-search-result">
-                <div class="search-dropdown__inner">
-                  <div class="search-dropdown__list">
-                    <div class="search-dropdown__block">
-                      <div class="search-dropdown__block-header">
-                        <h2 class="h5 search-dropdown__title">Новости</h2><a class="link search-dropdown__link"
-                          href="#"> <span>В раздел</span><svg class="icon">
-                            <use xlink:href="#arrow--right"></use>
-                          </svg></a>
-                      </div>
-                      <div class="search-dropdown__block-list"> <a class="card card--line"
-                          href="news-detail.html"><button class="like jsLike" type="button"><svg
-                              class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a><a class="card card--line" href="news-detail.html"><button class="like jsLike"
-                            type="button"><svg class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a><a class="card card--line" href="news-detail.html"><button class="like jsLike"
-                            type="button"><svg class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a></div>
-                    </div>
-                    <div class="search-dropdown__block">
-                      <div class="search-dropdown__block-header">
-                        <h2 class="h5 search-dropdown__title">События</h2><a class="link search-dropdown__link"
-                          href="#"> <span>В раздел</span><svg class="icon">
-                            <use xlink:href="#arrow--right"></use>
-                          </svg></a>
-                      </div>
-                      <div class="search-dropdown__block-list">
-                        <div class="card-place card-place--sm"><button class="like jsLike" type="button"><svg
-                              class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button><a class="card-place__img-wrapper" href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
-                          </a>
-                          <div class="card-place__inner"> <a class="card-place__header" href="events-detail.html">
-                              <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
-                              <h5 class="card-place__subtitle">Спортивная школа</h5>
-                            </a>
-                            <div class="card-place__content">
-                              <div class="card-place__list">
-                                <div class="card-place__row"> <a class="card-place__item"
-                                    href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
-                                      <use xlink:href="#geo"></use>
-                                    </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А,
-                                      Санкт-Петербург, 193318</span></a></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card-place card-place--sm"><button class="like jsLike" type="button"><svg
-                              class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button><a class="card-place__img-wrapper" href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
-                          </a>
-                          <div class="card-place__inner"> <a class="card-place__header" href="events-detail.html">
-                              <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
-                              <h5 class="card-place__subtitle">Спортивная школа</h5>
-                            </a>
-                            <div class="card-place__content">
-                              <div class="card-place__list">
-                                <div class="card-place__row"> <a class="card-place__item"
-                                    href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
-                                      <use xlink:href="#geo"></use>
-                                    </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А,
-                                      Санкт-Петербург, 193318</span></a></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search-dropdown__block">
-                      <div class="search-dropdown__block-header">
-                        <h2 class="h5 search-dropdown__title">Площадки</h2><a class="link search-dropdown__link"
-                          href="#"> <span>В раздел</span><svg class="icon">
-                            <use xlink:href="#arrow--right"></use>
-                          </svg></a>
-                      </div>
-                      <div class="search-dropdown__block-list">
-                        <div class="card-place card-place--sm"><button class="like jsLike" type="button"><svg
-                              class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button><a class="card-place__img-wrapper" href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
-                          </a>
-                          <div class="card-place__inner"> <a class="card-place__header" href="events-detail.html">
-                              <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
-                              <h5 class="card-place__subtitle">Спортивная школа</h5>
-                            </a>
-                            <div class="card-place__content">
-                              <div class="card-place__list">
-                                <div class="card-place__row"> <a class="card-place__item"
-                                    href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
-                                      <use xlink:href="#geo"></use>
-                                    </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А,
-                                      Санкт-Петербург, 193318</span></a></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search-dropdown__block">
-                      <div class="search-dropdown__block-header">
-                        <h2 class="h5 search-dropdown__title">Статьи</h2><a class="link search-dropdown__link" href="#">
-                          <span>В раздел</span><svg class="icon">
-                            <use xlink:href="#arrow--right"></use>
-                          </svg></a>
-                      </div>
-                      <div class="search-dropdown__block-list"> <a class="card card--line"
-                          href="news-detail.html"><button class="like jsLike" type="button"><svg
-                              class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a><a class="card card--line" href="news-detail.html"><button class="like jsLike"
-                            type="button"><svg class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a><a class="card card--line" href="news-detail.html"><button class="like jsLike"
-                            type="button"><svg class="icon like__icon">
-                              <use xlink:href="#like"></use>
-                            </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
-                          <div class="card__inner">
-                            <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
-                              </div>
-                              <div class="card__date">27 Октярбря</div>
-                            </div>
-                            <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его
-                              эпоха»</h4>
-                            <div class="card__labels card__labels--gray">
-                              <div class="card__label"><span>0+</span></div>
-                              <div class="card__label"><span>2 часа</span></div>
-                              <div class="card__label"><span>Центр водных видов спорта “Невская волна”</span></div>
-                            </div>
-                            <p class="card__text">Не следует, однако, забывать, что новая модель организационной
-                              деятельности однозначно определяет каждого участника как способного принимать собственные
-                              решения касаемо приоретизации разума над эмоциями.</p>
-                          </div>
-                        </a></div>
-                    </div>
-                  </div><a class="button button--light search-dropdown__button" href="search.html"><span
-                      class="button__text">Все 158 результатов</span><svg class="icon button__icon">
-                      <use xlink:href="#arrow--right"></use>
-                    </svg></a>
-                </div>
-              </div>
-            </div>
-            <div class="header__nav header__nav--main">
-              <nav class="nav"><a class="nav__item" href="news.html"> <svg class="icon">
-                    <use xlink:href="#news"></use>
-                  </svg><span>Новости</span></a><a class="nav__item" href="news-section.html"> <svg class="icon">
-                    <use xlink:href="#article"></use>
-                  </svg><span>Статьи</span></a><a class="nav__item" href="#"> <svg class="icon">
-                    <use xlink:href="#projects"></use>
-                  </svg><span>Проекты</span></a><a class="nav__item" href="events.html"> <svg class="icon">
-                    <use xlink:href="#calendar"></use>
-                  </svg><span>События</span></a><a class="nav__item" href="#"> <svg class="icon">
-                    <use xlink:href="#info"></use>
-                  </svg><span>О нас</span></a></nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
     <main class="main">
-      <section class="section account">
-        <div class="container">
-          <div class="section__inner">
-            <div class="account-edit account__edit">
-              <form action="#">
-                <div class="account-edit__header">
-                  <h1 class="h2 account-edit__title">Настройки</h1>
-                  <div class="account__actions"> <a class="button button--light account__action"
-                      href="account-edit.html"><span class="button__text">Отменить</span></a><button
-                      class="button account__action" type="submit"><span class="button__text">Сохранить</span></button>
-                  </div>
-                </div>
-                <div class="account-edit__content">
-                  <h2 class="h4 account__title">Ваши данные</h2>
-                  <div class="account-edit__form">
-                    <div class="account-edit__aside"> <label class="account-edit__input-img"><input type="file"
-                          name="file" accept=".jpg, .svg, .jpeg, .png, .webp">
-                        <picture class="account-edit__img"><img src="assets\media\profile.jpg" alt=""></picture><svg
+      <section class="registration">
+        <div class="registration__inner">
+          <div class="registration__main">
+            <div class="registration__header"> <a class="registration__logo" href="index.html"><img
+                  src="assets\media\logo\logo-portal.svg" alt=""></a></div>
+            <div class="registration__body">
+              <h1 class="registration__title">Придумайте новый пароль</h1>
+              <p class="text-md registration__subtitle">Установите новый пароль для вашего аккаунта.</p>
+              <div class="registration__form">
+                <form action="#">
+                  <div class="registration__form-block">
+                    <div class="registration__checklist">
+                      <div class="registration__checklist-item is-active"><span>Минимум 8 символов</span><svg
                           class="icon">
-                          <use xlink:href="#camera"></use>
-                        </svg>
-                      </label><button class="button button--light account-edit__input-button" type="button"
-                        data-bs-toggle="modal" data-bs-target="#resetPasswrod"><span class="button__text">Изменить
-                          пароль</span></button></div>
-                    <div class="account-edit__inputs">
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваше имя</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Владимир" placeholder="Ваше имя">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваша фамилия</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Путин" placeholder="Ваша фамилия">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Номер телефона</div>
-                        <div class="input input--md"><input class="input__field jsInput jsPhoneMask" type="text"
-                            name="input" value="" placeholder="Ваш номер телефона">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваш email</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#confirm"></use>
-                          </svg><input class="input__field jsInput" type="text" name="input" value="info@gmail.com"
-                            placeholder="Ваш email">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Дата рождения</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input" readonly
-                            autocomplete="off" placeholder="Ваша дата рождения">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
+                          <use xlink:href="#ok"></use>
+                        </svg></div>
+                      <div class="registration__checklist-item"> <span>Минимум одна заглавная</span><svg class="icon">
+                          <use xlink:href="#ok"></use>
+                        </svg></div>
+                      <div class="registration__checklist-item"> <span>Минимум одно число</span><svg class="icon">
+                          <use xlink:href="#ok"></use>
+                        </svg></div>
                     </div>
+                    <div class="input registration__input"><svg class="icon input__icon input__icon--right jsInputSwap">
+                        <use xlink:href="#view"></use>
+                      </svg><input class="input__field jsInput" type="password" name="password"
+                        placeholder="Придумайте пароль">
+                      <div class="input__error">Обязательно для заполнения</div>
+                    </div>
+                    <div class="input registration__input"><svg class="icon input__icon input__icon--right jsInputSwap">
+                        <use xlink:href="#view"></use>
+                      </svg><input class="input__field jsInput" type="password" name="password-2"
+                        placeholder="Повторите пароль">
+                      <div class="input__error">Обязательно для заполнения</div>
+                    </div>
+                    <div class="registration__buttons"> <a class="button button--light registration__button"
+                        href="registration-reset.html"><span class="button__text">Назад</span></a><button
+                        class="button registration__button" type="submit"><span
+                          class="button__text">Сохранить</span></button></div>
                   </div>
-                </div>
-              </form>
-            </div>
-            <div class="account__roles">
-              <h2 class="h4 account__title">Ваши роли</h2>
-              <div class="badges account-favorite__badges">
-                <div class="badges__list"> <label class="badge"><input class="badge__input" type="checkbox"
-                      name="badge-1" value="badge" checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Активист</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/zoo.svg); -webkit-mask-image: url(../../assets/media/icons/zoo.svg);">
-                      </div><span>Зоозащитник</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/car.svg); -webkit-mask-image: url(../../assets/media/icons/car.svg);">
-                      </div><span>Автомобилист</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Молодец</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Политик</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Лидер</span>
-                    </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Борец</span>
-                    </div>
-                  </label></div>
+                </form>
               </div>
             </div>
           </div>
         </div>
+        <picture class="registration__bg"> <img src="assets\media\registration\bg.jpg" alt=""></picture>
       </section>
     </main>
-    <footer class="footer">
-      <div class="container footer__container">
-        <div class="footer__inner">
-          <div class="footer__info"> <a class="footer__logo" href="index.html"><img
-                src="assets\media\logo\logo--footer.svg" alt="" /></a>
-            <div class="footer__socials"> <a class="footer__social" href="#"><svg class="icon">
-                  <use xlink:href="#tg"></use>
-                </svg></a><a class="footer__social" href="#"><svg class="icon">
-                  <use xlink:href="#vk"></use>
-                </svg></a><a class="footer__social" href="#"><svg class="icon">
-                  <use xlink:href="#youtube"></use>
-                </svg></a></div>
-          </div>
-          <nav class="footer__nav">
-            <div class="footer__group">
-              <div class="footer__group-list"><a class="link footer__nav-item" href="places.html">Площадки</a><a
-                  class="link footer__nav-item" href="#">Спецпроекты</a><a class="link footer__nav-item"
-                  href="#">Книги</a><a class="link footer__nav-item" href="#">Видео</a><a class="link footer__nav-item"
-                  href="#">Сотрудничество</a></div>
-            </div>
-            <div class="footer__group">
-              <h3 class="h5 footer__nav-title">Новости</h3>
-              <div class="footer__group-list"><a class="link footer__nav-item" href="news.html">Новости культуры</a><a
-                  class="link footer__nav-item" href="news-section.html">Памятные даты и событи</a><a
-                  class="link footer__nav-item" href="news-section.html">Анонсы</a><a class="link footer__nav-item"
-                  href="news-section.html">Для СМИ</a><a class="link footer__nav-item"
-                  href="news-section.html">Пост-релизы</a></div>
-            </div>
-            <div class="footer__group">
-              <h3 class="h5 footer__nav-title">Статьи</h3>
-              <div class="footer__group-list"><a class="link footer__nav-item" href="news-detail.html">Новости
-                  культуры</a><a class="link footer__nav-item" href="news-detail.html">Искусство</a><a
-                  class="link footer__nav-item" href="news-detail.html">История Петербурга</a><a
-                  class="link footer__nav-item" href="news-detail.html">Интервью</a><a class="link footer__nav-item"
-                  href="news-detail.html">Персоналии</a><a class="link footer__nav-item"
-                  href="news-detail.html">Топонимика</a><a class="link footer__nav-item"
-                  href="news-detail.html">Культурная инклюзия</a><a class="link footer__nav-item"
-                  href="news-detail.html">Репортажи и рецензии</a><a class="link footer__nav-item"
-                  href="news-detail.html">Петербург в искусстве</a><a class="link footer__nav-item"
-                  href="news-detail.html">Праздники</a><a class="link footer__nav-item" href="#">Подборки событий</a><a
-                  class="link footer__nav-item" href="news-detail.html">Фестивали и праздники</a></div>
-            </div>
-            <div class="footer__group">
-              <h3 class="h5 footer__nav-title">События</h3>
-              <div class="footer__group-list"><a class="link footer__nav-item" href="events.html">События</a><a
-                  class="link footer__nav-item" href="events-detail.html">Фестивали</a></div>
-            </div>
-          </nav>
-          <div class="footer__rights">
-            <div class="text footer__rights-main"> <span>© СПб ГБУДПО </span><span>«Институт культурных программ»,
-              </span><span>2022</span></div>
-            <div class="footer__rights-links"> <a class="link link-white" href="policy.html">политика
-                конфиденциальности</a><a class="link link-white" href="policy.html">Пользовательское соглашение</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
     <div class="modal fade" id="repost" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
       type="text/javascript"></script>
-    <title>Личный кабинет. Редактирование</title>
+    <title>Рубрики детальная</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
@@ -335,133 +335,376 @@
       </div>
     </header>
     <main class="main">
-      <section class="section account">
+      <div class="breadcrumbs">
         <div class="container">
-          <div class="section__inner">
-            <div class="account-edit account__edit">
-              <form action="#">
-                <div class="account-edit__header">
-                  <h1 class="h2 account-edit__title">Настройки</h1>
-                  <div class="account__actions"> <a class="button button--light account__action"
-                      href="account-edit.html"><span class="button__text">Отменить</span></a><button
-                      class="button account__action" type="submit"><span class="button__text">Сохранить</span></button>
-                  </div>
+          <div class="breadcrumbs__list"> <a class="text-md breadcrumbs__link" href="#">Главная</a><a
+              class="text-md breadcrumbs__link" href="#">Рубрики</a><a class="text-md breadcrumbs__link" href="#">Скоро
+              лето</a></div>
+        </div>
+      </div>
+      <article class="section article article--sets">
+        <div class="container">
+          <div class="article__inner">
+            <div class="article-intro article__intro">
+              <picture class="article-intro__img"><img src="assets\media\sets\detail-intro.jpg" alt=""></picture>
+              <div class="article-intro__inner">
+                <div class="article-intro__main">
+                  <p class="article-intro__uptitle">Подборка</p>
+                  <h1 class="h2 article-intro__title">Скоро лето</h1>
+                  <p class="h4 article-intro__subtitle">Для современного мира сложившаяся структура организации
+                    предполагает независимые способы реализации новых предложений!</p>
                 </div>
-                <div class="account-edit__content">
-                  <h2 class="h4 account__title">Ваши данные</h2>
-                  <div class="account-edit__form">
-                    <div class="account-edit__aside"> <label class="account-edit__input-img"><input type="file"
-                          name="file" accept=".jpg, .svg, .jpeg, .png, .webp">
-                        <picture class="account-edit__img"><img src="assets\media\profile.jpg" alt=""></picture><svg
-                          class="icon">
-                          <use xlink:href="#camera"></use>
-                        </svg>
-                      </label><button class="button button--light account-edit__input-button" type="button"
-                        data-bs-toggle="modal" data-bs-target="#resetPasswrod"><span class="button__text">Изменить
-                          пароль</span></button></div>
-                    <div class="account-edit__inputs">
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваше имя</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Владимир" placeholder="Ваше имя">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваша фамилия</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Путин" placeholder="Ваша фамилия">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Номер телефона</div>
-                        <div class="input input--md"><input class="input__field jsInput jsPhoneMask" type="text"
-                            name="input" value="" placeholder="Ваш номер телефона">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваш email</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#confirm"></use>
-                          </svg><input class="input__field jsInput" type="text" name="input" value="info@gmail.com"
-                            placeholder="Ваш email">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Дата рождения</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input" readonly
-                            autocomplete="off" placeholder="Ваша дата рождения">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
-            <div class="account__roles">
-              <h2 class="h4 account__title">Ваши роли</h2>
-              <div class="badges account-favorite__badges">
-                <div class="badges__list"> <label class="badge"><input class="badge__input" type="checkbox"
-                      name="badge-1" value="badge" checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Активист</span>
+            <div class="article__actions"> <button class="button button--light article__action jsLike"
+                type="button"><svg class="icon button__icon">
+                  <use xlink:href="#like"></use>
+                </svg><span class="button__text">В избранное</span></button><button
+                class="button button--light article__action" type="button" data-bs-toggle="modal"
+                data-bs-target="#repost"><svg class="icon button__icon">
+                  <use xlink:href="#share"></use>
+                </svg><span class="button__text">Поделиться</span></button></div>
+            <div class="article__body">
+              <div class="article__content">
+                <div class="article__set">
+                  <h2>Русский музей</h2>
+                  <div class="card-place card-place--sm"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button><a class="card-place__img-wrapper" href="events-detail.html">
+                      <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                    </a>
+                    <div class="card-place__inner"> <a class="card-place__header" href="events-detail.html">
+                        <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
+                        <h5 class="card-place__subtitle">Спортивная школа</h5>
+                      </a>
+                      <div class="card-place__content">
+                        <div class="card-place__list">
+                          <div class="card-place__row"> <a class="card-place__item"
+                              href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
+                                <use xlink:href="#geo"></use>
+                              </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
+                                193318</span></a></div>
+                        </div>
+                      </div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/zoo.svg); -webkit-mask-image: url(../../assets/media/icons/zoo.svg);">
-                      </div><span>Зоозащитник</span>
+                  </div>
+                  <p>Для современного мира сложившаяся структура организации предполагает независимые способы реализации
+                    новых предложений! Однозначно, реплицированные с зарубежных источников, современные исследования
+                    подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение
+                    уровня гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                    целесообразности принимаемых решений. Прежде всего, постоянное информационно-пропагандистское
+                    обеспечение нашей деятельности обеспечивает актуальность инновационных методов управления
+                    процессами. Картельные сговоры не допускают ситуации, при которой элементы политического процесса,
+                    инициированные исключительно синтетически, превращены в посмешище, хотя само их существование
+                    приносит несомненную пользу обществу!</p>
+                </div>
+                <div class="article__set">
+                  <h2>Фестиваль “Домовой”</h2><a class="card card--line" href="news-detail.html"><button
+                      class="like jsLike" type="button"><svg class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Событие</span></div>
+                          <div class="card__label"><span>Фестиваль</span></div>
+                        </div>
+                        <div class="card__date">27 Октярбря</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/car.svg); -webkit-mask-image: url(../../assets/media/icons/car.svg);">
-                      </div><span>Автомобилист</span>
+                  </a>
+                  <p>Для современного мира сложившаяся структура организации предполагает независимые способы реализации
+                    новых предложений! Однозначно, реплицированные с зарубежных источников, современные исследования
+                    подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение
+                    уровня гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                    целесообразности принимаемых решений. Прежде всего, постоянное информационно-пропагандистское
+                    обеспечение нашей деятельности обеспечивает актуальность инновационных методов управления
+                    процессами. Картельные сговоры не допускают ситуации, при которой элементы политического процесса,
+                    инициированные исключительно синтетически, превращены в посмешище, хотя само их существование
+                    приносит несомненную пользу обществу!</p>
+                </div>
+                <div class="article__set">
+                  <h2>Фестиваль “Жемчужина”</h2><a class="card card--line" href="news-detail.html"><button
+                      class="like jsLike" type="button"><svg class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Событие</span></div>
+                          <div class="card__label"><span>Фестиваль</span></div>
+                        </div>
+                        <div class="card__date">27 Октярбря</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Молодец</span>
+                  </a>
+                  <p>Для современного мира сложившаяся структура организации предполагает независимые способы реализации
+                    новых предложений! Однозначно, реплицированные с зарубежных источников, современные исследования
+                    подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение
+                    уровня гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                    целесообразности принимаемых решений. Прежде всего, постоянное информационно-пропагандистское
+                    обеспечение нашей деятельности обеспечивает актуальность инновационных методов управления
+                    процессами. Картельные сговоры не допускают ситуации, при которой элементы политического процесса,
+                    инициированные исключительно синтетически, превращены в посмешище, хотя само их существование
+                    приносит несомненную пользу обществу!</p>
+                </div>
+                <div class="article__set">
+                  <h2>Статья “Княгиня Ольга”</h2><a class="card card--line" href="news-detail.html"><button
+                      class="like jsLike" type="button"><svg class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels">
+                          <div class="card__label"><span>Событие</span></div>
+                          <div class="card__label"><span>Фестиваль</span></div>
+                        </div>
+                        <div class="card__date">27 Октярбря</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Политик</span>
+                  </a>
+                  <p>Для современного мира сложившаяся структура организации предполагает независимые способы реализации
+                    новых предложений! Однозначно, реплицированные с зарубежных источников, современные исследования
+                    подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение
+                    уровня гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                    целесообразности принимаемых решений. Прежде всего, постоянное информационно-пропагандистское
+                    обеспечение нашей деятельности обеспечивает актуальность инновационных методов управления
+                    процессами. Картельные сговоры не допускают ситуации, при которой элементы политического процесса,
+                    инициированные исключительно синтетически, превращены в посмешище, хотя само их существование
+                    приносит несомненную пользу обществу!</p>
+                </div>
+                <div class="article__set">
+                  <h2>Давайте не будем укрепляться в мысли, что герцог графства коронован</h2>
+                  <div class="card-place card-place--sm"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button><a class="card-place__img-wrapper" href="events-detail.html">
+                      <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                    </a>
+                    <div class="card-place__inner"> <a class="card-place__header" href="events-detail.html">
+                        <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
+                        <h5 class="card-place__subtitle">Спортивная школа</h5>
+                      </a>
+                      <div class="card-place__content">
+                        <div class="card-place__list">
+                          <div class="card-place__row"> <a class="card-place__item"
+                              href="https://yandex.ru/maps/-/CCUfzUQ4-A"> <svg class="icon">
+                                <use xlink:href="#geo"></use>
+                              </svg><span>улица Джона Рида 8, лит. А, к. 2, ул. Джона Рида, 8, корп.2А, Санкт-Петербург,
+                                193318</span></a></div>
+                        </div>
+                      </div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Лидер</span>
+                  </div>
+                  <p>Для современного мира сложившаяся структура организации предполагает независимые способы реализации
+                    новых предложений! Однозначно, реплицированные с зарубежных источников, современные исследования
+                    подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение
+                    уровня гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                    целесообразности принимаемых решений. Прежде всего, постоянное информационно-пропагандистское
+                    обеспечение нашей деятельности обеспечивает актуальность инновационных методов управления
+                    процессами. Картельные сговоры не допускают ситуации, при которой элементы политического процесса,
+                    инициированные исключительно синтетически, превращены в посмешище, хотя само их существование
+                    приносит несомненную пользу обществу!</p>
+                </div>
+              </div>
+              <div class="article__actions"> <button class="button button--light article__action jsLike"
+                  type="button"><svg class="icon button__icon">
+                    <use xlink:href="#like"></use>
+                  </svg><span class="button__text">В избранное</span></button><button
+                  class="button button--light article__action" type="button" data-bs-toggle="modal"
+                  data-bs-target="#repost"><svg class="icon button__icon">
+                    <use xlink:href="#share"></use>
+                  </svg><span class="button__text">Поделиться</span></button></div>
+              <div class="comments article__comments">
+                <h3 class="h4 comments__title">Комментарии <span>3</span></h3>
+                <div class="comments__body">
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Анастасия
+                          Иванова</span>
+                      </div>
+                      <p class="text comment__date">12.01.19, 17:39</p>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Борец</span>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость команды
+                            профессионалов играет определяющее значение для анализа существующих паттернов поведения.
+                            Есть над чем задуматься: многие известные личности указаны как претенденты на роль ключевых
+                            факторов!</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
                     </div>
-                  </label></div>
+                  </div>
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Валерий
+                          Альбертович</span>
+                      </div>
+                      <p class="text comment__date">11.01.19, 12:22</p>
+                    </div>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость команды
+                            профессионалов играет определяющее значение для анализа существующих паттернов поведения.
+                            Есть над чем задуматься: многие известные личности указаны как претенденты на роль ключевых
+                            факторов! Господа, начало повседневной работы по формированию позиции требует определения и
+                            уточнения укрепления моральных ценностей. Ясность нашей позиции очевидна: сплочённость
+                            команды профессионалов играет определяющее значение для анализа существующих паттернов
+                            поведения. Есть над чем задуматься: многие известные личности указаны как претенденты на
+                            роль ключевых факторов!</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
+                    </div>
+                  </div>
+                  <div class="comment comments__item">
+                    <div class="comment__header">
+                      <div class="comment__author">
+                        <div class="comment__img"> <img src="assets\media\profile.jpg" alt="" /></div><span>Анастасия
+                          Иванова</span>
+                      </div>
+                      <p class="text comment__date">12.01.19, 17:39</p>
+                    </div>
+                    <div class="comment__body jsMore">
+                      <div class="comment__content jsMoreBody">
+                        <div class="text comment__content-inner jsMoreContent">
+                          <p>Господа, начало повседневной работы по формированию позиции требует определения и уточнения
+                            укрепления моральных ценностей.</p>
+                        </div>
+                      </div><button class="link comment__more jsMoreTrigger"
+                        type="button"><span>Подробнее</span><span>Скрыть</span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="comments__footer">
+                  <h4 class="h5 comments__footer-title">Ваш комментарий</h4>
+                  <div class="comments__form">
+                    <div class="comments__author">
+                      <div class="comments__author-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                      <span>Анастасия Иванова</span>
+                    </div>
+                    <form action="#">
+                      <div class="input input--textarea"><textarea class="input__field jsInput" maxlength="600"
+                          name="comment" placeholder="Введите комментарий"></textarea>
+                        <div class="input__error">Обязательно для заполнения</div>
+                      </div><button class="button button--md" type="button"><span
+                          class="button__text">Опубликовать</span></button>
+                    </form>
+                  </div>
+                </div>
+                <div class="comments__footer">
+                  <h4 class="h5 comments__footer-title">Ваш комментарий</h4>
+                  <p class="text comments__footer-subtitle">Авторизуйтесь, чтобы оставлять комментарии</p><a
+                    class="button button--md" href="registration-authorization.html"><span
+                      class="button__text">Авторизоваться</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="article__aside">
+              <div class="article__aside-inner">
+                <h2 class="h5 article__aside-title">Другие рубрики</h2>
+                <div class="article__aside-list"> <a class="card card--sm" href="news-detail.html"><button
+                      class="like jsLike" type="button"><svg class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels"> </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
+                    </div>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels"> </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
+                    </div>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels"> </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
+                    </div>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels"> </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
+                    </div>
+                  </a><a class="card card--sm" href="news-detail.html"><button class="like jsLike" type="button"><svg
+                        class="icon like__icon">
+                        <use xlink:href="#like"></use>
+                      </svg></button>
+                    <div class="card__inner">
+                      <div class="card__labels-wrapper">
+                        <div class="card__labels"> </div>
+                        <div class="card__date">27.10</div>
+                      </div>
+                      <h4 class="card__title">Русский музей открыл виртуальную выставку «Петр Великий и его эпоха»</h4>
+                      <p class="card__text">Не следует, однако, забывать, что новая модель организационной деятельности
+                        однозначно определяет каждого участника как способного принимать собственные решения касаемо
+                        приоретизации разума над эмоциями.</p>
+                    </div>
+                  </a></div><a class="button button--light article__aside-button" href="#"><span
+                    class="button__text">Смотреть все</span><svg class="icon button__icon">
+                    <use xlink:href="#arrow--right"></use>
+                  </svg></a>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </article>
     </main>
     <footer class="footer">
       <div class="container footer__container">

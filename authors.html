@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
       type="text/javascript"></script>
-    <title>Личный кабинет. Редактирование</title>
+    <title>Авторы</title>
     <script defer src="js/vendors/vendors.js"></script>
     <script defer src="js/main_style/main_style.js"></script>
     <script defer src="js/main_script/main_script.js"></script>
@@ -335,128 +335,189 @@
       </div>
     </header>
     <main class="main">
-      <section class="section account">
+      <div class="breadcrumbs">
         <div class="container">
+          <div class="breadcrumbs__list"> <a class="text-md breadcrumbs__link" href="#">Главная</a><a
+              class="text-md breadcrumbs__link" href="#">Авторы</a></div>
+        </div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="section__header">
+            <h2 class="h2 section__title">Авторы</h2>
+          </div>
           <div class="section__inner">
-            <div class="account-edit account__edit">
-              <form action="#">
-                <div class="account-edit__header">
-                  <h1 class="h2 account-edit__title">Настройки</h1>
-                  <div class="account__actions"> <a class="button button--light account__action"
-                      href="account-edit.html"><span class="button__text">Отменить</span></a><button
-                      class="button account__action" type="submit"><span class="button__text">Сохранить</span></button>
-                  </div>
-                </div>
-                <div class="account-edit__content">
-                  <h2 class="h4 account__title">Ваши данные</h2>
-                  <div class="account-edit__form">
-                    <div class="account-edit__aside"> <label class="account-edit__input-img"><input type="file"
-                          name="file" accept=".jpg, .svg, .jpeg, .png, .webp">
-                        <picture class="account-edit__img"><img src="assets\media\profile.jpg" alt=""></picture><svg
-                          class="icon">
-                          <use xlink:href="#camera"></use>
-                        </svg>
-                      </label><button class="button button--light account-edit__input-button" type="button"
-                        data-bs-toggle="modal" data-bs-target="#resetPasswrod"><span class="button__text">Изменить
-                          пароль</span></button></div>
-                    <div class="account-edit__inputs">
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваше имя</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Владимир" placeholder="Ваше имя">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваша фамилия</div>
-                        <div class="input input--md"><input class="input__field jsInput" type="text" name="input"
-                            value="Путин" placeholder="Ваша фамилия">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Номер телефона</div>
-                        <div class="input input--md"><input class="input__field jsInput jsPhoneMask" type="text"
-                            name="input" value="" placeholder="Ваш номер телефона">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Ваш email</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#confirm"></use>
-                          </svg><input class="input__field jsInput" type="text" name="input" value="info@gmail.com"
-                            placeholder="Ваш email">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
-                      <div class="account-edit__input">
-                        <div class="account-edit__input-title">Дата рождения</div>
-                        <div class="input input--md"><svg class="icon input__icon input__icon--right">
-                            <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input" readonly
-                            autocomplete="off" placeholder="Ваша дата рождения">
-                          <div class="input__error">Обязательно для заполнения</div>
-                        </div>
-                      </div>
+            <div class="grid">
+              <div class="grid__block">
+                <div class="grid__list grid__list--authors"><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Carper</div>
+                    <div class="card-author__name">Kathrine K.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="account__roles">
-              <h2 class="h4 account__title">Ваши роли</h2>
-              <div class="badges account-favorite__badges">
-                <div class="badges__list"> <label class="badge"><input class="badge__input" type="checkbox"
-                      name="badge-1" value="badge" checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Активист</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Green</div>
+                    <div class="card-author__name">Vishna L.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/zoo.svg); -webkit-mask-image: url(../../assets/media/icons/zoo.svg);">
-                      </div><span>Зоозащитник</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Garron</div>
+                    <div class="card-author__name">Lionel T.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1" value="badge"
-                      checked="checked" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/car.svg); -webkit-mask-image: url(../../assets/media/icons/car.svg);">
-                      </div><span>Автомобилист</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Dutt</div>
+                    <div class="card-author__name">Pearly B.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Молодец</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Harriman</div>
+                    <div class="card-author__name">Dean D.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Политик</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Perez</div>
+                    <div class="card-author__name">Clementine H.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Лидер</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Carper</div>
+                    <div class="card-author__name">Kathrine K.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label><label class="badge"><input class="badge__input" type="checkbox" name="badge-1"
-                      value="badge" />
-                    <div class="badge__wrapper">
-                      <div class="icon"
-                        style="mask-image: url(../../assets/media/icons/good.svg); -webkit-mask-image: url(../../assets/media/icons/good.svg);">
-                      </div><span>Борец</span>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Green</div>
+                    <div class="card-author__name">Vishna L.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
                     </div>
-                  </label></div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Garron</div>
+                    <div class="card-author__name">Lionel T.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Dutt</div>
+                    <div class="card-author__name">Pearly B.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Harriman</div>
+                    <div class="card-author__name">Dean D.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Perez</div>
+                    <div class="card-author__name">Clementine H.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Carper</div>
+                    <div class="card-author__name">Kathrine K.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Green</div>
+                    <div class="card-author__name">Vishna L.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Garron</div>
+                    <div class="card-author__name">Lionel T.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Dutt</div>
+                    <div class="card-author__name">Pearly B.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Harriman</div>
+                    <div class="card-author__name">Dean D.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Perez</div>
+                    <div class="card-author__name">Clementine H.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Carper</div>
+                    <div class="card-author__name">Kathrine K.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Green</div>
+                    <div class="card-author__name">Vishna L.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Garron</div>
+                    <div class="card-author__name">Lionel T.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Dutt</div>
+                    <div class="card-author__name">Pearly B.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Harriman</div>
+                    <div class="card-author__name">Dean D.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a><a class="card-author" href="authors-detail.html">
+                    <picture class="card-author__img"><img src="assets\media\profile.jpg" alt="" /></picture>
+                    <div class="card-author__nickname">Perez</div>
+                    <div class="card-author__name">Clementine H.</div>
+                    <div class="card-author__info">
+                      <div class="card-author__info-item">30 публикаций</div>
+                    </div>
+                  </a></div>
               </div>
             </div>
           </div>
