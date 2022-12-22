@@ -41160,7 +41160,7 @@ module.exports = words;
 
 /***/ }),
 
-/***/ 3901:
+/***/ 5113:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -55393,7 +55393,7 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 
-/***/ 6305:
+/***/ 3901:
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58693,7 +58693,7 @@ function setTransition(duration, byController) {
   swiper.emit('setTransition', duration, byController);
 }
 // EXTERNAL MODULE: ./node_modules/swiper/core/transition/transitionEmit.js
-var transitionEmit = __webpack_require__(6305);
+var transitionEmit = __webpack_require__(3901);
 ;// CONCATENATED MODULE: ./node_modules/swiper/core/transition/transitionStart.js
 
 function transitionStart(runCallbacks, direction) {

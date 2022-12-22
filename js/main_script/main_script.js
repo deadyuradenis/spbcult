@@ -1,135 +1,97 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5039:
+/***/ 9115:
 /***/ (function() {
 
-window.animations = {
-  documentHeight: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight),
-  windowHeight: window.innerHeight,
-  items: document.querySelectorAll('.jsAnimate'),
-  activeClass: 'is-animate',
-  init: function init() {
-    var items = window.animations.items;
-
-    for (var index = 0; index < items.length; index++) {
-      var item = items[index];
-      !item.getAttribute('data-observe-percent') ? item.setAttribute('data-observe-percent', '0') : '';
-    }
-  },
-  update: function update() {
-    var items = window.animations.items;
-    var windowOffsetTop = window.pageYOffset;
-    var windowOffsetBottom = windowOffsetTop + window.animations.windowHeight;
-
-    var _loop = function _loop(index) {
-      var item = items[index];
-      var mode = item.getAttribute('data-observe-mode') ? item.getAttribute('data-observe-mode') : '1';
-      var percent = item.getAttribute('data-observe-percent');
-      var triggerPercent = item.getAttribute('data-observe-trigger') ? item.getAttribute('data-observe-trigger') : 25;
-      var windowMultiplier = 1; // SIZES 
-
-      var itemHeight = item.offsetHeight;
-      var itemOffsetTop = item.offsetTop;
-      var itemOffsetBottom = itemOffsetTop + itemHeight;
-      var innerTop = itemOffsetBottom - windowOffsetTop;
-      var innerBottom = windowOffsetBottom - itemOffsetTop;
-
-      if (window.animations.windowHeight < itemHeight) {
-        windowMultiplier = window.animations.windowHeight / itemHeight;
-      }
-
-      if (itemOffsetBottom >= windowOffsetTop && windowOffsetBottom >= itemOffsetTop) {
-        var resultPercent = percent;
-
-        if (mode == '1') {
-          resultPercent = mode1();
-        } else if (mode == '2') {
-          resultPercent = mode2();
-        } else if (mode == '3') {
-          resultPercent = mode3();
-        } else {
-          resultPercent = mode1();
-        }
-
-        updateValues(resultPercent);
-      }
-
-      function mode1() {
-        // MODE UpdateOneTime
-        if (innerBottom <= itemHeight * windowMultiplier) {
-          var temp = innerBottom / itemHeight * 100 / windowMultiplier;
-
-          if (percent <= temp) {
-            percent = temp;
-          }
-        } else if (innerTop <= itemHeight * windowMultiplier) {
-          var _temp = innerTop / itemHeight * 100 / windowMultiplier;
-
-          if (percent <= _temp) {
-            percent = _temp;
-          }
-        } else {
-          percent = 100;
-        }
-
-        return percent;
-      }
-
-      function mode2() {
-        // MODE UpdateOnlyDown
-        if (innerBottom <= itemHeight) {
-          percent = innerBottom / itemHeight * 100 / windowMultiplier;
-        } else {
-          percent = 100;
-        }
-
-        return percent;
-      }
-
-      function mode3() {
-        // MODE UpdateAlways
-        if (innerBottom <= itemHeight * windowMultiplier) {
-          percent = innerBottom / itemHeight * 100 / windowMultiplier;
-        } else if (innerTop <= itemHeight * windowMultiplier) {
-          percent = innerTop / itemHeight * 100 / windowMultiplier;
-        } else {
-          percent = 100;
-        }
-
-        return percent;
-      }
-
-      function updateValues(percent) {
-        percent = Math.round(percent);
-        item.setAttribute('data-observe-percent', percent);
-        actions(percent);
-      }
-
-      function actions(percent) {
-        if (percent >= triggerPercent) {
-          item.classList.add(window.animations.activeClass);
-        } else {
-          item.classList.remove(window.animations.activeClass);
-        }
-      }
-    };
-
-    for (var index = 0; index < items.length; index++) {
-      _loop(index);
-    }
-  }
-};
 document.addEventListener('DOMContentLoaded', function () {
-  window.animations.init();
-  setTimeout(function () {
-    window.animations.update();
-  }, 10);
-});
-document.addEventListener('scroll', function () {
-  window.animations.documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
-  window.animations.windowHeight = window.innerHeight;
-  window.animations.update();
+  if (document.querySelector('.jsGenerator')) {
+    (function () {
+      var init = function init() {
+        var items = generator.querySelectorAll('[data-generator]:checked');
+
+        for (var _index2 = 0; _index2 < items.length; _index2++) {
+          var item = items[_index2];
+          var props = item.getAttribute('data-generator');
+          var prop = JSON.parse(props)[0];
+          var value = JSON.parse(props)[1];
+          change(prop, value);
+        }
+
+        for (var _index3 = 0; _index3 < tabs.length; _index3++) {
+          var _item = tabs[_index3];
+
+          if (_item.checked) {
+            changeTab(_index3);
+          }
+        }
+      };
+
+      var changeTab = function changeTab(index) {
+        for (var i = 0; i < previews.length; i++) {
+          previews[i].classList.remove('is-active');
+        }
+
+        previews[index].classList.add('is-active');
+      };
+
+      var change = function change(prop, value) {
+        for (var _index4 = 0; _index4 < previews.length; _index4++) {
+          var item = previews[_index4];
+          var style = item.querySelectorAll('svg defs style');
+
+          switch (prop) {
+            case 'fill':
+              if (value.length > 1) {
+                style[0].innerHTML = ".cls-1{fill:" + value[0] + ";} .cls-bg{fill:" + value[1] + ";}";
+              } else {
+                style[0].innerHTML = ".cls-1{fill:" + value[0] + ";}";
+              }
+
+              break;
+
+            case 'bg':
+              style[1].innerHTML = ".cls-2{fill:" + value + ";}";
+              break;
+
+            default:
+              break;
+          }
+        }
+      };
+
+      var generator = document.querySelector('.jsGenerator');
+      var items = generator.querySelectorAll('[data-generator]');
+      var tabs = generator.querySelectorAll('.jsGeneratorTab');
+      var previews = generator.querySelectorAll('.jsGeneratorPreview');
+      init();
+
+      var _loop = function _loop(index) {
+        var item = tabs[index];
+        item.addEventListener('change', function () {
+          changeTab(index);
+        });
+      };
+
+      for (var index = 0; index < tabs.length; index++) {
+        _loop(index);
+      }
+
+      var _loop2 = function _loop2(_index) {
+        var item = items[_index];
+        var props = item.getAttribute('data-generator');
+        var prop = JSON.parse(props)[0];
+        var value = JSON.parse(props)[1];
+        item.addEventListener('change', function () {
+          change(prop, value);
+        });
+      };
+
+      for (var _index = 0; _index < items.length; _index++) {
+        _loop2(_index);
+      }
+    })();
+  }
 });
 
 /***/ }),
@@ -216,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (document.querySelector('.jsNav')) {
       var check = function check() {
-        var dropdownLast = dropdownInner.querySelectorAll('.nav__item')[dropdownInner.querySelectorAll('.nav__item').length - 1];
+        var dropdownLast = dropdownInner.querySelectorAll('.nav__item')[dropdownInner.querySelectorAll('.nav__item').length - 1] ? dropdownInner.querySelectorAll('.nav__item')[dropdownInner.querySelectorAll('.nav__item').length - 1] : '';
 
         if (nav.offsetWidth < list.offsetWidth) {
           // console.log('hide ' + nav.offsetWidth +' ; ' + Number(list.offsetWidth));
@@ -224,6 +186,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (nav.offsetWidth >= Number(list.offsetWidth + dropdownLast.offsetWidth + 32)) {
           // console.log('show ' + nav.offsetWidth +' >= ' + list.offsetWidth + ' + ' + dropdownLast.offsetWidth + ' + ' + 32 + ' = ' + Number(list.offsetWidth + dropdownInner.querySelectorAll('.nav__item')[dropdownInner.querySelectorAll('.nav__item').length - 1].offsetWidth + 32));
           show();
+        }
+
+        if (dropdownInner.querySelector('.nav__item')) {
+          trigger.classList.add('is-visible');
+        } else {
+          trigger.classList.remove('is-visible');
         }
       };
 
@@ -235,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       var show = function show() {
         var dItems = dropdownInner.querySelectorAll('.nav__item');
-        document.querySelector('.jsNavTrigger').before(dItems[dItems.length - 1]);
+        trigger.before(dItems[dItems.length - 1]);
         check();
       };
 
@@ -245,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           for (var index = 0; index < dItems.length; index++) {
             var item = dItems[index];
-            document.querySelector('.jsNavTrigger').before(item);
+            trigger.before(item);
           }
         }
       };
@@ -255,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var items = list.querySelectorAll('.nav__item');
       var dropdown = document.querySelector('.jsNavDropdown');
       var dropdownInner = dropdown.querySelector('.nav__dropdown-inner');
+      var trigger = document.querySelector('.jsNavTrigger');
 
       if (window.innerWidth >= 1024) {
         check();
@@ -275,82 +244,129 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 6424:
+/***/ 1676:
 /***/ (function() {
 
-var likes = document.querySelectorAll('.jsLike');
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-var _loop = function _loop(index) {
-  var element = likes[index];
-  element.addEventListener('click', function (e) {
-    e.preventDefault();
-    element.classList.toggle('is-favorite');
-  });
-};
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-for (var index = 0; index < likes.length; index++) {
-  _loop(index);
-}
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+addEventListener('DOMContentLoaded', function () {
+  var smoothLinks = document.querySelectorAll('a[href*="#"]');
+
+  var _iterator = _createForOfIteratorHelper(smoothLinks),
+      _step;
+
+  try {
+    var _loop = function _loop() {
+      var smoothLink = _step.value;
+      smoothLink.addEventListener('click', function (e) {
+        var id = smoothLink.getAttribute('href');
+        e.preventDefault();
+
+        if (id != "#") {
+          if (window.header.main.classList.contains('is-active')) {
+            window.header.close();
+          }
+
+          document.querySelector(id).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    };
+
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      _loop();
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  ;
+});
 
 /***/ }),
 
 /***/ 5157:
 /***/ (function() {
 
+window.eventLoad = function (id) {
+  console.log(id);
+};
+
 document.addEventListener('DOMContentLoaded', function () {
+  ymaps.ready(function () {
+    window.maps.init();
+  });
   window.maps = {
-    list: document.querySelectorAll('.jsMap')
-  };
+    list: document.querySelectorAll('.jsMap'),
+    init: function init() {
+      window.maps.list = document.querySelectorAll('.jsMap');
 
-  var _loop = function _loop(index) {
-    var item = window.maps.list[index];
-    var coord = item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : [[59.938955, 30.315644]];
-    var zoom = item.getAttribute('data-map-zoom') ? item.getAttribute('data-map-zoom') : 16;
+      for (var index = 0; index < window.maps.list.length; index++) {
+        var item = window.maps.list[index];
+        var coord = item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : [[59.938955, 30.315644]];
+        var zoom = item.getAttribute('data-map-zoom') ? item.getAttribute('data-map-zoom') : 16;
 
-    function init() {
-      window.maps['item_' + index] = {
-        element: item,
-        zoom: zoom,
-        coordinates: item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : '',
-        map: new ymaps.Map(item, {
-          controls: [],
-          center: coord[0],
-          zoom: zoom
-        }),
-        initDots: function initDots() {
-          if (this.coordinates != '') {
-            for (var dotIndex = 0; dotIndex < this.coordinates.length; dotIndex++) {
-              var thisDot = this.coordinates[dotIndex];
-              this.addMark(thisDot);
-            }
-          }
-        },
-        addMark: function addMark(cors) {
-          placemark = new ymaps.Placemark(cors, {}, {
-            iconLayout: 'default#image',
-            iconImageHref: 'assets/media/geo-dot.svg',
-            iconImageSize: [32, 32],
-            iconImageOffset: [-16, -16]
-          }), this.map.geoObjects.add(placemark);
-          this.centeredMap();
-        },
-        centeredMap: function centeredMap() {
-          this.map.setBounds(this.map.geoObjects.getBounds(), {
-            checkZoomRange: true,
-            zoomMargin: 40
-          });
+        if (window.maps['item_' + index]) {
+          window.maps['item_' + index].map.destroy();
         }
-      };
-      window.maps['item_' + index].initDots();
+
+        window.maps['item_' + index] = {
+          element: item,
+          zoom: zoom,
+          coordinates: item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : '',
+          map: new ymaps.Map(item, {
+            controls: [],
+            center: coord[0],
+            zoom: zoom
+          }),
+          initDots: function initDots() {
+            if (this.coordinates != '') {
+              for (var dotIndex = 0; dotIndex < this.coordinates.length; dotIndex++) {
+                var thisDot = this.coordinates[dotIndex];
+                this.addMark(thisDot);
+              }
+            }
+          },
+          addMark: function addMark(cors, id) {
+            placemark = new ymaps.Placemark(cors, {
+              id: id ? id : ''
+            }, {
+              iconLayout: 'default#image',
+              iconImageHref: '/local/templates/spbCult/dist/assets/media/geo-dot.svg',
+              // iconImageHref: 'assets/media/geo-dot.svg',
+              iconImageSize: [32, 32],
+              iconImageOffset: [-16, -16]
+            }), this.map.geoObjects.add(placemark);
+            placemark.events.add('click', function () {
+              window.eventLoad(id);
+            });
+            this.centeredMap();
+          },
+          centeredMap: function centeredMap() {
+            this.map.setBounds(this.map.geoObjects.getBounds(), {
+              checkZoomRange: true,
+              zoomMargin: 40
+            });
+          }
+        };
+        window.maps['item_' + index].initDots();
+      }
     }
-
-    ymaps.ready(init);
   };
-
-  for (var index = 0; index < window.maps.list.length; index++) {
-    _loop(index);
-  }
-});
+}); // document.addEventListener('DOMContentLoaded', ()=>{
+//     ymaps.ready(function (){
+//         window.maps.item_0.addMark([59.838955, 31.315644], 123)
+//         window.maps.item_0.addMark([59.938955, 30.315644], 321)
+//     })
+// })
 
 /***/ }),
 
@@ -387,6 +403,15 @@ document.addEventListener('DOMContentLoaded', function () {
   for (var index = 0; index < jsMore.length; index++) {
     _loop(index);
   }
+});
+
+/***/ }),
+
+/***/ 7410:
+/***/ (function() {
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelector('body').classList.add('is-loaded');
 });
 
 /***/ }),
@@ -470,7 +495,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 7048:
+/***/ 5630:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -503,7 +528,7 @@ var Cookies = /*#__PURE__*/function () {
     value: function buildTemplate() {
       this.element = document.createElement('div');
       this.element.classList.add('cookies');
-      this.element.innerHTML = "\n        <div class=\"container\">\n            <div class=\"cookies__inner\">\n                <div class=\"text-lg text-bold cookies__text\">\u041C\u044B \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C cookie \u043D\u0430 \u043D\u0430\u0448\u0435\u043C \u0441\u0430\u0439\u0442\u0435, \u0447\u0442\u043E\u0431\u044B \u043E\u043D \u0440\u0430\u0431\u043E\u0442\u0430\u043B \u0438\u0441\u043F\u0440\u0430\u0432\u043D\u043E</div>\n                <button class=\"button cookies__button jsCookiesButton\" type=\"button\">\n                    <span>\u0421\u043E\u0433\u043B\u0430\u0441\u0435\u043D \u0438 \u043F\u0440\u0438\u043D\u0438\u043C\u0430\u044E</span>\n                </button>\n            </div>\n        </div>\n        ";
+      this.element.innerHTML = "\n        <div class=\"container\">\n            <div class=\"cookies__inner\">\n                <div class=\"text-md cookies__text\">\u042D\u0442\u043E\u0442 \u0441\u0430\u0439\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u0444\u0430\u0439\u043B\u044B cookies \u0438 \u0441\u0435\u0440\u0432\u0438\u0441\u044B \u0441\u0431\u043E\u0440\u0430 \u0442\u0435\u0445\u043D\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0434\u0430\u043D\u043D\u044B\u0445 \u043F\u043E\u0441\u0435\u0442\u0438\u0442\u0435\u043B\u0435\u0439 (\u0434\u0430\u043D\u043D\u044B\u0435 \u043E\u0431 IP-\u0430\u0434\u0440\u0435\u0441\u0435, \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0438 \u0438 \u0434\u0440.) \u0434\u043B\u044F \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0435\u043D\u0438\u044F \u0440\u0430\u0431\u043E\u0442\u043E\u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0438 \u0438 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u044F \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u0430 \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u044F. \u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u044F \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0448 \u0441\u0430\u0439\u0442, \u0432\u044B \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0441\u043E\u0433\u043B\u0430\u0448\u0430\u0435\u0442\u0435\u0441\u044C \u0441 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435\u043C \u0434\u0430\u043D\u043D\u044B\u0445 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0439.</div>\n                <button class=\"button cookies__button jsCookiesButton\" type=\"button\">\n                    <span>\u041F\u0440\u0438\u043D\u044F\u0442\u044C \u0438 \u0437\u0430\u043A\u0440\u044B\u0442\u044C</span>\n                </button>\n            </div>\n        </div>\n        ";
       document.body.append(this.element);
       setTimeout(function () {
         document.querySelector('.cookies').classList.add('is-show');
@@ -541,15 +566,11 @@ var Cookies = /*#__PURE__*/function () {
 // EXTERNAL MODULE: ./node_modules/jquery/dist/jquery.js
 var jquery = __webpack_require__(9755);
 var jquery_default = /*#__PURE__*/__webpack_require__.n(jquery);
-// EXTERNAL MODULE: ./src/components/animations/scripts.js
-var animations_scripts = __webpack_require__(5039);
 // EXTERNAL MODULE: ./src/components/header/scripts.js
 var header_scripts = __webpack_require__(8450);
 // EXTERNAL MODULE: ./node_modules/bootstrap/dist/js/bootstrap.esm.js + 1 modules
 var bootstrap_esm = __webpack_require__(4712);
 ;// CONCATENATED MODULE: ./src/components/modal/scripts.js
-
-var modals = document.querySelectorAll('.modal'); // window.modals.list =  document.querySelectorAll('.modal');
 
 document.addEventListener('DOMContentLoaded', function () {
   window.modal = {
@@ -574,7 +595,151 @@ document.addEventListener('DOMContentLoaded', function () {
   // window.modal.commentSuccess.show()
   // window.modal.organizers.show()
   // window.modal.resetPasswrod.show()
+  // window.modal.sendArticle.show()
+  // window.modal.authorization.show()
+  // window.modal.callbackSuccess.show()
 });
+// EXTERNAL MODULE: ./node_modules/swiper/swiper.esm.js + 88 modules
+var swiper_esm = __webpack_require__(7099);
+;// CONCATENATED MODULE: ./src/components/slider/scripts.js
+
+var jsSliderImportantly = new swiper_esm/* default */.ZP('.jsSliderImportantly .slider__inner', {
+  modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
+  slidesPerView: 1,
+  spaceBetween: 20,
+  speed: 900,
+  autoHeight: true,
+  pagination: {
+    el: ".jsSliderImportantly .swiper-pagination",
+    clickable: true,
+    bulletClass: "slider__pagination-item"
+  },
+  navigation: {
+    nextEl: '.jsSliderImportantly .swiper-button-next',
+    prevEl: '.jsSliderImportantly .swiper-button-prev'
+  },
+  breakpoints: {
+    0: {
+      spaceBetween: 12
+    },
+    834: {
+      spaceBetween: 16
+    },
+    992: {
+      pagination: false,
+      spaceBetween: 20
+    },
+    1260: {
+      pagination: false
+    }
+  }
+});
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.querySelector('.jsSliderArticle')) {
+    var items = document.querySelectorAll('.jsSliderArticle');
+
+    for (var index = 0; index < items.length; index++) {
+      var item = items[index];
+      var jsSliderArticle = new swiper_esm/* default */.ZP(item.querySelector('.slider__inner'), {
+        modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl],
+        loop: false,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        speed: 500,
+        navigation: {
+          nextEl: item.querySelector('.swiper-button-next'),
+          prevEl: item.querySelector('.swiper-button-prev')
+        },
+        pagination: {
+          el: item.querySelector(".swiper-pagination"),
+          clickable: true,
+          bulletClass: "slider__pagination-item"
+        }
+      });
+    }
+  }
+
+  if (window.calendar.item) {
+    window.calendar.slider = new swiper_esm/* default */.ZP(window.calendar.item.querySelector('.slider__inner'), {
+      modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Mousewheel */.Gk, swiper_esm/* FreeMode */.Rv],
+      loop: false,
+      slidesPerView: 'auto',
+      spaceBetween: 32,
+      speed: 750,
+      freeMode: true,
+      mousewheel: true,
+      watchSlidesProgress: true,
+      navigation: {
+        prevEl: window.calendar.item.querySelector('.swiper-button-prev'),
+        nextEl: window.calendar.item.querySelector('.swiper-button-next')
+      } // on:{
+      //     progress: function (){
+      //         let slides = window.calendar.item.querySelectorAll('.swiper-slide-visible');
+      //     },
+      //     update: function(){
+      //         let sizes = [];
+      //         console.log('width = ' +window.calendar.slider.wrapperEl.offsetWidth);
+      //         getSize()
+      //         function getSize(){
+      //             let total = 0;
+      //             let slides = window.calendar.item.querySelectorAll('.swiper-slide');
+      //             for (let index = 0; index < window.calendar.slider.slides.length; index++) {
+      //                 const item = window.calendar.slider.slides[index];
+      //                 let width = item.querySelector('.calendar__month').offsetWidth;
+      //                 sizes.push(width)
+      //                 total += width
+      //             }
+      //             console.log(sizes);
+      //             console.log(total);
+      //         }
+      //     }
+      // }
+
+    });
+    window.calendar.item.querySelector('.swiper-button-prev').addEventListener('click', function () {
+      var width = window.calendar.item.querySelector('.slider__inner').offsetWidth * 0.85;
+      var translate = window.calendar.slider.getTranslate();
+      window.calendar.slider.translateTo(translate + width, 900);
+      window.calendar.slider.update();
+    });
+    window.calendar.item.querySelector('.swiper-button-next').addEventListener('click', function () {
+      var width = window.calendar.item.querySelector('.slider__inner').offsetWidth * 0.85;
+      var translate = window.calendar.slider.getTranslate();
+      window.calendar.slider.translateTo(translate - width, 900);
+      window.calendar.slider.update();
+    });
+  }
+
+  if (window.calendarEvents.item) {
+    window.calendarEvents.slider = new swiper_esm/* default */.ZP(window.calendarEvents.item.querySelector('.slider__inner'), {
+      modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Mousewheel */.Gk, swiper_esm/* FreeMode */.Rv],
+      loop: false,
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      speed: 750,
+      freeMode: true,
+      mousewheel: true,
+      navigation: {
+        prevEl: window.calendarEvents.item.querySelector('.swiper-button-prev'),
+        nextEl: window.calendarEvents.item.querySelector('.swiper-button-next')
+      }
+    });
+  }
+});
+// EXTERNAL MODULE: ./node_modules/@fancyapps/ui/dist/fancybox.esm.js
+var fancybox_esm = __webpack_require__(2689);
+;// CONCATENATED MODULE: ./src/components/gallery/scripts.js
+
+window.Fancybox = fancybox_esm/* Fancybox */.KR;
+fancybox_esm/* Fancybox.bind */.KR.bind('[data-fancybox]', {
+  Image: {
+    zoom: false
+  }
+});
+// EXTERNAL MODULE: ./src/components/map/scripts.js
+var map_scripts = __webpack_require__(5157);
+// EXTERNAL MODULE: ./src/components/preloader/scripts.js
+var preloader_scripts = __webpack_require__(7410);
 // EXTERNAL MODULE: ./node_modules/imask/esm/index.js + 21 modules
 var esm = __webpack_require__(2647);
 ;// CONCATENATED MODULE: ./src/components/input/scripts.js
@@ -637,6 +802,34 @@ var _loop = function _loop(index) {
 
 for (var index = 0; index < jsInput.length; index++) {
   _loop(index);
+}
+
+var jsInputFile = document.querySelectorAll('.jsInputFile');
+
+var _loop2 = function _loop2(_index) {
+  var input = jsInputFile[_index];
+  var field = input.querySelector('.jsInputFileField');
+  var name = input.querySelector('.jsInputFileName');
+  var del = input.querySelector('.jsInputFileDelete');
+  del.addEventListener('click', function (e) {
+    e.preventDefault();
+    field.value == '';
+    input.classList.remove('is-upload');
+    name.innerHTML = '';
+  });
+  field.addEventListener('change', function () {
+    if (field.files.length != 0) {
+      input.classList.add('is-upload');
+      name.innerHTML = this.files[0].name;
+    } else {
+      input.classList.remove('is-upload');
+      name.innerHTML = '';
+    }
+  });
+};
+
+for (var _index = 0; _index < jsInputFile.length; _index++) {
+  _loop2(_index);
 } // let mailInputs = document.querySelectorAll('.jsMailMask');
 // for (let index = 0; index < mailInputs.length; index++){
 //     let input = mailInputs[index];
@@ -724,8 +917,8 @@ window.runMask = function () {
 
 var jsInputSwap = document.querySelectorAll('.jsInputSwap');
 
-var _loop2 = function _loop2(_index) {
-  var item = jsInputSwap[_index];
+var _loop3 = function _loop3(_index2) {
+  var item = jsInputSwap[_index2];
   var parent = item.closest('.input');
   var input = parent.querySelector('input');
 
@@ -743,77 +936,9 @@ var _loop2 = function _loop2(_index) {
   });
 };
 
-for (var _index = 0; _index < jsInputSwap.length; _index++) {
-  _loop2(_index);
+for (var _index2 = 0; _index2 < jsInputSwap.length; _index2++) {
+  _loop3(_index2);
 }
-// EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
-var daterangepicker = __webpack_require__(932);
-;// CONCATENATED MODULE: ./src/components/datepicker/scripts.js
-
-
-var datepickers = jquery_default()('.jsInputDate');
-datepickers.each(function () {
-  jquery_default()(this).daterangepicker({
-    locale: {
-      format: "DD/MM/YYYY",
-      separator: " - ",
-      applyLabel: "Применить",
-      cancelLabel: "Отмена",
-      fromLabel: "От",
-      toLabel: "До",
-      customRangeLabel: "Custom",
-      weekLabel: "W",
-      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      firstDay: 1
-    },
-    autoUpdateInput: false,
-    linkedCalendars: false,
-    buttonClasses: "button button--sm",
-    applyButtonClasses: "",
-    cancelClass: "button--light",
-    drops: "auto",
-    opens: "center"
-  });
-  jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-  });
-  jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val('');
-  });
-});
-var datepickersSingle = jquery_default()('.jsInputDateSingle');
-datepickersSingle.each(function () {
-  jquery_default()(this).daterangepicker({
-    locale: {
-      format: "DD/MM/YYYY",
-      separator: " - ",
-      applyLabel: "Применить",
-      cancelLabel: "Отмена",
-      fromLabel: "От",
-      toLabel: "До",
-      customRangeLabel: "Custom",
-      weekLabel: "W",
-      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      firstDay: 1
-    },
-    "singleDatePicker": true,
-    autoUpdateInput: false,
-    linkedCalendars: false,
-    buttonClasses: "button button--sm",
-    applyButtonClasses: "",
-    cancelClass: "button--light",
-    drops: "auto",
-    opens: "center"
-  });
-  jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val(picker.startDate.format('DD/MM/YYYY'));
-  });
-  jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
-    jquery_default()(this).val('');
-  });
-});
 // EXTERNAL MODULE: ./node_modules/sumoselect/jquery.sumoselect.js
 var jquery_sumoselect = __webpack_require__(4102);
 ;// CONCATENATED MODULE: ./src/components/select/scripts.js
@@ -833,136 +958,596 @@ window.initSelect = function () {
 document.addEventListener('DOMContentLoaded', function () {
   window.initSelect();
 });
-// EXTERNAL MODULE: ./node_modules/swiper/swiper.esm.js + 88 modules
-var swiper_esm = __webpack_require__(7099);
-;// CONCATENATED MODULE: ./src/components/slider/scripts.js
+// EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
+var daterangepicker = __webpack_require__(932);
+;// CONCATENATED MODULE: ./src/components/datepicker/scripts.js
 
-var jsSliderImportantly = new swiper_esm/* default */.ZP('.jsSliderImportantly .slider__inner', {
-  modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
-  slidesPerView: 1,
-  spaceBetween: 20,
-  speed: 900,
-  autoHeight: true,
-  pagination: {
-    el: ".jsSliderImportantly .swiper-pagination",
-    clickable: true,
-    bulletClass: "slider__pagination-item"
-  },
-  navigation: {
-    nextEl: '.jsSliderImportantly .swiper-button-next',
-    prevEl: '.jsSliderImportantly .swiper-button-prev'
-  },
-  breakpoints: {
-    0: {
-      spaceBetween: 12
-    },
-    834: {
-      spaceBetween: 16
-    },
-    992: {
-      pagination: false,
-      spaceBetween: 20
-    },
-    1260: {
-      pagination: false
-    }
-  }
-});
+
+
+window.datepickerChange = function (el) {
+  console.log(el);
+};
+
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.jsSliderArticle')) {
-    var items = document.querySelectorAll('.jsSliderArticle');
+  window.datepickerInit();
+});
 
-    for (var index = 0; index < items.length; index++) {
-      var item = items[index];
-      var jsSliderArticle = new swiper_esm/* default */.ZP(item.querySelector('.slider__inner'), {
-        modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl],
-        loop: false,
-        slidesPerView: 1,
-        spaceBetween: 16,
-        speed: 500,
-        navigation: {
-          nextEl: item.querySelector('.swiper-button-next'),
-          prevEl: item.querySelector('.swiper-button-prev')
-        },
-        pagination: {
-          el: item.querySelector(".swiper-pagination"),
-          clickable: true,
-          bulletClass: "slider__pagination-item"
+window.datepickerInit = function () {
+  var datepickers = jquery_default()('.jsInputDate');
+  datepickers.each(function (e) {
+    jquery_default()(this).daterangepicker({
+      locale: {
+        format: "DD/MM/YYYY",
+        separator: " - ",
+        applyLabel: "Применить",
+        cancelLabel: "Отмена",
+        fromLabel: "От",
+        toLabel: "До",
+        customRangeLabel: "Custom",
+        weekLabel: "W",
+        daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+        monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+        firstDay: 1
+      },
+      autoUpdateInput: false,
+      linkedCalendars: false,
+      buttonClasses: "button button--sm",
+      applyButtonClasses: "",
+      cancelClass: "button--light",
+      drops: "auto",
+      opens: "center"
+    });
+    jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
+      jquery_default()(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+
+      if (jquery_default()(this).closest('.filter')) {
+        jquery_default()(this).closest('.filter').find('input[name="date_from"').val(picker.startDate.format('DD.MM.YYYY'));
+        jquery_default()(this).closest('.filter').find('input[name="date_to"').val(picker.endDate.format('DD.MM.YYYY'));
+      }
+
+      window.datepickerChange(jquery_default()(this)[0]);
+    });
+    jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
+      jquery_default()(this).val('');
+
+      if (jquery_default()(this).closest('.filter')) {
+        jquery_default()(this).closest('.filter').find('input[name="date_from"').val('');
+        jquery_default()(this).closest('.filter').find('input[name="date_to"').val('');
+      }
+
+      window.datepickerChange(jquery_default()(this)[0]);
+    });
+  });
+  var datepickersSingle = jquery_default()('.jsInputDateSingle');
+  datepickersSingle.each(function () {
+    jquery_default()(this).daterangepicker({
+      locale: {
+        format: "DD/MM/YYYY",
+        separator: " - ",
+        applyLabel: "Применить",
+        cancelLabel: "Отмена",
+        fromLabel: "От",
+        toLabel: "До",
+        customRangeLabel: "Custom",
+        weekLabel: "W",
+        daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+        monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+        firstDay: 1
+      },
+      "singleDatePicker": true,
+      autoUpdateInput: false,
+      linkedCalendars: false,
+      buttonClasses: "button button--sm",
+      applyButtonClasses: "",
+      cancelClass: "button--light",
+      drops: "auto",
+      opens: "center"
+    });
+    jquery_default()(this).on('apply.daterangepicker', function (ev, picker) {
+      jquery_default()(this).val(picker.startDate.format('DD.MM.YYYY'));
+
+      if (jquery_default()(this).closest('.filter')) {
+        jquery_default()(this).closest('.filter').find('input[name="date_from"').val(picker.startDate.format('DD.MM.YYYY'));
+      }
+
+      window.datepickerChange(jquery_default()(this)[0]);
+    });
+    jquery_default()(this).on('cancel.daterangepicker', function (ev, picker) {
+      jquery_default()(this).val('');
+
+      if (jquery_default()(this).closest('.filter')) {
+        jquery_default()(this).closest('.filter').find('input[name="date_from"').val('');
+      }
+
+      window.datepickerChange(jquery_default()(this)[0]);
+    });
+  });
+};
+// EXTERNAL MODULE: ./node_modules/moment/moment.js
+var moment = __webpack_require__(381);
+var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
+;// CONCATENATED MODULE: ./src/components/calendar/scripts.js
+
+window.moment = moment_default()();
+window.calendar = {
+  item: document.querySelector('.jsCalendar'),
+  inputs: document.querySelectorAll('.jsFilterDate'),
+  list: []
+};
+
+if (window.calendar.item) {
+  var init = function init() {
+    for (var i = 0; i < 13; i++) {
+      localDate = newMonth(localDate, i);
+    }
+
+    window.calendar.slider.update();
+    window.calendar.inputs = document.querySelectorAll('.jsFilterDate');
+  };
+
+  var newMonth = function newMonth(localDate, index) {
+    var tempDate = localDate.clone();
+    var monthStart = index == 0 ? localDate.clone() : tempDate.clone().startOf('month');
+    var monthEnd = index == 12 ? tempDate.clone().subtract(1, 'day') : tempDate.clone().endOf('month');
+    var monthName = tempDate.format('MMMM');
+    var monthList = [];
+    var day = monthStart.clone();
+    var monthInner; // Создание
+
+    var slide = document.createElement('div');
+    var month = document.createElement('div');
+    var days = document.createElement('div');
+    var name = translateMonth(monthName);
+    slide.classList.add('swiper-slide', 'slider__slide');
+    month.classList.add('calendar__month');
+    days.classList.add('calendar__days');
+    month.innerHTML = "<span>" + name + "</span>";
+    month.append(days);
+    calendarInner.append(slide);
+    slide.append(month);
+    monthInner = days; // 
+    // Наполнение
+
+    while (!day.isAfter(monthEnd)) {
+      var dayDate = day.clone();
+      monthList.push(day.clone());
+      createDay(monthInner, dayDate);
+      day.add(1, 'day');
+    }
+
+    window.calendar.list.push(monthList); // 
+
+    return tempDate.clone().add(1, 'month');
+  };
+
+  var createDay = function createDay(parent, date) {
+    var thisDate = date;
+    var name = translateDay(thisDate.format('dd'));
+    var number = thisDate.format('DD');
+    var value = thisDate.format('YYYY-MM-DD');
+    var dayPattern = "\n                <strong>" + number + "</strong>\n                <span>" + name + "</span>\n        ";
+    var element = document.createElement('div');
+    element.classList.add('calendar__day', 'jsFilterDate');
+    element.setAttribute('data-calendar-date', value);
+
+    if (name == 'Сб' || name == 'Вс') {
+      element.classList.add('calendar__day--weekend');
+    }
+
+    element.innerHTML = dayPattern;
+    parent.append(element);
+  };
+
+  var translateMonth = function translateMonth(monthName) {
+    var name;
+
+    switch (monthName) {
+      case 'January':
+        name = 'Январь';
+        break;
+
+      case 'February':
+        name = 'Февраль';
+        break;
+
+      case 'March':
+        name = 'Март';
+        break;
+
+      case 'April':
+        name = 'Апрель';
+        break;
+
+      case 'May':
+        name = 'Май';
+        break;
+
+      case 'June':
+        name = 'Июнь';
+        break;
+
+      case 'July':
+        name = 'Июль';
+        break;
+
+      case 'August':
+        name = 'Август';
+        break;
+
+      case 'September':
+        name = 'Сентябрь';
+        break;
+
+      case 'October':
+        name = 'Октябрь';
+        break;
+
+      case 'November':
+        name = 'Ноябрь';
+        break;
+
+      case 'December':
+        name = 'Декабрь';
+        break;
+
+      default:
+        break;
+    }
+
+    return name;
+  };
+
+  var translateDay = function translateDay(dayName) {
+    var name;
+
+    switch (dayName) {
+      case 'Mo':
+        name = 'Пн';
+        break;
+
+      case 'Tu':
+        name = 'Вт';
+        break;
+
+      case 'We':
+        name = 'Ср';
+        break;
+
+      case 'Th':
+        name = 'Чт';
+        break;
+
+      case 'Fr':
+        name = 'Пт';
+        break;
+
+      case 'Sa':
+        name = 'Сб';
+        break;
+
+      case 'Su':
+        name = 'Вс';
+        break;
+
+      default:
+        break;
+    }
+
+    return name;
+  };
+
+  var calendarItem = window.calendar.item;
+  var calendarInner = calendarItem.querySelector('.swiper-wrapper', 'slider__wrapper');
+  var localDate = moment_default()().clone();
+  document.addEventListener('DOMContentLoaded', function () {
+    init();
+
+    var _loop = function _loop(index) {
+      var item = window.calendar.inputs[index];
+      item.addEventListener('click', function (e) {
+        var all = window.calendar.item.querySelectorAll('.jsFilterDate');
+
+        if (window.calendar.item.querySelectorAll('.jsFilterDate.is-active').length >= 2) {
+          for (var _index = 0; _index < all.length; _index++) {
+            var _item = all[_index];
+
+            _item.classList.remove('is-range');
+
+            _item.classList.remove('is-active');
+          }
+        }
+
+        item.classList.add('is-active');
+        run();
+
+        function run() {
+          var allChecked = window.calendar.item.querySelectorAll('.jsFilterDate.is-active');
+          var array = [],
+              minTemp,
+              maxTemp,
+              minItem,
+              maxItem,
+              minIndex,
+              maxIndex,
+              min = '',
+              max = '';
+          findMinMax();
+          findIndex();
+          callback();
+
+          function findMinMax() {
+            for (var _index2 = 0; _index2 < allChecked.length; _index2++) {
+              var _item2 = allChecked[_index2];
+              var value = Date.parse(_item2.getAttribute('data-calendar-date'));
+              array.push(value);
+            }
+
+            minTemp = Math.min.apply(null, array);
+            maxTemp = Math.max.apply(null, array);
+
+            for (var _index3 = 0; _index3 < allChecked.length; _index3++) {
+              var _item3 = allChecked[_index3];
+
+              var _value = _item3.getAttribute('data-calendar-date'); // minTemp == Date.parse(value) ? (min = value, minItem = item) : maxTemp == Date.parse(value) ? (max = value, maxItem = item): '';
+
+
+              if (minTemp == Date.parse(_value)) {
+                min = _value;
+                minItem = _item3;
+              } else if (maxTemp == Date.parse(_value)) {
+                max = _value;
+                maxItem = _item3;
+              }
+            }
+          }
+
+          function findIndex() {
+            for (var _index4 = 0; _index4 < all.length; _index4++) {
+              var _item4 = all[_index4];
+
+              if (_item4 == minItem) {
+                minIndex = _index4;
+              } else if (_item4 == maxItem) {
+                maxIndex = _index4;
+              }
+            }
+
+            if (maxIndex != undefined) {
+              var tempAll = Array.prototype.slice.call(all, minIndex, maxIndex);
+
+              for (var _index5 = 0; _index5 < tempAll.length; _index5++) {
+                var _item5 = tempAll[_index5];
+
+                _item5.classList.add('is-range');
+              }
+            }
+          }
+
+          function callback() {
+            var filterWrapper = item.closest('.filter');
+
+            if (filterWrapper) {
+              filterWrapper.querySelector('input[name="date_from"').value = min;
+              filterWrapper.querySelector('input[name="date_to"').value = max;
+            }
+
+            if (min != '' && max != '') {
+              window.datepickerChange(filterWrapper.querySelector('input[name="date_from"'));
+            }
+          }
         }
       });
+    };
+
+    for (var index = 0; index < window.calendar.inputs.length; index++) {
+      _loop(index);
     }
-  }
+  });
+}
+;// CONCATENATED MODULE: ./src/components/calendar-events/scripts.js
 
-  if (document.querySelector('.jsSliderDatepciker')) {
-    var _items = document.querySelectorAll('.jsSliderDatepciker');
+window.moment = moment_default()();
+window.calendarEvents = {
+  item: document.querySelector('.jsCalendarEvents'),
+  inputs: document.querySelectorAll('.jsFilterDate'),
+  list: []
+};
 
-    for (var _index = 0; _index < _items.length; _index++) {
-      var _item = _items[_index];
+if (window.calendarEvents.item) {
+  var scripts_newMonth = function newMonth(localDate) {
+    var tempDate = localDate.clone();
+    var monthStart = localDate.clone();
+    var monthEnd = tempDate.clone().endOf('month');
+    var monthName = tempDate.format('MMMM'); // Создание и наполнение
 
-      var _jsSliderArticle = new swiper_esm/* default */.ZP(_item.querySelector('.slider__inner'), {
-        modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Mousewheel */.Gk, swiper_esm/* FreeMode */.Rv],
-        loop: false,
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-        speed: 500,
-        freeMode: true,
-        mousewheel: true,
-        initialSlide: 1,
-        navigation: {
-          nextEl: _item.querySelector('.swiper-button-next'),
-          prevEl: _item.querySelector('.swiper-button-prev')
-        }
+    var month = document.createElement('div');
+    var name = scripts_translateMonth(monthName);
+    month.classList.add('calendar-events__item', 'jsFilterMonth');
+    month.innerHTML = "<span>" + name + "</span>";
+    scripts_calendarInner.append(month);
+    month.setAttribute('data-calendar-date', monthStart.format('YYYY-MM-DD')); // 
+
+    window.calendarEvents.list.push(name);
+    return monthEnd.add(1, 'day');
+  };
+
+  var scripts_translateMonth = function translateMonth(monthName) {
+    var name;
+
+    switch (monthName) {
+      case 'January':
+        name = 'Январь';
+        break;
+
+      case 'February':
+        name = 'Февраль';
+        break;
+
+      case 'March':
+        name = 'Март';
+        break;
+
+      case 'April':
+        name = 'Апрель';
+        break;
+
+      case 'May':
+        name = 'Май';
+        break;
+
+      case 'June':
+        name = 'Июнь';
+        break;
+
+      case 'July':
+        name = 'Июль';
+        break;
+
+      case 'August':
+        name = 'Август';
+        break;
+
+      case 'September':
+        name = 'Сентябрь';
+        break;
+
+      case 'October':
+        name = 'Октябрь';
+        break;
+
+      case 'November':
+        name = 'Ноябрь';
+        break;
+
+      case 'December':
+        name = 'Декабрь';
+        break;
+
+      default:
+        break;
+    }
+
+    return name;
+  };
+
+  var scripts_calendarItem = window.calendarEvents.item;
+  var scripts_calendarInner = scripts_calendarItem.querySelector('.swiper-slide', 'slider__slide');
+  var scripts_localDate = moment_default()().clone();
+
+  window.calendarEvents.init = function () {
+    for (var i = 0; i < 12; i++) {
+      scripts_localDate = scripts_newMonth(scripts_localDate);
+    }
+
+    window.calendarEvents.slider.update();
+    window.calendarEvents.inputs = document.querySelectorAll('.jsFilterMonth');
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    window.calendarEvents.init();
+
+    var _loop = function _loop(index) {
+      var item = window.calendarEvents.inputs[index];
+
+      if (index == 0) {
+        item.classList.add('is-active');
+        click();
+      }
+
+      item.addEventListener('click', function () {
+        click();
       });
+
+      function click() {
+        var value = item.getAttribute('data-calendar-date');
+        clearAll();
+        item.classList.add('is-active');
+        callback();
+
+        function callback() {
+          if (item.closest('.filter')) {
+            item.closest('.filter').querySelector('input[name="date_from"').value = value;
+          }
+
+          window.datepickerChange(item);
+        }
+
+        function clearAll() {
+          for (var _index = 0; _index < window.calendarEvents.inputs.length; _index++) {
+            var _item = window.calendarEvents.inputs[_index];
+
+            _item.classList.remove('is-active');
+          }
+        }
+      }
+    };
+
+    for (var index = 0; index < window.calendarEvents.inputs.length; index++) {
+      _loop(index);
     }
+  });
+}
+// EXTERNAL MODULE: ./src/components/link/scripts.js
+var link_scripts = __webpack_require__(1676);
+;// CONCATENATED MODULE: ./src/components/copy/scripts.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  var copyButtons = document.querySelectorAll('.jsCopyButton');
+
+  for (var index = 0; index < copyButtons.length; index++) {
+    var item = copyButtons[index];
+    var link = document.location.href;
+    item.setAttribute('href', link);
+    item.querySelector('span.button__text').innerHTML = link;
   }
 });
-document.addEventListener('DOMContentLoaded', function () {}); // window.onload = function (){
-//     if(document.querySelector('.jsSliderBadges')){
-//         let badges = document.querySelectorAll('.jsSliderBadges');
-//         for (let index = 0; index < badges.length; index++) {
-//             const badge = badges[index];
-//             const slider = new Swiper( badge.querySelector('.slider__inner'), {
-//                 modules: [FreeMode],
-//                 loop: false,
-//                 slidesPerView: "auto",
-//                 // spaceBetween: 20,
-//                 freeMode: true,
-//             });
-//             let slides = badge.querySelectorAll('.swiper-slide');
-//             for (let index = 0; index < slides.length; index++) {
-//                 const slide = slides[index];
-//                 let badge = slide.querySelector('.badge')
-//                 if(badge.querySelector('input[checked]')){
-//                     update(index);
-//                 }
-//                 if(badge.classList.contains('jsTabLink') && badge.classList.contains('is-active')){
-//                     update(index);
-//                 }
-//             }
-//             function update(realIndex){
-//                 slider.slideTo(realIndex, 0)
-//             }
-//         }
-//     }
-// }
+jquery_default()('.jsCopyButton').on('click', function (e) {
+  var isiOSDevice = navigator.userAgent.match(/ipad|iphone/i);
+  e.preventDefault();
+  var $this = jquery_default()(this);
+  var $temp = jquery_default()("<input>", {
+    class: 'copy-to-clipboard-input',
+    id: 'copy-to-clipboard-input',
+    readonly: true,
+    value: $this.attr('href')
+  });
+  $this.append($temp);
+  var input = document.getElementById('copy-to-clipboard-input');
+
+  if (isiOSDevice) {
+    var editable = input.contentEditable;
+    var readOnly = input.readOnly;
+    input.contentEditable = true;
+    input.readOnly = false;
+    var range = document.createRange();
+    range.selectNodeContents(input);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    input.setSelectionRange(0, 999999);
+    input.contentEditable = editable;
+    input.readOnly = readOnly;
+  } else {
+    $temp.select();
+  }
+
+  document.execCommand("copy");
+  $temp.remove();
+  toggleClasses();
+
+  function toggleClasses() {
+    $this.addClass('is-active');
+    setTimeout(function () {
+      $this.removeClass('is-active');
+    }, 1000);
+  }
+});
 // EXTERNAL MODULE: ./src/components/tabs/scripts.js
 var tabs_scripts = __webpack_require__(2685);
-// EXTERNAL MODULE: ./node_modules/@fancyapps/ui/dist/fancybox.esm.js
-var fancybox_esm = __webpack_require__(2689);
-;// CONCATENATED MODULE: ./src/components/gallery/scripts.js
-
-window.Fancybox = fancybox_esm/* Fancybox */.KR;
-fancybox_esm/* Fancybox.bind */.KR.bind('[data-fancybox]', {
-  Image: {
-    zoom: false
-  }
-});
 // EXTERNAL MODULE: ./src/components/more/scripts.js
 var more_scripts = __webpack_require__(5358);
-// EXTERNAL MODULE: ./src/components/map/scripts.js
-var map_scripts = __webpack_require__(5157);
-// EXTERNAL MODULE: ./src/components/like/scripts.js
-var like_scripts = __webpack_require__(6424);
+// EXTERNAL MODULE: ./src/components/generator/scripts.js
+var generator_scripts = __webpack_require__(9115);
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(4942);
 // EXTERNAL MODULE: ./node_modules/gator/gator.js
@@ -1157,6 +1742,7 @@ var registerFormValidator = function registerFormValidator() {
 /* harmony default export */ var formValidator_init = (registerFormValidator);
 ;// CONCATENATED MODULE: ./src/init.js
 
+ // import '@components/animations/scripts';
 
 
 
@@ -1168,12 +1754,18 @@ var registerFormValidator = function registerFormValidator() {
 
 
 
+ // import '@components/socials/scripts';
 
 
 
 
 
-var init = function init() {
+
+
+
+
+
+var init_init = function init() {
   __webpack_require__.g.spiks = {};
   __webpack_require__.g.spiks.validator = services;
   new scripts();
@@ -1181,7 +1773,7 @@ var init = function init() {
   __webpack_require__.g.$ = (jquery_default());
 };
 
-/* harmony default export */ var src_init = (init);
+/* harmony default export */ var src_init = (init_init);
 ;// CONCATENATED MODULE: ./src/script.js
 
 src_init();
@@ -1372,10 +1964,10 @@ var map = {
 	"./nb.js": 4924,
 	"./ne": 6744,
 	"./ne.js": 6744,
-	"./nl": 3901,
+	"./nl": 5113,
 	"./nl-be": 9814,
 	"./nl-be.js": 9814,
-	"./nl.js": 3901,
+	"./nl.js": 5113,
 	"./nn": 3877,
 	"./nn.js": 3877,
 	"./oc-lnc": 2135,
@@ -1679,7 +2271,7 @@ webpackContext.id = 6700;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(7048); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(5630); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
