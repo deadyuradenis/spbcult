@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="src/assets/media/favicon.svg" type="image/svg+xml">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
+    <script
+      src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU&amp;onload=window.maps.init"
       type="text/javascript"></script>
     <title>Личный кабинет</title>
     <script defer src="js/vendors/vendors.js"></script>
@@ -40,7 +41,8 @@
               <div class="nav__dropdown jsNavDropdown">
                 <div class="nav__dropdown-inner"></div>
               </div>
-            </div><a class="header__profile" href="account.html"><span class="header__profile-link">
+            </div><a class="header__profile jsMove" href="account.html" data-move-desktop="main"
+              data-move-mobile="content"><span class="header__profile-link">
                 <div class="header__profile-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                 <span>Джамхатруил</span>
               </span></a>
@@ -53,13 +55,13 @@
       </div>
       <div class="header__content">
         <div class="container header__container">
-          <div class="header__inner" data-move-container="content"><a class="header__logo jsMove" href="index.html"
-              data-move-desktop="content" data-move-mobile="main"><img src="src/assets/media/logo/logo.svg"
-                alt="" /></a>
-            <div class="search header__search">
+          <div class="header__inner" data-move-container="content"><a class="header__logo jsHeaderLogo jsMove"
+              href="index.html" data-move-desktop="content" data-move-mobile="main"><img
+                src="src/assets/media/logo/logo.svg" alt="" /></a>
+            <div class="search jsSearch jsMove header__search" data-move-desktop="content" data-move-mobile="main">
               <form action="#"> <input class="search__field jsInput jsInputSearch" id="search__field" type="text"
-                  autocomplete="off" placeholder="Поиск по порталу" name="search" /><button class="search__button"
-                  type="submit"><svg class="icon search__icon">
+                  autocomplete="off" placeholder="Поиск по порталу" name="search" /><button
+                  class="search__button jsSearchButton" type="submit"><svg class="icon search__icon">
                     <use xlink:href="#search"> </use>
                   </svg></button></form>
               <div class="search-dropdown search__dropdown jsSearchDropdown title-search-result">
@@ -449,10 +451,7 @@
                             деятельности однозначно определяет каждого участника как способного принимать собственные
                             решения касаемо приоретизации разума над эмоциями.</p>
                         </div>
-                      </a></div><button class="button grid__more" type="button"><span class="button__text">Показать
-                        ещё</span><svg class="icon button__icon">
-                        <use xlink:href="#arrow--down"></use>
-                      </svg></button>
+                      </a></div>
                   </div>
                   <div class="grid__block">
                     <div class="grid__list">
@@ -537,7 +536,8 @@
                     </div>
                   </div>
                   <div class="grid__block">
-                    <div class="grid__list"> <a class="card-book card-book--line" href="books-detail.html">
+                    <div class="grid__list grid__list--books"> <a class="card-book card-book--line"
+                        href="books-detail.html">
                         <div class="card-book__img-wrapper">
                           <picture class="card-book__img"><img src="src/assets/media/books/1.png" alt="" /></picture>
                         </div>
@@ -661,7 +661,7 @@
                       </a></div>
                   </div>
                   <div class="grid__block">
-                    <div class="grid__list grid__list--projects"><a class="card-project card-project--md"
+                    <div class="grid__list grid__list--projects"><a class="card-project card-project--line"
                         href="projects-detail.html">
                         <div class="card-project__inner">
                           <div class="card-project__header">
@@ -699,7 +699,7 @@
                           </picture><img class="card-project__logo" src="src/assets/media/logo/logo-project.svg"
                             alt="" />
                         </div>
-                      </a><a class="card-project card-project--md" href="projects-detail.html">
+                      </a><a class="card-project card-project--line" href="projects-detail.html">
                         <div class="card-project__inner">
                           <div class="card-project__header">
                             <div class="card-project__labels">
@@ -736,7 +736,7 @@
                           </picture><img class="card-project__logo" src="src/assets/media/logo/logo-project.svg"
                             alt="" />
                         </div>
-                      </a><a class="card-project card-project--md" href="projects-detail.html">
+                      </a><a class="card-project card-project--line" href="projects-detail.html">
                         <div class="card-project__inner">
                           <div class="card-project__header">
                             <div class="card-project__labels">

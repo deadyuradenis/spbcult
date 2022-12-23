@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="src/assets/media/favicon.svg" type="image/svg+xml">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU"
+    <script
+      src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU&amp;onload=window.maps.init"
       type="text/javascript"></script>
     <title>UI KIT </title>
     <script defer src="js/vendors/vendors.js"></script>
@@ -40,7 +41,8 @@
               <div class="nav__dropdown jsNavDropdown">
                 <div class="nav__dropdown-inner"></div>
               </div>
-            </div><a class="header__profile" href="account.html">
+            </div><a class="header__profile jsMove" href="account.html" data-move-desktop="main"
+              data-move-mobile="content">
               <div class="button button--light"><span class="button__text">Войти</span><svg class="icon button__icon">
                   <use xlink:href="#logout"></use>
                 </svg></div>
@@ -54,13 +56,13 @@
       </div>
       <div class="header__content">
         <div class="container header__container">
-          <div class="header__inner" data-move-container="content"><a class="header__logo jsMove" href="index.html"
-              data-move-desktop="content" data-move-mobile="main"><img src="src/assets/media/logo/logo.svg"
-                alt="" /></a>
-            <div class="search header__search">
+          <div class="header__inner" data-move-container="content"><a class="header__logo jsHeaderLogo jsMove"
+              href="index.html" data-move-desktop="content" data-move-mobile="main"><img
+                src="src/assets/media/logo/logo.svg" alt="" /></a>
+            <div class="search jsSearch jsMove header__search" data-move-desktop="content" data-move-mobile="main">
               <form action="#"> <input class="search__field jsInput jsInputSearch" id="search__field" type="text"
-                  autocomplete="off" placeholder="Поиск по порталу" name="search" /><button class="search__button"
-                  type="submit"><svg class="icon search__icon">
+                  autocomplete="off" placeholder="Поиск по порталу" name="search" /><button
+                  class="search__button jsSearchButton" type="submit"><svg class="icon search__icon">
                     <use xlink:href="#search"> </use>
                   </svg></button></form>
               <div class="search-dropdown search__dropdown jsSearchDropdown title-search-result">
@@ -1215,7 +1217,7 @@
                     </div>
                     <div class="grid__block">
                       <h2 class="h3 grid__title">Книги</h2>
-                      <div class="grid__list"> <a class="card-book" href="books-detail.html">
+                      <div class="grid__list grid__list--books"><a class="card-book" href="books-detail.html">
                           <div class="card-book__img-wrapper">
                             <picture class="card-book__img"><img src="src/assets/media/books/1.png" alt="" /></picture>
                           </div>
@@ -1656,6 +1658,80 @@
                             </picture><img class="card-project__logo" src="src/assets/media/logo/logo-project.svg"
                               alt="" />
                           </div>
+                        </a><a class="card-project card-project--long" href="projects-detail.html">
+                          <div class="card-project__inner">
+                            <div class="card-project__header">
+                              <div class="card-project__labels">
+                                <div class="card__labels">
+                                  <div class="card-project__label"><svg class="icon">
+                                      <use xlink:href="#share"></use>
+                                    </svg><span>Спецпроекты</span></div>
+                                </div>
+                              </div>
+                              <div class="card-project__date">24/11/2022</div><button class="like jsLike"
+                                type="button"><svg class="icon like__icon">
+                                  <use xlink:href="#like"></use>
+                                </svg></button>
+                            </div>
+                            <div class="card-project__main">
+                              <h4 class="card-project__title">Самые знаковые места города</h4>
+                              <h5 class="card-project__subtitle">Подборка малоизвестных локаций</h5>
+                              <p class="card-project__text">Для современного мира сложившаяся структура организации
+                                предполагает независимые способы реализации новых предложений! Однозначно,
+                                реплицированные с зарубежных источников, современные исследования подвергнуты целой
+                                серии независимых исследований. Предварительные выводы неутешительны: повышение уровня
+                                гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                                целесообразности принимаемых решений. Прежде всего, постоянное
+                                информационно-пропагандистское обеспечение нашей деятельности обеспечивает актуальность
+                                инновационных методов управления процессами. Картельные сговоры не допускают ситуации,
+                                при которой элементы политического процесса, инициированные исключительно синтетически,
+                                превращены в посмешище, хотя само их существование приносит несомненную пользу обществу!
+                              </p><button class="button card-project__button" type="button"><span
+                                  class="button__text">Подробнее</span></button>
+                            </div>
+                          </div>
+                          <div class="card-project__img-block">
+                            <picture class="card-project__img"><img src="src/assets/media/projects/1.jpg" alt="" />
+                            </picture><img class="card-project__logo" src="src/assets/media/logo/logo-project.svg"
+                              alt="" />
+                          </div>
+                        </a><a class="card-project card-project--line" href="projects-detail.html">
+                          <div class="card-project__inner">
+                            <div class="card-project__header">
+                              <div class="card-project__labels">
+                                <div class="card__labels">
+                                  <div class="card-project__label"><svg class="icon">
+                                      <use xlink:href="#share"></use>
+                                    </svg><span>Спецпроекты</span></div>
+                                </div>
+                              </div>
+                              <div class="card-project__date">24/11/2022</div><button class="like jsLike"
+                                type="button"><svg class="icon like__icon">
+                                  <use xlink:href="#like"></use>
+                                </svg></button>
+                            </div>
+                            <div class="card-project__main">
+                              <h4 class="card-project__title">Самые знаковые места города</h4>
+                              <h5 class="card-project__subtitle">Подборка малоизвестных локаций</h5>
+                              <p class="card-project__text">Для современного мира сложившаяся структура организации
+                                предполагает независимые способы реализации новых предложений! Однозначно,
+                                реплицированные с зарубежных источников, современные исследования подвергнуты целой
+                                серии независимых исследований. Предварительные выводы неутешительны: повышение уровня
+                                гражданского сознания не даёт нам иного выбора, кроме определения экономической
+                                целесообразности принимаемых решений. Прежде всего, постоянное
+                                информационно-пропагандистское обеспечение нашей деятельности обеспечивает актуальность
+                                инновационных методов управления процессами. Картельные сговоры не допускают ситуации,
+                                при которой элементы политического процесса, инициированные исключительно синтетически,
+                                превращены в посмешище, хотя само их существование приносит несомненную пользу обществу!
+                              </p><button class="button card-project__button" type="button"><span
+                                  class="button__text">Подробнее</span></button>
+                            </div>
+                          </div>
+                          <div class="card-project__img-block">
+                            <picture class="card-project__img"><img src="src/assets/media/projects/1.jpg" alt="" />
+                            </picture><img class="card-project__logo" src="src/assets/media/logo/logo-project.svg"
+                              alt="" />
+                          </div>
                         </a><a class="card-project card-project--blue" href="projects-detail.html">
                           <div class="card-project__img-block">
                             <picture class="card-project__img"><img src="src/assets/media/projects/1.jpg" alt="" />
@@ -1671,7 +1747,7 @@
                                     </svg><span>Спецпроекты</span></div>
                                 </div>
                               </div>
-                              <div class="card-project__date">24 ноября 2022 года</div><button class="like jsLike"
+                              <div class="card-project__date">24/11/2022</div><button class="like jsLike"
                                 type="button"><svg class="icon like__icon">
                                   <use xlink:href="#like"></use>
                                 </svg></button>
@@ -1703,7 +1779,7 @@
                                     </svg><span>Спецпроекты</span></div>
                                 </div>
                               </div>
-                              <div class="card-project__date">24 ноября 2022 года</div><button class="like jsLike"
+                              <div class="card-project__date">24/11/2022</div><button class="like jsLike"
                                 type="button"><svg class="icon like__icon">
                                   <use xlink:href="#like"></use>
                                 </svg></button>

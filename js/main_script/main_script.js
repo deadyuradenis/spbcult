@@ -109,6 +109,19 @@ document.addEventListener('DOMContentLoaded', function () {
         trigger: document.querySelector('.jsNavTrigger'),
         dropdown: document.querySelector('.jsNavDropdown')
       },
+      logo: document.querySelector('.jsHeaderLogo'),
+      search: {
+        main: document.querySelector('.jsSearch'),
+        trigger: document.querySelector('.jsSearchButton'),
+        open: function open() {
+          window.header.search.main.classList.add('is-open');
+          window.header.logo.classList.add('is-hide');
+        },
+        close: function close() {
+          window.header.search.main.classList.remove('is-open');
+          window.header.logo.classList.remove('is-hide');
+        }
+      },
       burger: {
         trigger: document.querySelector('.jsBurgerTrigger'),
         toggle: function toggle() {
@@ -118,6 +131,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     };
+    window.header.search.trigger.addEventListener('click', function (e) {
+      if (window.innerWidth <= 1024) {
+        if (!window.header.search.main.classList.contains('is-open')) {
+          e.preventDefault();
+          window.header.search.open();
+        } else {
+          window.header.search.close();
+        }
+      }
+    });
     window.header.burger.trigger.addEventListener('click', function () {
       window.header.burger.toggle();
     });
@@ -128,10 +151,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (e) {
       var target = e.target;
 
-      if (window.header.main.classList.contains('is-active')) {
-        if (!target.closest('.jsHeader')) {
-          window.header.burger.toggle();
-        }
+      if (window.header.main.classList.contains('is-active') && !target.closest('.jsHeader')) {
+        window.header.burger.toggle();
+      }
+
+      if (window.header.search.main.classList.contains('is-open') && !target.closest('.jsSearch')) {
+        window.header.search.close();
       }
     });
     document.addEventListener('scroll', function () {
@@ -301,9 +326,9 @@ window.eventLoad = function (id) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  ymaps.ready(function () {
-    window.maps.init();
-  });
+  // ymaps.ready(function (){
+  //     window.maps.init()
+  // })
   window.maps = {
     list: document.querySelectorAll('.jsMap'),
     init: function init() {
