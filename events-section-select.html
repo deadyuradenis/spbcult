@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets\media\favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="src/assets/media/favicon.svg" type="image/svg+xml">
     <script
       src="https://api-maps.yandex.ru/2.1/?apikey=ced46869-96dd-498a-98b2-758dbd3ff1a5&amp;lang=ru_RU&amp;onload=window.maps.init"
       type="text/javascript"></script>
@@ -41,7 +41,7 @@
               </div>
             </div><a class="header__profile jsMove" href="account.html" data-move-desktop="main"
               data-move-mobile="content"><span class="header__profile-link">
-                <div class="header__profile-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                <div class="header__profile-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                 <span>Джамхатруил</span>
               </span></a>
             <div class="header__burger jsBurgerTrigger"> <span> </span></div><a class="header__blind jsMove" href="#"
@@ -55,7 +55,7 @@
         <div class="container header__container">
           <div class="header__inner" data-move-container="content"><a class="header__logo jsHeaderLogo jsMove"
               href="index.html" data-move-desktop="content" data-move-mobile="main"><img
-                src="assets\media\logo\logo.svg" alt="" /></a>
+                src="src/assets/media/logo/logo.svg" alt="" /></a>
             <div class="search jsSearch jsMove header__search" data-move-desktop="content" data-move-mobile="main">
               <form action="#"> <input class="search__field jsInput jsInputSearch" id="search__field" type="text"
                   autocomplete="off" placeholder="Поиск по порталу" name="search" /><button
@@ -77,12 +77,14 @@
                               class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -101,12 +103,14 @@
                             type="button"><svg class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -125,12 +129,14 @@
                             type="button"><svg class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -157,7 +163,8 @@
                       <div class="search-dropdown__block-list">
                         <div class="card-place card-place--sm"><a class="card-place__img-wrapper"
                             href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                            <picture class="card-place__img"><img src="src/assets/media/events/1.jpg" alt="" />
+                            </picture>
                           </a><a class="card-place__header" href="events-detail.html">
                             <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
                             <h5 class="card-place__subtitle">Спортивная школа</h5><button class="like jsLike"
@@ -177,7 +184,8 @@
                         </div>
                         <div class="card-place card-place--sm"><a class="card-place__img-wrapper"
                             href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                            <picture class="card-place__img"><img src="src/assets/media/events/1.jpg" alt="" />
+                            </picture>
                           </a><a class="card-place__header" href="events-detail.html">
                             <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
                             <h5 class="card-place__subtitle">Спортивная школа</h5><button class="like jsLike"
@@ -207,7 +215,8 @@
                       <div class="search-dropdown__block-list">
                         <div class="card-place card-place--sm"><a class="card-place__img-wrapper"
                             href="events-detail.html">
-                            <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                            <picture class="card-place__img"><img src="src/assets/media/events/1.jpg" alt="" />
+                            </picture>
                           </a><a class="card-place__header" href="events-detail.html">
                             <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
                             <h5 class="card-place__subtitle">Спортивная школа</h5><button class="like jsLike"
@@ -239,12 +248,14 @@
                               class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -263,12 +274,14 @@
                             type="button"><svg class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -287,12 +300,14 @@
                             type="button"><svg class="icon like__icon">
                               <use xlink:href="#like"></use>
                             </svg></button>
-                          <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                          <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                           <div class="card__inner">
                             <div class="card__labels-wrapper">
-                              <div class="card__labels">
-                                <div class="card__label"><span>Событие</span></div>
-                                <div class="card__label"><span>Фестиваль</span></div>
+                              <div class="labels">
+                                <div class="labels__list">
+                                  <div class="labels__item"><span>Событие</span></div>
+                                  <div class="labels__item"><span>Фестиваль</span></div>
+                                </div>
                               </div>
                               <div class="card__date">27 Октярбря</div>
                             </div>
@@ -361,7 +376,7 @@
                 <div class="map__content jsMap" data-map-coordinates="[[55.781357,37.604259]]" data-map-zoom=""></div>
               </div>
               <div class="card-place card-place--lg"><a class="card-place__img-wrapper" href="events-detail.html">
-                  <picture class="card-place__img"><img src="assets\media\events\1.jpg" alt="" /></picture>
+                  <picture class="card-place__img"><img src="src/assets/media/events/1.jpg" alt="" /></picture>
                 </a><a class="card-place__header" href="events-detail.html">
                   <h4 class="card-place__title">Центр водных видов спорта “Невская волна”</h4>
                   <h5 class="card-place__subtitle">Спортивная школа</h5><button class="like jsLike" type="button"><svg
@@ -404,12 +419,14 @@
                       type="button"><svg class="icon like__icon">
                         <use xlink:href="#like"></use>
                       </svg></button>
-                    <picture class="card__img"><img src="assets\media\article\1.jpg" alt="" /></picture>
+                    <picture class="card__img"><img src="src/assets/media/article/1.jpg" alt="" /></picture>
                     <div class="card__inner">
                       <div class="card__labels-wrapper">
-                        <div class="card__labels">
-                          <div class="card__label"><span>Новость</span></div>
-                          <div class="card__label"><span>Анонсы</span></div>
+                        <div class="labels">
+                          <div class="labels__list">
+                            <div class="labels__item"><span>Новость</span></div>
+                            <div class="labels__item"><span>Анонсы</span></div>
+                          </div>
                         </div>
                         <div class="card__date">27 Октярбря</div>
                       </div>
@@ -427,12 +444,14 @@
                         class="icon like__icon">
                         <use xlink:href="#like"></use>
                       </svg></button>
-                    <picture class="card__img"><img src="assets\media\article\2.jpg" alt="" /></picture>
+                    <picture class="card__img"><img src="src/assets/media/article/2.jpg" alt="" /></picture>
                     <div class="card__inner">
                       <div class="card__labels-wrapper">
-                        <div class="card__labels">
-                          <div class="card__label"><span>Новость</span></div>
-                          <div class="card__label"><span>Анонсы</span></div>
+                        <div class="labels">
+                          <div class="labels__list">
+                            <div class="labels__item"><span>Новость</span></div>
+                            <div class="labels__item"><span>Анонсы</span></div>
+                          </div>
                         </div>
                         <div class="card__date">27 Октярбря</div>
                       </div>
@@ -450,12 +469,14 @@
                         class="icon like__icon">
                         <use xlink:href="#like"></use>
                       </svg></button>
-                    <picture class="card__img"><img src="assets\media\article\3.jpg" alt="" /></picture>
+                    <picture class="card__img"><img src="src/assets/media/article/3.jpg" alt="" /></picture>
                     <div class="card__inner">
                       <div class="card__labels-wrapper">
-                        <div class="card__labels">
-                          <div class="card__label"><span>Новость</span></div>
-                          <div class="card__label"><span>Анонсы</span></div>
+                        <div class="labels">
+                          <div class="labels__list">
+                            <div class="labels__item"><span>Новость</span></div>
+                            <div class="labels__item"><span>Анонсы</span></div>
+                          </div>
                         </div>
                         <div class="card__date">27 Октярбря</div>
                       </div>
@@ -480,7 +501,7 @@
       <div class="container footer__container">
         <div class="footer__inner">
           <div class="footer__info"> <a class="footer__logo" href="index.html"><img
-                src="assets\media\logo\logo--footer.svg" alt="" /></a>
+                src="src/assets/media/logo/logo--footer.svg" alt="" /></a>
             <div class="footer__socials"> <a class="footer__social" href="#"><svg class="icon">
                   <use xlink:href="#tg"></use>
                 </svg></a><a class="footer__social" href="#"><svg class="icon">
@@ -634,25 +655,25 @@
               <div class="modal__organizers-item">
                 <h3 class="modal__organizers-title">Главный организатор</h3><a class="modal__organizers-profile"
                   href="#">
-                  <div class="modal__organizers-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                  <div class="modal__organizers-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                   <h4 class="modal__organizers-name">Александр Волков</h4>
                 </a>
               </div>
               <div class="modal__organizers-item">
                 <h3 class="modal__organizers-title">Организатор</h3><a class="modal__organizers-profile" href="#">
-                  <div class="modal__organizers-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                  <div class="modal__organizers-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                   <h4 class="modal__organizers-name">Александр Малежик</h4>
                 </a>
               </div>
               <div class="modal__organizers-item">
                 <h3 class="modal__organizers-title">PHP разработчик</h3><a class="modal__organizers-profile" href="#">
-                  <div class="modal__organizers-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                  <div class="modal__organizers-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                   <h4 class="modal__organizers-name">Жань-Поль Бельмандо</h4>
                 </a>
               </div>
               <div class="modal__organizers-item">
                 <h3 class="modal__organizers-title">Физик-ядерщик</h3><a class="modal__organizers-profile" href="#">
-                  <div class="modal__organizers-img"> <img src="assets\media\profile.jpg" alt="" /></div>
+                  <div class="modal__organizers-img"> <img src="src/assets/media/profile.jpg" alt="" /></div>
                   <h4 class="modal__organizers-name">Фрунзик Мкртчян</h4>
                 </a>
               </div>
@@ -849,15 +870,18 @@
             <h2 class="h4 modal__title">Участники группы</h2>
             <div class="artist__members">
               <div class="artist__member">
-                <picture class="artist__member-img"> <img src="assets\media\artist\members\1.jpg" alt="" /></picture>
+                <picture class="artist__member-img"> <img src="src/assets/media/artist/members/1.jpg" alt="" />
+                </picture>
                 <h4 class="h4 artist__member-name">Максим Покровский</h4>
               </div>
               <div class="artist__member">
-                <picture class="artist__member-img"> <img src="assets\media\artist\members\2.jpg" alt="" /></picture>
+                <picture class="artist__member-img"> <img src="src/assets/media/artist/members/2.jpg" alt="" />
+                </picture>
                 <h4 class="h4 artist__member-name">Игорь Лопухин</h4>
               </div>
               <div class="artist__member">
-                <picture class="artist__member-img"> <img src="assets\media\artist\members\3.jpg" alt="" /></picture>
+                <picture class="artist__member-img"> <img src="src/assets/media/artist/members/3.jpg" alt="" />
+                </picture>
                 <h4 class="h4 artist__member-name">Игорь Лапухин</h4>
               </div>
             </div>
@@ -891,7 +915,7 @@
               <form action="#">
                 <div class="modal__input-img"> <label class="input-img input-img--undefined"><input
                       class="input-img__field" type="file" name="file" accept=".jpg, .svg, .jpeg, .png, .webp" />
-                    <picture class="input-img__img"> <img src="assets\media\input-img.jpg" alt="" /></picture><svg
+                    <picture class="input-img__img"> <img src="src/assets/media/input-img.jpg" alt="" /></picture><svg
                       class="input-img__icon">
                       <use xlink:href="#camera"></use>
                     </svg>
@@ -924,6 +948,30 @@
                       </svg><input class="input__field jsInput" type="text" name="input-4" placeholder="Время работы" />
                       <div class="input__error">Обязательно для заполнения</div>
                     </div>
+                  </div>
+                  <div class="modal__input">
+                    <div class="input"><input class="input__field jsInput" type="text" name="input-5"
+                        placeholder="Электронная почта" />
+                      <div class="input__error">Обязательно для заполнения</div>
+                    </div>
+                  </div>
+                  <div class="modal__input">
+                    <div class="input"><input class="input__field jsInput" type="text" name="input-6"
+                        placeholder="Сайт" />
+                      <div class="input__error">Обязательно для заполнения</div>
+                    </div>
+                  </div>
+                  <div class="modal__select">
+                    <div class="select"><select class="jsSelect" name="select-1" placeholder="Тип площадки">
+                        <option disabled="disabled" selected="selected" value="Тип площадки"></option>
+                        <option value="Спортивная школа">Спортивная школа</option>
+                        <option value="Школа">Школа</option>
+                        <option value="Спортивная школа">Спортивная школа</option>
+                        <option value="Школа">Школа</option>
+                        <option value="Спортивная школа">Спортивная школа</option>
+                        <option value="Школа">Школа</option>
+                        <option value="Спортивная школа">Спортивная школа</option>
+                      </select></div>
                   </div>
                   <div class="modal__textarea">
                     <div class="input input--textarea"><textarea class="input__field jsInput" maxlength="600"
