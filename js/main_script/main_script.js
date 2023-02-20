@@ -330,6 +330,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 3734:
+/***/ (function() {
+
+window.initLabels = function (item) {
+  var list = item.querySelector('.labels__list');
+  var groupWidth = item.offsetWidth;
+  var listWidth = list.offsetWidth;
+
+  if (groupWidth < listWidth) {
+    list.style.animationPlayState = 'running';
+    var clone = list.cloneNode(true);
+    list.after(clone);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.labels').forEach(window.initLabels);
+});
+
+/***/ }),
+
 /***/ 1676:
 /***/ (function() {
 
@@ -382,8 +403,7 @@ addEventListener('DOMContentLoaded', function () {
 /***/ 5157:
 /***/ (function() {
 
-window.eventLoad = function (id) {
-  console.log(id);
+window.eventLoad = function (id) {// console.log(id);
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -395,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function () {
     init: function init() {
       window.maps.list = document.querySelectorAll('.jsMap');
 
-      for (var index = 0; index < window.maps.list.length; index++) {
+      var _loop = function _loop(index) {
         var item = window.maps.list[index];
         var coord = item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : [[59.938955, 30.315644]];
         var zoom = item.getAttribute('data-map-zoom') ? item.getAttribute('data-map-zoom') : 16;
@@ -404,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
           window.maps['item_' + index].map.destroy();
         }
 
-        window.maps['item_' + index] = {
+        var map = {
           element: item,
           zoom: zoom,
           coordinates: item.getAttribute('data-map-coordinates') ? JSON.parse(item.getAttribute('data-map-coordinates')) : '',
@@ -421,15 +441,65 @@ document.addEventListener('DOMContentLoaded', function () {
               }
             }
           },
-          addMark: function addMark(cors, id) {
-            placemark = new ymaps.Placemark(cors, {
+          addMark: function addMark(cors, id, type) {
+            var icon = function icon() {
+              switch (type) {
+                case 'default':
+                  return "<div class=\"map__dot\">\n                                                <span></span>\n                                            </div>";
+
+                case 'artist':
+                  return "<div class=\"map__dot map__dot--artist\">\n                                                <svg class=\"icon\">\n                                                    <use xlink:href=\"#music\"></use>\n                                                </svg>\n                                            </div>";
+
+                case 'artist-md':
+                  return "<div class=\"map__dot map__dot--artist-md\">\n                                                <svg class=\"icon\">\n                                                    <use xlink:href=\"#music\"></use>\n                                                </svg>\n                                            </div>";
+
+                case 'artist-ld':
+                  return "<div class=\"map__dot map__dot--artist-ld\">\n                                                <svg class=\"icon\">\n                                                    <use xlink:href=\"#music\"></use>\n                                                </svg>\n                                            </div>";
+
+                default:
+                  return "<div class=\"map__dot\">\n                                                <span></span>\n                                            </div>";
+              }
+            };
+
+            MyIconContentLayout = ymaps.templateLayoutFactory.createClass(icon(), {
+              build: function build() {
+                var _this = this;
+
+                MyIconContentLayout.superclass.build.call(this);
+                var element = this.getParentElement().getElementsByClassName('map__dot')[0];
+
+                if (this.isActive) {
+                  element.classList.add('is-active');
+                } else if (this.inited) {
+                  element.classList.remove('is-active');
+                }
+
+                if (!this.inited) {
+                  this.inited = true;
+                  this.isActive = false;
+                  this.getData().geoObject.events.add('click', function (e) {
+                    map.element.querySelectorAll('.map__dot').forEach(function (item) {
+                      item.classList.remove('is-active');
+                    });
+                    this.isActive = true;
+                    this.rebuild();
+                  }, this);
+                  map.map.events.add('click', function () {
+                    _this.isActive = false;
+
+                    _this.rebuild();
+                  });
+                }
+              }
+            }), placemark = new ymaps.Placemark(cors, {
               id: id ? id : ''
             }, {
-              iconLayout: 'default#image',
-              iconImageHref: '/local/templates/spbCult/dist/assets/media/geo-dot.svg',
-              // iconImageHref: 'assets/media/geo-dot.svg',
-              iconImageSize: [32, 32],
-              iconImageOffset: [-16, -16]
+              iconLayout: MyIconContentLayout,
+              iconShape: {
+                type: 'Circle',
+                coordinates: [0, 0],
+                radius: 16
+              }
             }), this.map.geoObjects.add(placemark);
             placemark.events.add('click', function () {
               window.eventLoad(id);
@@ -443,14 +513,25 @@ document.addEventListener('DOMContentLoaded', function () {
             });
           }
         };
-        window.maps['item_' + index].initDots();
+        map.initDots();
+        map.map.events.add('click', function () {
+          map.element.querySelectorAll('.map__dot').forEach(function (item) {
+            item.classList.remove('is-active');
+          });
+        });
+        window.maps['item_' + index] = map;
+      };
+
+      for (var index = 0; index < window.maps.list.length; index++) {
+        _loop(index);
       }
     }
   };
 }); // document.addEventListener('DOMContentLoaded', ()=>{
 //     ymaps.ready(function (){
-//         window.maps.item_0.addMark([59.838955, 31.315644], 123)
-//         window.maps.item_0.addMark([59.938955, 30.315644], 321)
+//         window.maps.item_0.addMark([59.838955, 31.315644], 123, 'artist')
+//         window.maps.item_0.addMark([59.938955, 30.315644], 234, 'artist-md')
+//         window.maps.item_0.addMark([60.038955, 29.315644], 345, 'artist-ld')
 //     })
 // })
 
@@ -495,6 +576,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 8253:
+/***/ (function() {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var observerConfig = {
+  childList: true,
+  subtree: true
+};
+var observer = new MutationObserver(function (mutations) {
+  var _iterator = _createForOfIteratorHelper(mutations),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var mutation = _step.value;
+
+      var _iterator2 = _createForOfIteratorHelper(mutation.addedNodes),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var node = _step2.value;
+          if (!(node instanceof HTMLElement)) continue;
+
+          if (node.classList.contains('.labels') || node.querySelector('.labels')) {
+            var element = node.classList.contains('.labels') ? node : node.querySelector('.labels');
+            window.initLabels(element);
+          }
+
+          if (node.classList.contains('select') || node.querySelector('.select')) {
+            var jqSelector = $(node.querySelector('.jsSelect'));
+            window.initSelect(jqSelector);
+          }
+
+          if (node.hasAttribute('data-bs-toggle', 'tooltip') || node.querySelector('[data-bs-toggle="tooltip"]')) {
+            var _element = node.hasAttribute('data-bs-toggle', 'tooltip') ? node : node.querySelector('[data-bs-toggle="tooltip"]');
+
+            window.initTooltip(_element);
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+});
+document.addEventListener('DOMContentLoaded', function () {
+  observer.observe(document.querySelector('body'), observerConfig);
+});
+
+/***/ }),
+
 /***/ 7410:
 /***/ (function() {
 
@@ -504,86 +648,181 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 2685:
+/***/ 9082:
 /***/ (function() {
 
-document.addEventListener('DOMContentLoaded', function () {
-  var jsTabs = document.querySelectorAll('.jsTabs');
+var initComponent = function initComponent(componentNode) {
+  var block = componentNode;
+  var days = block.querySelectorAll('.jsScheduleDay');
+  var inputFrom = block.querySelector('.jsScheduleInputFrom');
+  var inputTo = block.querySelector('.jsScheduleInputTo');
+  var inputsWrapper = inputTo.closest('.input__field-group');
+  var tempDateTo = '';
+  var tempDateFrom = '';
+  var tempTime = '';
+
+  if (!block) {
+    return;
+  }
+
+  checkDays();
 
   var _loop = function _loop(index) {
-    var item = jsTabs[index];
-    var link = item.querySelectorAll('.jsTabLink');
-    var body = item.querySelectorAll('.jsTabItem');
-    initTabs();
-
-    var _loop2 = function _loop2(_index) {
-      var thisLink = link[_index];
-      var thisIndex = thisLink.getAttribute('data-tab');
-      thisLink.addEventListener('click', function () {
-        clear();
-        thisLink.classList.add('is-active');
-
-        if (item.querySelector('.jsTabItem[data-tab="' + thisIndex + '"]')) {
-          item.querySelector('.jsTabItem[data-tab="' + thisIndex + '"]').classList.add('is-active');
-        }
-      });
-
-      if (link.length < 2) {
-        link[0].classList.add('is-active');
-
-        if (item.querySelector('.jsTabItem[data-tab="' + link[0].getAttribute('data-tab') + '"]')) {
-          item.querySelector('.jsTabItem[data-tab="' + link[0].getAttribute('data-tab') + '"]').classList.add('is-active');
-        }
-      }
-    };
-
-    for (var _index = 0; _index < link.length; _index++) {
-      _loop2(_index);
-    }
-
-    function checkActveLink() {
-      var activeLink = item.querySelector('.jsTabLink.is-active');
-      var thisIndex = activeLink.getAttribute('data-tab');
-
-      if (item.querySelector('.jsTabItem[data-tab="' + thisIndex + '"]')) {
-        item.querySelector('.jsTabItem[data-tab="' + thisIndex + '"]').classList.add('is-active');
-      }
-    }
-
-    function initTabs() {
-      initGroup(link);
-      initGroup(body);
-      checkActveLink();
-
-      function initGroup(group) {
-        for (var _index2 = 0; _index2 < group.length; _index2++) {
-          var groupItem = group[_index2];
-          groupItem.setAttribute('data-tab', _index2);
-        }
-      }
-    }
-
-    function clear() {
-      for (var _index3 = 0; _index3 < link.length; _index3++) {
-        var linkItem = link[_index3];
-        linkItem.classList.remove('is-active');
-      }
-
-      for (var _index4 = 0; _index4 < body.length; _index4++) {
-        var bodyItem = body[_index4];
-        bodyItem.classList.remove('is-active');
-      }
-    }
+    var item = days[index];
+    item.addEventListener('click', function () {
+      item.classList.toggle('is-active');
+      checkDays();
+    });
   };
 
-  for (var index = 0; index < jsTabs.length; index++) {
+  for (var index = 0; index < days.length; index++) {
     _loop(index);
   }
+
+  inputFrom.addEventListener('input', function () {
+    tempDateFrom = inputFrom.value;
+    tempTime = tempDateFrom + ' - ' + tempDateTo;
+    setTime();
+  });
+  inputTo.addEventListener('input', function () {
+    tempDateTo = inputTo.value;
+    tempTime = tempDateFrom + ' - ' + tempDateTo;
+    setTime();
+  });
+
+  function checkDays() {
+    var activeDays = block.querySelectorAll('.jsScheduleDay.is-active');
+
+    if (activeDays.length > 0) {
+      inputsWrapper.removeAttribute('disabled');
+
+      for (var _index = 0; _index < activeDays.length; _index++) {
+        var day = activeDays[_index];
+        var dayInput = day.querySelector('input');
+        var thisValue = dayInput.value;
+        var prevValue = _index != 0 ? activeDays[_index - 1].querySelector('input').value : thisValue;
+
+        if (prevValue == thisValue) {
+          tempTime = thisValue;
+        } else {
+          tempTime = '';
+        }
+      }
+    } else {
+      tempTime = '';
+      inputsWrapper.setAttribute('disabled', true);
+    }
+
+    setValue();
+  }
+
+  function setValue() {
+    var splitTime = tempTime.split(' - ');
+    tempDateFrom = splitTime[0] != undefined ? splitTime[0] : '';
+    tempDateTo = splitTime[1] != undefined ? splitTime[1] : '';
+    inputFrom.value = tempDateFrom;
+    inputTo.value = tempDateTo;
+  }
+
+  function setTime() {
+    var activeDays = block.querySelectorAll('.jsScheduleDay.is-active');
+
+    for (var _index2 = 0; _index2 < activeDays.length; _index2++) {
+      var day = activeDays[_index2];
+      var dayInput = day.querySelector('input');
+      dayInput.value = tempTime;
+    }
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var componentNodes = Array.from(document.querySelectorAll('.jsSchedulePicker'));
+  componentNodes.forEach(initComponent);
 });
 
 /***/ }),
 
-/***/ 5630:
+/***/ 2685:
+/***/ (function() {
+
+var initComponent = function initComponent(componentNode) {
+  var block = componentNode;
+  var links = block.querySelectorAll('.jsTabLink');
+  var items = block.querySelectorAll('.jsTabItem');
+  initTabs();
+
+  var _loop = function _loop(index) {
+    var link = links[index];
+    var linkIndex = link.getAttribute('data-tab');
+    link.addEventListener('click', function () {
+      clear();
+      link.classList.add('is-active');
+
+      if (block.querySelector('.jsTabItem[data-tab="' + linkIndex + '"]')) {
+        block.querySelector('.jsTabItem[data-tab="' + linkIndex + '"]').classList.add('is-active');
+      }
+    });
+
+    if (links.length < 2) {
+      link[0].classList.add('is-active');
+
+      if (block.querySelector('.jsTabItem[data-tab="' + link[0].getAttribute('data-tab') + '"]')) {
+        block.querySelector('.jsTabItem[data-tab="' + link[0].getAttribute('data-tab') + '"]').classList.add('is-active');
+      }
+    }
+  };
+
+  for (var index = 0; index < links.length; index++) {
+    _loop(index);
+  }
+
+  function checkActveLink() {
+    if (!block.querySelector('.jsTabLink.is-active')) {
+      block.querySelectorAll('.jsTabLink')[0].classList.add('is-active');
+    }
+
+    var activeLink = block.querySelector('.jsTabLink.is-active');
+    var activeIndex = activeLink.getAttribute('data-tab');
+
+    if (block.querySelector('.jsTabItem[data-tab="' + activeIndex + '"]')) {
+      block.querySelector('.jsTabItem[data-tab="' + activeIndex + '"]').classList.add('is-active');
+    }
+  }
+
+  function initTabs() {
+    initGroup(links);
+    initGroup(items);
+    checkActveLink();
+
+    function initGroup(group) {
+      for (var _index = 0; _index < group.length; _index++) {
+        var groupItem = group[_index];
+        groupItem.setAttribute('data-tab', _index);
+      }
+    }
+  }
+
+  function clear() {
+    for (var _index2 = 0; _index2 < links.length; _index2++) {
+      var link = links[_index2];
+      link.classList.remove('is-active');
+    }
+
+    for (var _index3 = 0; _index3 < items.length; _index3++) {
+      var item = items[_index3];
+      item.classList.remove('is-active');
+    }
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var componentNodes = Array.from(document.querySelectorAll('.jsTabs'));
+  componentNodes.forEach(initComponent);
+});
+
+/***/ }),
+
+/***/ 864:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -687,73 +926,100 @@ document.addEventListener('DOMContentLoaded', function () {
   // window.modal.authorization.show()
   // window.modal.callbackSuccess.show()
   // window.modal.placeAdd.show()
+  // window.modal.request.show()
 });
+;// CONCATENATED MODULE: ./src/components/tooltip/scripts.js
+
+
+window.initTooltip = function (item) {
+  var tooltip = new bootstrap_esm/* Tooltip */.u(item, {
+    placement: 'top',
+    html: true
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(window.initTooltip);
+});
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__(4942);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.esm.js + 88 modules
 var swiper_esm = __webpack_require__(7099);
 ;// CONCATENATED MODULE: ./src/components/slider/scripts.js
 
-var jsSliderImportantly = new swiper_esm/* default */.ZP('.jsSliderImportantly .slider__inner', {
-  modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
-  slidesPerView: 1,
-  spaceBetween: 20,
-  speed: 900,
-  autoHeight: true,
-  pagination: {
-    el: ".jsSliderImportantly .swiper-pagination",
-    clickable: true,
-    bulletClass: "slider__pagination-item"
-  },
-  navigation: {
-    nextEl: '.jsSliderImportantly .swiper-button-next',
-    prevEl: '.jsSliderImportantly .swiper-button-prev'
-  },
-  breakpoints: {
-    0: {
-      spaceBetween: 12
-    },
-    834: {
-      spaceBetween: 16
-    },
-    992: {
-      pagination: false,
-      spaceBetween: 20
-    },
-    1260: {
-      pagination: false
-    }
-  }
-});
-var jsSliderArtistGallery = new swiper_esm/* default */.ZP('.jsSliderArtistGallery .slider__inner', {
-  modules: [swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt, swiper_esm/* Grid */.rj, swiper_esm/* FreeMode */.Rv],
-  spaceBetween: 16,
-  speed: 900,
-  slidesPerView: 'auto',
-  watchSlidesProgress: true,
-  grid: {
-    rows: document.querySelectorAll('.jsSliderArtistGallery .slider__slide').length < 4 ? 1 : 2
-  },
-  pagination: {
-    el: ".jsSliderArtistGallery .swiper-pagination",
-    clickable: true,
-    bulletClass: "slider__pagination-item"
-  } // breakpoints: {
-  // 	0:{
-  //         spaceBetween: 12,
-  // 	},
-  // 	834: {
-  //         spaceBetween: 16,
-  // 	},
-  //     992: {
-  // 		pagination: false,
-  //         spaceBetween: 20,
-  // 	},
-  // 	1260: {
-  //         pagination: false,
-  // 	},
-  // }
 
-});
+
+function checkAutoplay(slider, wrapper) {
+  if (slider.autoplay.running != false) {
+    wrapper.classList.add('slider--autoplay');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+  if (document.querySelector('.jsSliderArtistGallery')) {
+    var jsSliderArtistGallery = new swiper_esm/* default */.ZP('.jsSliderArtistGallery .slider__inner', {
+      modules: [swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt, swiper_esm/* Grid */.rj, swiper_esm/* FreeMode */.Rv],
+      spaceBetween: 16,
+      speed: 900,
+      slidesPerView: 'auto',
+      watchSlidesProgress: true,
+      grid: {
+        rows: document.querySelectorAll('.jsSliderArtistGallery .slider__slide').length < 4 ? 1 : 2
+      },
+      autoplay: {
+        delay: 8000,
+        disableOnInteraction: false,
+        waitForTransition: false
+      },
+      pagination: {
+        el: ".jsSliderArtistGallery .swiper-pagination",
+        clickable: true,
+        bulletClass: "slider__pagination-item"
+      }
+    });
+    checkAutoplay(jsSliderArtistGallery, document.querySelector('.jsSliderArtistGallery'));
+  }
+
+  if (document.querySelector('.jsSliderImportantly')) {
+    var jsSliderImportantly = new swiper_esm/* default */.ZP('.jsSliderImportantly .slider__inner', {
+      modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
+      slidesPerView: 1,
+      spaceBetween: 20,
+      speed: 900,
+      autoHeight: true,
+      autoplay: {
+        delay: 8000,
+        disableOnInteraction: false,
+        waitForTransition: false
+      },
+      pagination: {
+        el: ".jsSliderImportantly .swiper-pagination",
+        clickable: true,
+        bulletClass: "slider__pagination-item"
+      },
+      navigation: {
+        nextEl: '.jsSliderImportantly .swiper-button-next',
+        prevEl: '.jsSliderImportantly .swiper-button-prev'
+      },
+      breakpoints: {
+        0: {
+          spaceBetween: 12
+        },
+        834: {
+          spaceBetween: 16
+        },
+        992: {
+          pagination: false,
+          spaceBetween: 20
+        },
+        1260: {
+          pagination: false
+        }
+      }
+    });
+    checkAutoplay(jsSliderImportantly, document.querySelector('.jsSliderImportantly'));
+  }
+
   if (document.querySelector('.jsSliderBadges')) {
     var items = document.querySelectorAll('.jsSliderBadges');
 
@@ -777,12 +1043,17 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var _index = 0; _index < _items.length; _index++) {
       var _item = _items[_index];
       var jsSliderArticle = new swiper_esm/* default */.ZP(_item.querySelector('.slider__inner'), {
-        modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl],
+        modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
         loop: false,
         slidesPerView: 1,
         spaceBetween: 16,
         speed: 500,
         autoHeight: true,
+        autoplay: {
+          delay: 8000,
+          disableOnInteraction: false,
+          waitForTransition: false
+        },
         navigation: {
           nextEl: _item.querySelector('.swiper-button-next'),
           prevEl: _item.querySelector('.swiper-button-prev')
@@ -793,6 +1064,7 @@ document.addEventListener('DOMContentLoaded', function () {
           bulletClass: "slider__pagination-item"
         }
       });
+      checkAutoplay(jsSliderArticle, _item);
     }
   }
 
@@ -809,29 +1081,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navigation: {
         prevEl: window.calendar.item.querySelector('.swiper-button-prev'),
         nextEl: window.calendar.item.querySelector('.swiper-button-next')
-      } // on:{
-      //     progress: function (){
-      //         let slides = window.calendar.item.querySelectorAll('.swiper-slide-visible');
-      //     },
-      //     update: function(){
-      //         let sizes = [];
-      //         console.log('width = ' +window.calendar.slider.wrapperEl.offsetWidth);
-      //         getSize()
-      //         function getSize(){
-      //             let total = 0;
-      //             let slides = window.calendar.item.querySelectorAll('.swiper-slide');
-      //             for (let index = 0; index < window.calendar.slider.slides.length; index++) {
-      //                 const item = window.calendar.slider.slides[index];
-      //                 let width = item.querySelector('.calendar__month').offsetWidth;
-      //                 sizes.push(width)
-      //                 total += width
-      //             }
-      //             console.log(sizes);
-      //             console.log(total);
-      //         }
-      //     }
-      // }
-
+      }
     });
     window.calendar.item.querySelector('.swiper-button-prev').addEventListener('click', function () {
       var width = window.calendar.item.querySelector('.slider__inner').offsetWidth * 0.85;
@@ -852,13 +1102,27 @@ document.addEventListener('DOMContentLoaded', function () {
       modules: [swiper_esm/* Navigation */.W_, swiper_esm/* Mousewheel */.Gk, swiper_esm/* FreeMode */.Rv],
       loop: false,
       slidesPerView: 'auto',
-      spaceBetween: 24,
+      spaceBetween: 32,
       speed: 750,
       freeMode: true,
       mousewheel: true,
       navigation: {
         prevEl: window.calendarEvents.item.querySelector('.swiper-button-prev'),
         nextEl: window.calendarEvents.item.querySelector('.swiper-button-next')
+      },
+      breakpoints: {
+        0: {
+          spaceBetween: 8
+        },
+        834: {
+          spaceBetween: 16
+        },
+        1024: {
+          spaceBetween: 24
+        },
+        1260: {
+          spaceBetween: 32
+        }
       }
     });
     window.calendarEvents.item.querySelector('.swiper-button-prev').addEventListener('click', function () {
@@ -874,6 +1138,49 @@ document.addEventListener('DOMContentLoaded', function () {
       window.calendarEvents.slider.update();
     });
   }
+
+  if (window.calendarTable.item) {
+    var _Swiper;
+
+    var changeInfo = function changeInfo(index) {
+      if (block.querySelector('.swiper-slide-active')) {
+        var date = block.querySelectorAll('.swiper-slide')[index].getAttribute('data-calendar-date').split('; ');
+        infoMonth.innerHTML != '<span>' + date[0] + '</span>' ? infoMonth.innerHTML = '<span>' + date[0] + '</span>' : '';
+        infoYear.innerHTML != '<span>' + date[1] + '</span>' ? infoYear.innerHTML = '<span>' + date[1] + '</span>' : '';
+      }
+    };
+
+    var block = window.calendarTable.item;
+    var infoMonth = block.querySelector('.calendar-table__month');
+    var infoYear = block.querySelector('.calendar-table__year');
+    window.calendarTable.slider = new swiper_esm/* default */.ZP(block.querySelector('.slider__inner'), (_Swiper = {
+      modules: [swiper_esm/* Navigation */.W_, swiper_esm/* FreeMode */.Rv],
+      freeMode: true,
+      loop: false,
+      speed: 750,
+      watchSlidesProgress: true,
+      slidesPerView: 'auto'
+    }, (0,defineProperty/* default */.Z)(_Swiper, "freeMode", true), (0,defineProperty/* default */.Z)(_Swiper, "spaceBetween", 16), (0,defineProperty/* default */.Z)(_Swiper, "navigation", {
+      prevEl: block.querySelector('.swiper-button-prev'),
+      nextEl: block.querySelector('.swiper-button-next')
+    }), (0,defineProperty/* default */.Z)(_Swiper, "breakpoints", {
+      1024: {
+        slidesPerView: 1,
+        freeMode: false,
+        spaceBetween: 0
+      }
+    }), (0,defineProperty/* default */.Z)(_Swiper, "on", {
+      init: function init() {
+        changeInfo(this.activeIndex);
+      },
+      update: function update() {
+        changeInfo(this.activeIndex);
+      },
+      slideChange: function slideChange() {
+        changeInfo(this.activeIndex);
+      }
+    }), _Swiper));
+  }
 });
 // EXTERNAL MODULE: ./node_modules/@fancyapps/ui/dist/fancybox.esm.js
 var fancybox_esm = __webpack_require__(2689);
@@ -883,6 +1190,9 @@ window.Fancybox = fancybox_esm/* Fancybox */.KR;
 fancybox_esm/* Fancybox.bind */.KR.bind('[data-fancybox]', {
   Image: {
     zoom: false
+  },
+  Toolbar: {
+    display: ["close"]
   }
 });
 // EXTERNAL MODULE: ./src/components/map/scripts.js
@@ -1108,21 +1418,19 @@ var jquery_sumoselect = __webpack_require__(4102);
 
 
 
-window.initSelect = function () {
-  jquery_default()('.jsSelect').each(function () {
-    var thisSelect = jquery_default()(this);
-    var placeholder = thisSelect.attr('placeholder');
-    thisSelect.SumoSelect({
-      placeholder: placeholder,
-      forceCustomRendering: true,
-      captionFormat: '{0} Выбрано',
-      captionFormatAllSelected: '{0} Все выбраны!'
-    });
+window.initSelect = function (element) {
+  element.SumoSelect({
+    placeholder: element.attr('placeholder') ? element.attr('placeholder') : 'Выберите',
+    forceCustomRendering: true,
+    captionFormat: '{0} Выбрано',
+    captionFormatAllSelected: '{0} Все выбраны!'
   });
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.initSelect();
+  jquery_default()('.jsSelect').each(function () {
+    window.initSelect(jquery_default()(this));
+  });
 });
 // EXTERNAL MODULE: ./node_modules/daterangepicker/daterangepicker.js
 var daterangepicker = __webpack_require__(932);
@@ -1236,6 +1544,11 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 ;// CONCATENATED MODULE: ./src/components/calendar/scripts.js
 
 window.moment = moment_default()();
+moment_default().updateLocale('en', {
+  week: {
+    dow: 1
+  }
+});
 window.calendar = {
   item: document.querySelector('.jsCalendar'),
   inputs: document.querySelectorAll('.jsFilterDate'),
@@ -1660,6 +1973,197 @@ if (window.calendarEvents.item) {
     }
   });
 }
+;// CONCATENATED MODULE: ./src/components/calendar-table/scripts.js
+
+window.calendarTable = {
+  item: document.querySelector('.jsCalendarTable')
+};
+
+if (window.calendarTable.item) {
+  var scripts_init = function init() {
+    for (var i = 0; i < monthCount; i++) {
+      calendar_table_scripts_localDate = calendar_table_scripts_newMonth(calendar_table_scripts_localDate, i);
+    }
+
+    window.calendarTable.slider.update();
+  };
+
+  var calendar_table_scripts_newMonth = function newMonth(localDate) {
+    var tempDate = localDate.clone();
+    var tableStart = tempDate.clone().startOf('month').startOf('week');
+    var tableEnd = tempDate.clone().endOf('month').endOf('week');
+    var monthName = tempDate.format('MMMM');
+    var day = tableStart.clone();
+    var tbody;
+    var mainPattern = "\n            <div class=\"calendar-table__main\">\n                <div class=\"calendar-table__thead\">\n                    <div class=\"calendar-table__thead-col\">\u041F\u043E\u043D</div>\n                    <div class=\"calendar-table__thead-col\">\u0412\u0442\u043E</div>\n                    <div class=\"calendar-table__thead-col\">\u0421\u0440\u0435</div>\n                    <div class=\"calendar-table__thead-col\">\u0427\u0435\u0442</div>\n                    <div class=\"calendar-table__thead-col\">\u041F\u044F\u0442</div>\n                    <div class=\"calendar-table__thead-col\">\u0421\u0443\u0431</div>\n                    <div class=\"calendar-table__thead-col\">\u0412\u043E\u0441</div>\n                </div>\n                <div class=\"calendar-table__tbody\"></div>\n            </div>\n        "; // Создание
+
+    var slide = document.createElement('div');
+    slide.classList.add('swiper-slide', 'slider__slide');
+    slide.innerHTML = mainPattern;
+    slide.setAttribute('data-calendar-date', [calendar_table_scripts_translateMonth(monthName) + '; ' + tempDate.format('YYYY')]);
+    tbody = slide.querySelector('.calendar-table__tbody');
+    calendar_table_scripts_calendarInner.append(slide); // Наполнение
+
+    while (!day.isAfter(tableEnd)) {
+      var dayDate = day.clone();
+      scripts_createDay(tbody, dayDate, monthName);
+      day.add(1, 'day');
+    }
+
+    return tempDate.clone().add(1, 'month');
+  };
+
+  var scripts_createDay = function createDay(parent, date, month) {
+    var thisDate = date;
+    var thisMonth = thisDate.format('MMMM');
+    var number = thisDate.format('DD');
+    var value = thisDate.format('YYYY-MM-DD');
+    var dayPattern = "\n            <div class=\"calendar-table__day-number\">\n                <span>" + number + "</span>\n            </div>\n            <div class=\"calendar-table__day-list\">\n\n            </div>\n            <div class=\"calendar-table__day-actions\">\n                <button class=\"button calendar-table__day-add\" type=\"button\"data-bs-toggle=\"modal\" data-bs-target=\"#eventAdd\">\n                    <svg class=\"icon button__icon\">\n                        <use xlink:href=\"#plus\"></use>\n                    </svg>\n                </button>\n                <button class=\"link calendar-table__day-link\" type=\"button\"data-bs-toggle=\"modal\" data-bs-target=\"#eventList\">\n                    <span>\u0412\u0441\u0435</span>\n                </button>\n            </div>\n        "; // Создание
+
+    var element = document.createElement('div');
+    element.classList.add('calendar-table__day');
+    element.setAttribute('data-calendar-date', value);
+    element.innerHTML = dayPattern;
+
+    if (thisMonth != month || thisDate.isBefore(ThisDateFormat)) {
+      element.setAttribute('disabled', true);
+    }
+
+    if (thisDate.format('YYYY-MM-DD') == ThisDateFormat) {
+      element.classList.add('calendar-table__day--today');
+    }
+
+    parent.append(element);
+  };
+
+  var calendar_table_scripts_translateMonth = function translateMonth(monthName) {
+    var name;
+
+    switch (monthName) {
+      case 'January':
+        name = 'Январь';
+        break;
+
+      case 'February':
+        name = 'Февраль';
+        break;
+
+      case 'March':
+        name = 'Март';
+        break;
+
+      case 'April':
+        name = 'Апрель';
+        break;
+
+      case 'May':
+        name = 'Май';
+        break;
+
+      case 'June':
+        name = 'Июнь';
+        break;
+
+      case 'July':
+        name = 'Июль';
+        break;
+
+      case 'August':
+        name = 'Август';
+        break;
+
+      case 'September':
+        name = 'Сентябрь';
+        break;
+
+      case 'October':
+        name = 'Октябрь';
+        break;
+
+      case 'November':
+        name = 'Ноябрь';
+        break;
+
+      case 'December':
+        name = 'Декабрь';
+        break;
+
+      default:
+        break;
+    }
+
+    return name;
+  };
+
+  var calendar_table_scripts_calendarItem = window.calendarTable.item;
+  var calendar_table_scripts_calendarInner = calendar_table_scripts_calendarItem.querySelector('.swiper-wrapper', 'slider__wrapper');
+  var monthCount = calendar_table_scripts_calendarItem.getAttribute('data-table-months') ? calendar_table_scripts_calendarItem.getAttribute('data-table-months') : 3;
+  var calendar_table_scripts_localDate = moment_default()().clone();
+  var ThisDateFormat = moment_default()().clone().format('YYYY-MM-DD');
+  document.addEventListener('DOMContentLoaded', function () {
+    scripts_init();
+  });
+}
+
+window.setCalendarEvents = function (link) {
+  var request = new XMLHttpRequest();
+  request.open('GET', link);
+  request.responseType = 'json';
+  request.send();
+
+  request.onload = function () {
+    var daysList = request.response;
+    addEvents(daysList);
+    window.calendarTable.slider.update();
+  };
+
+  function addEvents(list) {
+    var block = document.querySelector('.jsCalendarTable');
+
+    for (var index = 0; index < list.length; index++) {
+      var day = list[index];
+
+      if (block.querySelector("[data-calendar-date=\"".concat(day.date, "\"]"))) {
+        addDate(day);
+      }
+    }
+  }
+
+  function addDate(day) {
+    var date = day.date;
+    var list = day.list;
+    var block = document.querySelector('.jsCalendarTable');
+    var days = block.querySelectorAll("[data-calendar-date=\"".concat(date, "\"]"));
+    days.forEach(function (day) {
+      var dayList = day.querySelector('.calendar-table__day-list');
+      list.forEach(function (event, index) {
+        var eventElement = createEvent(event.name, event.time, index);
+        dayList.append(eventElement);
+      });
+      checkLength(day);
+    });
+
+    function checkLength(day) {
+      var link = day.querySelector('.calendar-table__day-link');
+      var events = day.querySelectorAll('.calendar-table__day-event');
+
+      if (events.length > 2) {
+        link.classList.add('is-visible');
+      }
+    }
+  }
+
+  function createEvent(name, time, index) {
+    var element = document.createElement('div');
+    var content = "\n            <h4>".concat(name, "</h4>\n            <span>").concat(time, "</span>\n        ");
+    element.classList.add('calendar-table__day-event');
+    element.setAttribute('style', 'animation-delay:' + index * 0.1 + 's');
+    element.innerHTML = content;
+    return element;
+  }
+};
+// EXTERNAL MODULE: ./src/components/schedule-picker/scripts.js
+var schedule_picker_scripts = __webpack_require__(9082);
 // EXTERNAL MODULE: ./src/components/link/scripts.js
 var link_scripts = __webpack_require__(1676);
 ;// CONCATENATED MODULE: ./src/components/copy/scripts.js
@@ -1715,6 +2219,8 @@ jquery_default()('.jsCopyButton').on('click', function (e) {
     }, 1000);
   }
 });
+// EXTERNAL MODULE: ./src/components/labels/scripts.js
+var labels_scripts = __webpack_require__(3734);
 // EXTERNAL MODULE: ./src/components/tabs/scripts.js
 var tabs_scripts = __webpack_require__(2685);
 // EXTERNAL MODULE: ./src/components/more/scripts.js
@@ -1723,8 +2229,8 @@ var more_scripts = __webpack_require__(5358);
 var accordion_scripts = __webpack_require__(3653);
 // EXTERNAL MODULE: ./src/components/generator/scripts.js
 var generator_scripts = __webpack_require__(9115);
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-var defineProperty = __webpack_require__(4942);
+// EXTERNAL MODULE: ./src/components/observer/scripts.js
+var observer_scripts = __webpack_require__(8253);
 // EXTERNAL MODULE: ./node_modules/gator/gator.js
 var gator = __webpack_require__(4140);
 var gator_default = /*#__PURE__*/__webpack_require__.n(gator);
@@ -1929,7 +2435,12 @@ var registerFormValidator = function registerFormValidator() {
 
 
 
+
+
+
  // import '@components/socials/scripts';
+
+
 
 
 
@@ -1944,6 +2455,7 @@ var registerFormValidator = function registerFormValidator() {
 var init_init = function init() {
   __webpack_require__.g.spiks = {};
   __webpack_require__.g.spiks.validator = services;
+  __webpack_require__.g.spiks.setCalendarEvents = window.setCalendarEvents;
   new scripts();
   formValidator_init();
   __webpack_require__.g.$ = (jquery_default());
@@ -2447,7 +2959,7 @@ webpackContext.id = 6700;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(5630); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(864); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

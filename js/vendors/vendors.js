@@ -2912,10 +2912,11 @@ function withinMaxClamp(min, value, max) {
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "u_": function() { return /* binding */ Modal; }
+  "u_": function() { return /* binding */ Modal; },
+  "u": function() { return /* binding */ Tooltip; }
 });
 
-// UNUSED EXPORTS: Alert, Button, Carousel, Collapse, Dropdown, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip
+// UNUSED EXPORTS: Alert, Button, Carousel, Collapse, Dropdown, Offcanvas, Popover, ScrollSpy, Tab, Toast
 
 // NAMESPACE OBJECT: ./node_modules/@popperjs/core/lib/index.js
 var lib_namespaceObject = {};
