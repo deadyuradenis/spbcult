@@ -575,7 +575,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--lg fade" id="organizers" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--lg" id="organizers" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -792,7 +792,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--md fade" id="members" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--md" id="members" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -818,7 +818,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--xl fade" id="placeAdd" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--xl" id="placeAdd" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -946,82 +946,146 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--xl fade" id="request" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--xl" id="request" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
               <use xlink:href="#close"></use>
             </svg></button>
-          <div class="modal__main">
-            <h2 class="h4 modal__title">Необходимые данных для регистрации</h2>
-            <div class="modal-info modal__info jsTabs">
-              <div class="modal-info__nav"><button class="modal-info__nav-button jsTabLink is-active"
-                  type="button"><span>Юридическое лицо</span></button><button class="modal-info__nav-button jsTabLink"
-                  type="button"><span>Юридическое лицо</span></button></div>
-              <div class="modal-info__body">
-                <div class="modal-info__item jsTabItem">
-                  <div class="modal-info__group">
-                    <h3 class="modal-info__title">Юридическое лицо:</h3>
-                    <ul class="list">
-                      <li class="list__item">
-                        <p class="text">копия устава юридического лица;</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">заверенная подписью руководителя и печатью (при наличии) юридического лица;</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">копия акта, подтверждающего назначение на должность руководителя юридического
-                          лица, заверенная подписью руководителя или уполномоченного лица юридического лица и оттиском
-                          печати (при наличии);</p>
-                      </li>
-                    </ul>
+          <div class="modal-steps modal__steps">
+            <form action="#">
+              <div class="slider modal-steps__slider jsSliderModalSteps">
+                <div class="swiper slider__inner">
+                  <div class="swiper-wrapper slider__wrapper">
+                    <div class="swiper-slide slider__slide">
+                      <div class="modal__main jsModalStep">
+                        <h2 class="h4 modal__title">Отправить заявку на выступление</h2>
+                        <div class="modal-form modal__form">
+                          <div class="modal-form__inner">
+                            <div class="modal-form__main">
+                              <div class="modal-form__group">
+                                <div class="modal-form__group-content">
+                                  <div class="input"><input class="input__field jsInput jsInputReq" type="text"
+                                      name="input-1" placeholder="Введите псевдоним артиста" />
+                                    <div class="input__error">Обязательно для заполнения</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-form__group">
+                                <div class="modal-form__group-content">
+                                  <div class="input"><svg class="icon input__icon input__icon--right">
+                                      <use xlink:href="#calendar"></use>
+                                    </svg><input class="input__field jsInput jsInputDateSingle jsInputReq" type="text"
+                                      name="input" readonly="readonly" autocomplete="off" placeholder="Выберите дату" />
+                                    <div class="input__error">Обязательно для заполнения</div>
+                                  </div>
+                                  <div class="input"><svg class="icon input__icon input__icon--right">
+                                      <use xlink:href="#clock"></use>
+                                    </svg>
+                                    <div class="input__field-group"> <input class="input__field jsInput jsInputReq"
+                                        type="time" name="time-1" /><svg class="icon input__icon-to">
+                                        <use xlink:href="#arrow--to"></use>
+                                      </svg><input class="input__field jsInput jsInputReq" type="time" name="time-2" />
+                                    </div>
+                                    <div class="input__error">Обязательно для заполнения</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-form__group"> <img class="modal-form__img" src="assets\media\artist.svg"
+                                  alt="" /></div>
+                              <div class="modal-form__buttons"> <button class="button button--ghost modal-form__button"
+                                  type="button" data-bs-dismiss="modal" aria-label="Close"><span
+                                    class="button__text">Отменить</span></button><button
+                                  class="button modal-form__button jsModalStepSubmit" type="button"><span
+                                    class="button__text">Далее</span></button></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide slider__slide">
+                      <div class="modal__main jsModalStep">
+                        <h2 class="h4 modal__title">Необходимые данных для регистрации</h2>
+                        <div class="modal-info modal__info jsTabs">
+                          <div class="modal-info__nav"><button class="modal-info__nav-button jsTabLink is-active"
+                              type="button"><span>Юридическое лицо</span></button><button
+                              class="modal-info__nav-button jsTabLink" type="button"><span>Юридическое
+                                лицо</span></button></div>
+                          <div class="modal-info__body">
+                            <div class="modal-info__item jsTabItem">
+                              <div class="modal-info__group">
+                                <h3 class="modal-info__title">Юридическое лицо:</h3>
+                                <ul class="list">
+                                  <li class="list__item">
+                                    <p class="text">копия устава юридического лица;</p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">заверенная подписью руководителя и печатью (при наличии)
+                                      юридического лица;</p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">копия акта, подтверждающего назначение на должность руководителя
+                                      юридического лица, заверенная подписью руководителя или уполномоченного лица
+                                      юридического лица и оттиском печати (при наличии);</p>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="modal-info__item jsTabItem">
+                              <div class="modal-info__group">
+                                <h3 class="modal-info__title">Физическое лицо:</h3>
+                                <ul class="list">
+                                  <li class="list__item">
+                                    <p class="text">копия документа, удостоверяющего личность;</p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">доверенность, оформленная в установленном законодательством порядке
+                                      (при обращении лица, уполномоченного организатором) с приложением копии паспорта
+                                      поверенного;</p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">схема размещения сценического и (или) технического оборудования (при
+                                      наличии), используемого при проведении уличного выступления;</p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">перечень звукоусиливающей аппаратуры, копии документов, содержащих
+                                      ее технические характеристики (наименование, модель и мощность) (в случае
+                                      использования звукоусиливающей аппаратуры при проведении уличного выступления);
+                                    </p>
+                                  </li>
+                                  <li class="list__item">
+                                    <p class="text">документы подтверждающие соблюдение установленных Комитетом
+                                      особенностей проведения уличных выступлений в отдельных местах, при наличии
+                                      требований об их предоставлении согласие на обработку персональных данных
+                                      организатора (физического лица), согласие на обработку персональных данных
+                                      руководителя физического лица (для организатора - юридического лица), согласие на
+                                      обработку персональных данных лица, осуществляющего действия от имени организатора
+                                      по доверенности, по форме, утвержденной Комитетом (далее - документы);</p>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="modal-info__group">
+                              <h3 class="modal-info__title">Физическое лицо:</h3><a class="modal-info__link"
+                                href="mailto: NevskayaVolna@gmail.com"> <svg class="icon">
+                                  <use xlink:href="#mail"></use>
+                                </svg><span>NevskayaVolna@gmail.com</span></a>
+                            </div><button class="button button--md modal-info__button" type="submit"><span
+                                class="button__text">Отправить письмо</span></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="modal-info__item jsTabItem">
-                  <div class="modal-info__group">
-                    <h3 class="modal-info__title">Физическое лицо:</h3>
-                    <ul class="list">
-                      <li class="list__item">
-                        <p class="text">копия документа, удостоверяющего личность;</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">доверенность, оформленная в установленном законодательством порядке (при
-                          обращении лица, уполномоченного организатором) с приложением копии паспорта поверенного;</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">схема размещения сценического и (или) технического оборудования (при наличии),
-                          используемого при проведении уличного выступления;</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">перечень звукоусиливающей аппаратуры, копии документов, содержащих ее
-                          технические характеристики (наименование, модель и мощность) (в случае использования
-                          звукоусиливающей аппаратуры при проведении уличного выступления);</p>
-                      </li>
-                      <li class="list__item">
-                        <p class="text">документы подтверждающие соблюдение установленных Комитетом особенностей
-                          проведения уличных выступлений в отдельных местах, при наличии требований об их предоставлении
-                          согласие на обработку персональных данных организатора (физического лица), согласие на
-                          обработку персональных данных руководителя физического лица (для организатора - юридического
-                          лица), согласие на обработку персональных данных лица, осуществляющего действия от имени
-                          организатора по доверенности, по форме, утвержденной Комитетом (далее - документы);</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-info__group">
-                  <h3 class="modal-info__title">Физическое лицо:</h3><a class="modal-info__link"
-                    href="mailto: NevskayaVolna@gmail.com"> <svg class="icon">
-                      <use xlink:href="#mail"></use>
-                    </svg><span>NevskayaVolna@gmail.com</span></a>
-                </div><a class="button button--md modal-info__button" href="mailto: NevskayaVolna@gmail.com"><span
-                    class="button__text">Отправить письмо</span></a>
+                <div class="swiper-pagination slider__steps"></div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal modal--md fade" id="eventAdd" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--md" id="eventAdd" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -1045,7 +1109,7 @@
                       <div class="modal-form__group-content">
                         <div class="input"><svg class="icon input__icon input__icon--right">
                             <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDate" type="text" name="input"
+                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input"
                             readonly="readonly" autocomplete="off" placeholder="Выберите дату" />
                           <div class="input__error">Обязательно для заполнения</div>
                         </div>
@@ -1072,7 +1136,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--md fade" id="eventEdit" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--md" id="eventEdit" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -1096,7 +1160,7 @@
                       <div class="modal-form__group-content">
                         <div class="input"><svg class="icon input__icon input__icon--right">
                             <use xlink:href="#calendar"></use>
-                          </svg><input class="input__field jsInput jsInputDate" type="text" name="input"
+                          </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input"
                             readonly="readonly" autocomplete="off" placeholder="Выберите дату" value="12.12.2023" />
                           <div class="input__error">Обязательно для заполнения</div>
                         </div>
@@ -1127,7 +1191,7 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--md fade" id="eventList" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal--md" id="eventList" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"><button class="modal-close" type="button" data-bs-dismiss="modal"
             aria-label="Close"><svg class="icon">
@@ -1248,7 +1312,7 @@
                         <div class="modal-form__group-content">
                           <div class="input"><svg class="icon input__icon input__icon--right">
                               <use xlink:href="#calendar"></use>
-                            </svg><input class="input__field jsInput jsInputDate" type="text" name="input"
+                            </svg><input class="input__field jsInput jsInputDateSingle" type="text" name="input"
                               readonly="readonly" autocomplete="off" placeholder="Выберите дату" value="12.12.2023" />
                             <div class="input__error">Обязательно для заполнения</div>
                           </div>
@@ -1607,6 +1671,10 @@
       <symbol viewBox="0 0 16 16" id="ok">
         <path
           d="M7.10497 12.6041L7.08735 12.6217L2.6875 8.22185L4.12018 6.78917L7.10502 9.77402L11.879 5L13.3117 6.43268L7.12264 12.6218L7.10497 12.6041Z" />
+      </symbol>
+      <symbol viewBox="0 0 24 24" id="ok-slim">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M20.5744 5.37381C20.9204 5.69103 20.9438 6.22871 20.6266 6.57476L9.62661 18.5748C9.46995 18.7457 9.25027 18.8452 9.01849 18.8502C8.7867 18.8552 8.56292 18.7654 8.39898 18.6014L3.39898 13.6014C3.06704 13.2695 3.06704 12.7313 3.39898 12.3994C3.73093 12.0674 4.26912 12.0674 4.60107 12.3994L8.97332 16.7716L19.3734 5.42603C19.6907 5.07998 20.2283 5.0566 20.5744 5.37381Z" />
       </symbol>
       <symbol viewBox="0 0 48 48" id="odnoklassniki">
         <path fill-rule="evenodd" clip-rule="evenodd"

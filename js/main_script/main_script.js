@@ -648,100 +648,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 9082:
-/***/ (function() {
-
-var initComponent = function initComponent(componentNode) {
-  var block = componentNode;
-  var days = block.querySelectorAll('.jsScheduleDay');
-  var inputFrom = block.querySelector('.jsScheduleInputFrom');
-  var inputTo = block.querySelector('.jsScheduleInputTo');
-  var inputsWrapper = inputTo.closest('.input__field-group');
-  var tempDateTo = '';
-  var tempDateFrom = '';
-  var tempTime = '';
-
-  if (!block) {
-    return;
-  }
-
-  checkDays();
-
-  var _loop = function _loop(index) {
-    var item = days[index];
-    item.addEventListener('click', function () {
-      item.classList.toggle('is-active');
-      checkDays();
-    });
-  };
-
-  for (var index = 0; index < days.length; index++) {
-    _loop(index);
-  }
-
-  inputFrom.addEventListener('input', function () {
-    tempDateFrom = inputFrom.value;
-    tempTime = tempDateFrom + ' - ' + tempDateTo;
-    setTime();
-  });
-  inputTo.addEventListener('input', function () {
-    tempDateTo = inputTo.value;
-    tempTime = tempDateFrom + ' - ' + tempDateTo;
-    setTime();
-  });
-
-  function checkDays() {
-    var activeDays = block.querySelectorAll('.jsScheduleDay.is-active');
-
-    if (activeDays.length > 0) {
-      inputsWrapper.removeAttribute('disabled');
-
-      for (var _index = 0; _index < activeDays.length; _index++) {
-        var day = activeDays[_index];
-        var dayInput = day.querySelector('input');
-        var thisValue = dayInput.value;
-        var prevValue = _index != 0 ? activeDays[_index - 1].querySelector('input').value : thisValue;
-
-        if (prevValue == thisValue) {
-          tempTime = thisValue;
-        } else {
-          tempTime = '';
-        }
-      }
-    } else {
-      tempTime = '';
-      inputsWrapper.setAttribute('disabled', true);
-    }
-
-    setValue();
-  }
-
-  function setValue() {
-    var splitTime = tempTime.split(' - ');
-    tempDateFrom = splitTime[0] != undefined ? splitTime[0] : '';
-    tempDateTo = splitTime[1] != undefined ? splitTime[1] : '';
-    inputFrom.value = tempDateFrom;
-    inputTo.value = tempDateTo;
-  }
-
-  function setTime() {
-    var activeDays = block.querySelectorAll('.jsScheduleDay.is-active');
-
-    for (var _index2 = 0; _index2 < activeDays.length; _index2++) {
-      var day = activeDays[_index2];
-      var dayInput = day.querySelector('input');
-      dayInput.value = tempTime;
-    }
-  }
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-  var componentNodes = Array.from(document.querySelectorAll('.jsSchedulePicker'));
-  componentNodes.forEach(initComponent);
-});
-
-/***/ }),
-
 /***/ 2685:
 /***/ (function() {
 
@@ -822,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 864:
+/***/ 9599:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1065,6 +971,79 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
       checkAutoplay(jsSliderArticle, _item);
+    }
+  }
+
+  if (document.querySelector('.jsSliderModalSteps')) {
+    var _items2 = document.querySelectorAll('.jsSliderModalSteps');
+
+    var _loop = function _loop(_index2) {
+      var item = _items2[_index2];
+      var steps = item.querySelectorAll('.jsModalStep');
+      var jsSliderModalSteps = new swiper_esm/* default */.ZP(item.querySelector('.slider__inner'), {
+        modules: [swiper_esm/* Pagination */.tl, swiper_esm/* Autoplay */.pt],
+        loop: false,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        speed: 500,
+        autoHeight: true,
+        simulateTouch: false,
+        pagination: {
+          el: item.querySelector(".swiper-pagination"),
+          clickable: true,
+          bulletClass: 'slider__step',
+          renderBullet: function renderBullet(index) {
+            return "<span class=\"slider__step\">\n                                    <span class=\"slider__step-inner\">\n                                        <span>".concat(index + 1, "</span>\n                                        <svg class=\"icon\">\n                                            <use xlink:href=\"#ok-slim\"></use>\n                                        </svg>\n                                    </span>\n                                </span>");
+          },
+          bulletActiveClass: 'slider__step--active'
+        },
+        on: {
+          slideChange: function slideChange() {
+            var activeIndex = jsSliderModalSteps.activeIndex;
+            var stepsLinks = item.querySelectorAll('.slider__step');
+            stepsLinks.forEach(function (link, index) {
+              if (activeIndex > index) {
+                link.classList.add('is-available');
+              } else {
+                link.classList.remove('is-available');
+              }
+            });
+          }
+        }
+      });
+
+      function resize() {
+        jsSliderModalSteps.updateAutoHeight();
+      }
+
+      ;
+      steps.forEach(function (step) {
+        var button = step.querySelector('.jsModalStepSubmit');
+        var inputs = step.querySelectorAll('.jsInput.jsInputReq');
+        new ResizeObserver(resize).observe(step);
+
+        if (button) {
+          button.addEventListener('click', function () {
+            var errors = 0;
+            inputs.forEach(function (input) {
+              if (input.value != '') {
+                window.inputStatusRemove(input, 'error');
+              } else {
+                window.inputStatusAdd(input, 'error');
+                errors++;
+              }
+            });
+
+            if (errors == 0) {
+              jsSliderModalSteps.slideNext();
+            }
+          });
+        }
+      });
+    };
+
+    for (var _index2 = 0; _index2 < _items2.length; _index2++) {
+      _loop(_index2);
     }
   }
 
@@ -1385,14 +1364,11 @@ window.runMask = function () {
       var _mask = (0,esm/* default */.ZP)(phoneElement[_i], phoneMaskSettings);
     }
   }
-}; // window.runMask() перезвапуск маски
+}; // window.runMask() перезапуск маски
 
 
-var jsInputSwap = document.querySelectorAll('.jsInputSwap');
-
-var _loop3 = function _loop3(_index2) {
-  var item = jsInputSwap[_index2];
-  var parent = item.closest('.input');
+var inputSwapComponent = function inputSwapComponent(inputNode) {
+  var parent = inputNode.closest('.input');
   var input = parent.querySelector('input');
 
   function toggleType() {
@@ -1403,15 +1379,21 @@ var _loop3 = function _loop3(_index2) {
     }
   }
 
-  item.addEventListener('click', function (e) {
-    item.classList.toggle('is-active');
+  inputNode.addEventListener('click', function (e) {
+    inputNode.classList.toggle('is-active');
     toggleType();
+    input.focus();
   });
 };
 
-for (var _index2 = 0; _index2 < jsInputSwap.length; _index2++) {
-  _loop3(_index2);
-}
+var initInputSwapComponent = function initInputSwapComponent(inputSelector) {
+  var jsInputSwapNodes = Array.from(document.querySelectorAll(inputSelector));
+  jsInputSwapNodes.forEach(inputSwapComponent);
+};
+
+window.initInputSwapComponent = initInputSwapComponent; // window.initInputSwapComponent() перезапуск инпутов со свапом
+
+initInputSwapComponent('.jsInputSwap');
 // EXTERNAL MODULE: ./node_modules/sumoselect/jquery.sumoselect.js
 var jquery_sumoselect = __webpack_require__(4102);
 ;// CONCATENATED MODULE: ./src/components/select/scripts.js
@@ -2162,8 +2144,336 @@ window.setCalendarEvents = function (link) {
     return element;
   }
 };
-// EXTERNAL MODULE: ./src/components/schedule-picker/scripts.js
-var schedule_picker_scripts = __webpack_require__(9082);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+var slicedToArray = __webpack_require__(3324);
+;// CONCATENATED MODULE: ./src/components/schedule-picker/lib/timeComponent.js
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,defineProperty/* default */.Z)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+/* harmony default export */ var timeComponent = (function () {
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var fromNode = settings.fromNode,
+      toNode = settings.toNode;
+
+  if (!fromNode || !toNode) {
+    throw new Error('timeComponent');
+  }
+
+  var containerNode = fromNode.closest('.input__field-group');
+  var state = {
+    value: {
+      from: '',
+      to: ''
+    }
+  };
+
+  var normalizeValue = function normalizeValue(value) {
+    if (typeof value === 'string') {
+      return value ? JSON.parse(value) : {
+        from: '',
+        to: ''
+      };
+    }
+
+    return value;
+  };
+
+  var setValue = function setValue() {
+    var newValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var oldValue = state.value;
+    state.value = _objectSpread(_objectSpread({}, oldValue), normalizeValue(newValue));
+  };
+
+  var getValue = function getValue() {
+    var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var value = state.value;
+
+    var copyValue = _objectSpread({}, value);
+
+    if (!key) {
+      return copyValue;
+    }
+
+    if (Object.hasOwn(copyValue)) {
+      return value[key];
+    }
+
+    return '';
+  };
+
+  var validate = function validate() {
+    var _state$value = state.value,
+        from = _state$value.from,
+        to = _state$value.to;
+
+    if (!from || !to) {
+      return false;
+    }
+
+    return true;
+  };
+
+  var toString = function toString() {
+    return JSON.stringify(state.value);
+  };
+
+  var renderValue = function renderValue() {
+    var _state$value2 = state.value,
+        from = _state$value2.from,
+        to = _state$value2.to;
+    fromNode.value = from;
+    toNode.value = to;
+  };
+
+  var renderValidity = function renderValidity() {
+    var validityState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    if (validityState === 'invalid') {
+      containerNode.classList.add('_invalid');
+      return;
+    }
+
+    containerNode.classList.remove('_invalid');
+  };
+
+  return {
+    fromNode: fromNode,
+    toNode: toNode,
+    validate: validate,
+    renderValidity: renderValidity,
+    toString: toString,
+    getValue: getValue,
+    setValue: setValue,
+    update: function update(newValue) {
+      setValue(newValue);
+      renderValue();
+      renderValidity('idle');
+      return getValue();
+    },
+    clear: function clear() {
+      setValue('');
+      renderValue();
+      renderValidity('valid');
+    }
+  };
+});
+;// CONCATENATED MODULE: ./src/components/schedule-picker/lib/dayComponent.js
+/* harmony default export */ var dayComponent = (function () {
+  var settings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var dayNode = settings.dayNode;
+  var input = dayNode.querySelector('input');
+  var state = {
+    time: input.value,
+    activity: 'idle'
+  };
+
+  var setTime = function setTime() {
+    var newTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    state.time = newTime;
+  };
+
+  var getTime = function getTime() {
+    return state.time;
+  };
+
+  var setActivity = function setActivity(newActivity) {
+    state.activity = newActivity;
+  };
+
+  var getActivity = function getActivity() {
+    return state.activity;
+  };
+
+  var renderActivity = function renderActivity() {
+    var activity = state.activity;
+
+    if (activity === 'active') {
+      dayNode.classList.add('is-active');
+      return;
+    }
+
+    dayNode.classList.remove('is-active');
+  };
+
+  var renderValue = function renderValue() {
+    var time = state.time;
+    input.value = time;
+  };
+
+  var updateActivity = function updateActivity() {
+    var newActivity = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    setActivity(newActivity);
+    renderActivity();
+  };
+
+  var updateTime = function updateTime() {
+    var newTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var currentActivity = getActivity();
+
+    if (newTime && currentActivity !== 'active') {
+      updateActivity('active');
+    }
+
+    setTime(newTime);
+    renderValue();
+  };
+
+  return {
+    node: dayNode,
+    getTime: getTime,
+    getActivity: getActivity,
+    updateActivity: updateActivity,
+    updateTime: updateTime
+  };
+});
+;// CONCATENATED MODULE: ./src/components/schedule-picker/scripts.js
+
+
+/* eslint-disable eqeqeq */
+
+/* eslint-disable no-plusplus */
+
+/* eslint-disable no-use-before-define */
+
+
+
+var scheduleComponent = function scheduleComponent(componentNode) {
+  var state = {
+    focusedDayIndex: 'idle'
+  };
+
+  var setFocusedDayIndex = function setFocusedDayIndex(newValue) {
+    state.focusedDayIndex = newValue;
+  };
+
+  var unsetFocusedDayIndex = function unsetFocusedDayIndex() {
+    state.focusedDayIndex = 'idle';
+  };
+
+  var hasFocusedDay = function hasFocusedDay() {
+    return state.focusedDayIndex !== 'idle';
+  };
+
+  var validateCurrentDay = function validateCurrentDay() {
+    if (!hasFocusedDay()) {
+      return true;
+    }
+
+    return time.validate();
+  };
+
+  var updateCurrentDayTime = function updateCurrentDayTime() {
+    if (!hasFocusedDay()) {
+      setFocusedDayIndex(0);
+    }
+
+    var focusedDayIndex = state.focusedDayIndex;
+    var currentTime = time.toString(time.getValue());
+    var currentDay = days[focusedDayIndex];
+    currentDay.updateTime(currentTime);
+  };
+
+  var renderUnfocusedDays = function renderUnfocusedDays() {
+    if (!hasFocusedDay()) {
+      return;
+    }
+
+    var focusedDayIndex = state.focusedDayIndex;
+    var activeDays = days.filter(function (day) {
+      return day.getActivity() === 'active';
+    });
+    activeDays.forEach(function (_ref, index) {
+      var node = _ref.node;
+
+      if (index !== focusedDayIndex) {
+        node.classList.add('is-unfocused');
+        return;
+      }
+
+      node.classList.remove('is-unfocused');
+    });
+  };
+
+  var block = componentNode;
+  var dayNodes = Array.from(block.querySelectorAll('.jsScheduleDay'));
+  var inputFrom = block.querySelector('.jsScheduleInputFrom');
+  var inputTo = block.querySelector('.jsScheduleInputTo');
+  var time = timeComponent({
+    fromNode: inputFrom,
+    toNode: inputTo
+  });
+  var days = dayNodes.map(function (dayNode) {
+    return dayComponent({
+      dayNode: dayNode
+    });
+  });
+
+  var _days = (0,slicedToArray/* default */.Z)(days, 1),
+      firstDay = _days[0];
+
+  time.update(firstDay.getTime());
+  days.forEach(function (day, index) {
+    var node = day.node;
+    node.addEventListener('click', function () {
+      var focusedDayValidity = validateCurrentDay() ? 'valid' : 'invalid';
+      var currentTimeString = time.toString(time.getValue());
+      var dayTime = day.getTime();
+      var dayActivity = day.getActivity();
+      var dayFocusing = index === state.focusedDayIndex ? 'focused' : 'unfocused';
+
+      if (dayActivity === 'active' && dayFocusing === 'focused') {
+        unsetFocusedDayIndex();
+        renderUnfocusedDays();
+        day.updateActivity('inactive');
+        day.updateTime('');
+        time.clear();
+        return;
+      }
+
+      if (dayFocusing === 'unfocused' && focusedDayValidity === 'invalid') {
+        time.renderValidity(focusedDayValidity);
+        return;
+      }
+
+      setFocusedDayIndex(index);
+      renderUnfocusedDays();
+      day.updateActivity('active');
+
+      if (dayActivity === 'active') {
+        time.update(dayTime);
+        return;
+      }
+
+      day.updateTime(currentTimeString);
+    });
+  });
+  time.fromNode.addEventListener('change', function (event) {
+    time.setValue({
+      from: event.target.value
+    });
+    updateCurrentDayTime();
+  });
+  time.toNode.addEventListener('change', function (event) {
+    time.setValue({
+      to: event.target.value
+    });
+    updateCurrentDayTime();
+  });
+};
+
+var schedule_picker_scripts_init = function init() {
+  var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.jsSchedulePicker';
+  var componentNodes = Array.from(document.querySelectorAll(selector));
+  componentNodes.forEach(scheduleComponent);
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  schedule_picker_scripts_init();
+});
+window.jsSchedulePicker = schedule_picker_scripts_init;
 // EXTERNAL MODULE: ./src/components/link/scripts.js
 var link_scripts = __webpack_require__(1676);
 ;// CONCATENATED MODULE: ./src/components/copy/scripts.js
@@ -2323,9 +2633,9 @@ var validatorView = {
 ;// CONCATENATED MODULE: ./src/components/formValidator/init.js
 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function init_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,defineProperty/* default */.Z)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function init_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { init_ownKeys(Object(source), true).forEach(function (key) { (0,defineProperty/* default */.Z)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { init_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -2379,7 +2689,7 @@ var validateField = function validateField(input) {
   var validatorName = validator.name,
       validatorOptions = validator.options;
   var validationService = VALIDATION_SERVICES_MAP[validatorName];
-  var validationState = validationService(_objectSpread({
+  var validationState = validationService(init_objectSpread({
     value: inputValue
   }, validatorOptions));
   view.renderField(validationState, inputBox, INVALID_CLASS);
@@ -2959,7 +3269,7 @@ webpackContext.id = 6700;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(864); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], function() { return __webpack_require__(9599); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
